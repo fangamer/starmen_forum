@@ -37,3 +37,64 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# Ignore all copyrighted material that exists in the images
+
+# copyrighted sprites
+public/include/images/sprites/cake.png
+public/include/images/sprites/icon-forum-m1.png
+public/include/images/sprites/icon-forum-m2.png
+public/include/images/sprites/icon-forum-m3.png
+public/include/images/sprites/icon-forum-roadblock.png
+public/include/images/sprites/icon-forum-ssb.png
+public/include/images/sprites/icon-forum-techtalk.png
+public/include/images/sprites/icon-forum-tv.png
+public/include/images/sprites/sprite*
+
+# copyrighted material in a forum banner
+public/include/images/forum/banners/2.png
+public/include/images/forum/banners/3.png
+public/include/images/forum/banners/4.png
+public/include/images/forum/banners/5.png
+public/include/images/forum/banners/44.png
+public/include/images/forum/banners/68.png
+public/include/images/forum/banners/99.png
+public/include/images/forum/banners/114.png
+public/include/images/forum/banners/mother1.png
+public/include/images/forum/banners/mother2.png
+public/include/images/forum/banners/mother3.png
+public/include/images/forum/banners/smashbros.png
+public/include/images/forum/banners/techtalk.png
+
+# the old store banner ads for products that are no longer in print anyway :P
+public/include/images/forum/banners/store
+
+# old stylesheets that are not in use anymore so let's just not check them in
+public/include/stylesheets/downtime
+public/include/stylesheets/ebff
+public/include/stylesheets/ebff10
+public/include/stylesheets/layouts
+public/include/stylesheets/main
+public/include/stylesheets/renaissance
+public/include/stylesheets/smrpg
+
+# more copyrighted material
+public/include/stylesheets/forum/base/images/badgeLaborFirst.png
+public/include/stylesheets/forum/base/images/badgeLaborRunner.png
+public/include/stylesheets/forum/base/images/badgeLoveFirst.png
+public/include/stylesheets/forum/base/images/badgeLoveRunner.png
+public/include/stylesheets/forum/base/images/badgeRockin-runner.png
+public/include/stylesheets/forum/base/images/badgeRockin.png
+public/include/stylesheets/forum/base/images/badgeSkillFirst.png
+public/include/stylesheets/forum/base/images/badgeSkillRunner.png
+public/include/stylesheets/forum/base/images/badgeUrf-runner.png
+public/include/stylesheets/forum/base/images/badgeUrf.png
+public/include/stylesheets/forum/base/images/top-donate.png
+public/include/stylesheets/forum/base/images/top-games.png
+public/include/stylesheets/forum/base/images/top-swag.png
+public/include/stylesheets/forum/images/top-donate.png
+public/include/stylesheets/forum/images/top-games.png
+public/include/stylesheets/forum/images/top-swag.png
+public/include/stylesheets/ubercms/base/images/top-donate.png
+public/include/stylesheets/ubercms/base/images/top-games.png
+public/include/stylesheets/ubercms/base/images/top-swag.png

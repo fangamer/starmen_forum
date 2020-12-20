@@ -1,0 +1,49 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  tagline: MyText
+  read_by_column: false
+  read_require_login: false
+  post_reply: false
+  require_acl: MyString
+  require_first_key: false
+  category_id: 1
+  post_new_topic: false
+  post_count: 1
+  last_message: 
+  mod_forum: false
+  sprite_id: 1
+  nickname: MyString
+  allow_images: false
+  hidden: false
+  order: 1
+  disable_listing_on_forumspy: false
+  disable_polls: false
+  serious_business: false
+  allow_attachments: false
+  disable_swear_filter: false
+
+two:
+  name: MyString
+  tagline: MyText
+  read_by_column: false
+  read_require_login: false
+  post_reply: false
+  require_acl: MyString
+  require_first_key: false
+  category_id: 1
+  post_new_topic: false
+  post_count: 1
+  last_message: 
+  mod_forum: false
+  sprite_id: 1
+  nickname: MyString
+  allow_images: false
+  hidden: false
+  order: 1
+  disable_listing_on_forumspy: false
+  disable_polls: false
+  serious_business: false
+  allow_attachments: false
+  disable_swear_filter: false

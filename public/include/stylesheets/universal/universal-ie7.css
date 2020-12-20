@@ -1,0 +1,6 @@
+button img { display: none; }
+#main .post-body div.sig { height: 1.6em; }
+#main .post .post-footer { padding-bottom: 1em; }
+#main .post .post-footer hr { height: 1px; color: black; }
+#main .post .post-footer ul { min-width: 15em; }
+.tabley dl dd { float: none; }

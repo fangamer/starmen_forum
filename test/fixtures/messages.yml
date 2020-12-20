@@ -1,0 +1,41 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  topic_id: 1
+  body: MyText
+  body_original: MyText
+  user_id: 1
+  ip_address: MyString
+  hostname: MyString
+  edited_by: 1
+  deleted: false
+  show_sig: false
+  locked: false
+  thumbnail: MyString
+  thumbnail_ids: MyString
+  poll_id: 1
+  score: 1
+  disable_smilies: false
+  disable_textile: false
+  emblem_id: 1
+  deleted_by: 1
+
+two:
+  topic_id: 1
+  body: MyText
+  body_original: MyText
+  user_id: 1
+  ip_address: MyString
+  hostname: MyString
+  edited_by: 1
+  deleted: false
+  show_sig: false
+  locked: false
+  thumbnail: MyString
+  thumbnail_ids: MyString
+  poll_id: 1
+  score: 1
+  disable_smilies: false
+  disable_textile: false
+  emblem_id: 1
+  deleted_by: 1

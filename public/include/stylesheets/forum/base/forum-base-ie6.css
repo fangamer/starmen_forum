@@ -1,0 +1,12 @@
+.toolbar ul li, .toolbar div.pagination span, .toolbar div.pagination a {float:none; display:inline;}
+
+.toolbar ul li a, .toolbar div.pagination span, .toolbar div.pagination a {display:inline;}
+
+.toolbar ul.actions li a { background: #092343; color:#71B1FF; display:inline-block; width:auto;}
+
+.toolbar ul.actions li a:hover {text-decoration:underline; color:white;}
+
+.toolbar ul li.selected a, .toolbar div.pagination span.current, .toolbar div.pagination a.current {background: transparent url(images/pagination-arrow.png) 50% 50% no-repeat;}
+
+.toolbar ul li.util { float: none;  }
+.toolbar #goreply {display:none;}

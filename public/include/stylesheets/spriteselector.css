@@ -1,0 +1,195 @@
+/*
+   Meyer CSS Reset: 
+   http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+/******* REIDS DELICIOUS CSS FUNTIME *********/
+
+a         { text-decoration: none; border: 0; }
+a:link    { color: #097cb7; }
+a:visited { color: #145c81; }
+a:hover   { color: #4da3d0; }
+a:focus   { color: #4da3d0; }
+a:active  { color: #4da3d0; }
+
+body {
+	color: white;
+	font: 62.5% Verdana,Helvetica,Arial,sans-serif;
+	line-height: 1.8;
+	background-color: #052752;
+	}
+
+#header {
+	padding: 20px;
+	background-color: #a5ccfb;
+	}
+
+	#header h1 {
+		font: italic 1.5em "Trebuchet MS",Trebuchet,"Lucida Sans",Lucida,sans-serif;
+		color: #001835;
+		}
+
+		#header h1 span {
+			font-size: .7em;
+			font-style: normal;
+			color: #6c7887;
+			}
+
+	ul.utility {
+		position: relative;
+		float: right;
+		}
+
+		ul.utility li img {
+			position: relative;
+			top: 4px;
+			left: -3px;
+			}
+
+			#header ul.utility {
+				top: -2em;
+				}
+
+			#content div.edit ul.utility {
+				right: 20px;
+				top: 10px;
+				}
+
+			.positive a, .positive a:link    { color: #29681d; }
+			.positive a:visited { color: #29681d; }
+			.positive a:hover   { color: #3dad26; }
+			.positive a:focus   { color: #3dad26; }
+			.positive a:active  { color: #3dad26; }
+
+			.negative a, .negative a:link    { color: #ff7274; }
+			.negative a:visited { color: #ff7274; }
+			.negative a:hover   { color: #ff5355; }
+			.negative a:focus   { color: #ff5355; }
+			.negative a:active  { color: #ff5355; }
+
+#content {
+	padding: 15px 0;
+	}
+
+	#content div.spritecontainer {
+		position: relative;
+		padding: 13px 30px 13px 0;
+		overflow: auto;
+		}
+
+		#content div.spritecontainer h2 {
+			line-height: 14px;
+			}
+
+			#content div.spritecontainer h2 a.title {
+				color: #769cc9;
+				font-size: 1.3em;
+				cursor: pointer;
+				}
+
+			#content div.spritecontainer h2 a.edit {
+				color: #76c993;
+				}
+
+			#content div.spritecontainer a.sprite {
+				display: block;
+				float: left;
+				width: 80px;
+				padding-top: 3px;
+				min-height: 30px;
+				text-align: center;
+				border: 0;
+				cursor: pointer;
+				}
+
+		#content div.spritecontainer p.tags {
+			color: #5d738f;
+			}
+
+		#content div.spritecontainer p.games {
+			color: #5d738f;
+			}
+
+		#content div.edit {
+			padding: 0;
+			}
+
+			#content div.edit a.sprite {
+				min-height: 110px;
+				padding-top: 15px;
+				}
+
+				#content div.edit form div {
+					background-color: #001530;
+					padding: 15px 30px 15px 0;
+					}
+
+					#content div.edit form div input.text, #content div.edit form div input.file {
+						border: 0;
+						margin: 2px 0;
+						padding: 2px 5px;
+						}
+
+					#content div.edit form div input.imagefile, #content div.edit form div input.visibility {
+						margin-top: 15px;
+						}
+
+					#content div.edit form div input.imagefile, #content div.edit form div label {
+						color: #769cc9;
+						}
+
+				#content div.edit form div.save {
+					background-color: #011124;
+					padding: 3px 30px 3px 80px;
+					}
+
+					#content div.edit form div.save input.submit {
+						margin-right: 10px;
+						}

@@ -1,0 +1,716 @@
+/*** FORUM BASE STYLES ***/
+/* MAIN TYPOGRAPHY */
+html { font-size: 62.5%; }
+strong, th, thead td, h1, h2, h3, h4, h5, h6, dt { font-weight: bold; }
+code, kbd, samp, pre, tt, var, input[type='text'], input[type='password'], textarea { font-size: 92%; font-family: monaco, "Lucida Console", courier, mono-space; }
+pre.notextile { font-size: 100%; }
+pre { white-space: pre; }
+pre * { font-size: 100%; white-space: pre; }
+del { text-decoration: line-through; color: #666; }
+ins, dfn { border-bottom: 1px solid #ccc; }
+small, sup, sub { font-size: 85%; }
+big { font-size: 125%; line-height: 80%; }
+abbr, acronym { text-transform: uppercase; font-size: 85%; letter-spacing: .1em; }
+a abbr, a acronym { border: none; }
+abbr[title], acronym[title], dfn[title] { cursor: help; border-bottom: 1px dotted #ccc; }
+sup { vertical-align: super; }
+sub { vertical-align: sub; }
+a:link, a:visited, a:hover, a:active, a:focus { text-decoration: underline; }
+.nodisplay { display: none; }
+
+/* FORMS */
+fieldset { border: 1px solid #ccc; }
+legend { background: #fff; }
+textarea, input[type='text'], select { border: 1px solid #ccc; background: #fff; }
+textarea:hover, input[type='text']:hover, input[type='password']:hover, select:hover { border-color: #aaa; }
+textarea:focus, input[type='text']:focus, input[type='password']:focus, select:focus { border-color: #888; outline: 2px solid #ddd; }
+input[type='button'], input[type='submit'], input[type='checkbox'], input[type='image'], input[type='radio'], input[type='reset'], select, button { cursor: pointer; }
+input[type='hidden'] { display:none; }
+
+/* QUOTES */
+.forum-body ul > li blockquote p, .spymsg blockquote p { font-size: 1.2em; }
+cite { font-style: normal; font-size: 1.1em; }
+
+/*** FORUM BASE STYLES ***/
+.wrapper { width: 80%; min-width: 960px; margin: 0 auto; }
+
+/* MISC GLOBAL RULES */
+ul.tabs { height: 2.4em; }
+	ul.tabs li { float: left; }
+	ul.tabs li a { position: relative; float: left; line-height: 2.4em; margin: 0 3px 0 0; padding: 0 10px 0 2.9em; }
+		ul.tabs li a img { position: absolute; left: 0; }
+		ul.tabs li a span { font-size: 1.1em; }
+
+ul.buttons { margin: 0 !important; }
+ul.buttons li { float: left; list-style: none !important; padding: 0 !important;}
+button, ul.buttons li a, a.button { display: block; float: left; width: auto; overflow: visible; height: 2.2em; border: 0; font-size: 1.25em; min-height: 2em; margin: .3em .3em 0 0; padding: 0 1em; text-decoration: none; }
+	button img, ul.buttons li a img, a.button img { position: relative; float: left; font-size: .8em; }
+	button span, ul.buttons li a span, a.button span { float: left; line-height: 2.2em; }
+	
+button.empty { padding: 0; font-size: 1em; background-color: transparent; margin-top: -.5em; float: none; height: auto; width:auto;}
+
+blockquote > div { float: left; line-height: 1.3em; margin: 0 2.5% 0 0; padding: 1em 0; }
+	blockquote div.citey { clear: left; width: 17.5%; text-align: right; }
+	blockquote div.quotey { clear: right; width: 77.5%; }
+		blockquote div.quotey p { padding-top: 1em; }
+		blockquote div.quotey p:first-child { padding-top: 0; }
+		blockquote div.quotey p:last-child  { padding-bottom: 0; }
+		
+div.youtube {padding: 1em; width:100%;}
+div.youtube div.youtube_title { text-align:center; font-weight:bold; }
+div.youtube div.youtube_video { text-align:center; }
+
+a.arrow { float: left; text-indent: -9000px; background-position: center center; background-repeat: no-repeat; }
+a.firstarrow { text-decoration: none; }
+a.firstarrow img { position: relative; left: .2em; width: .9em; height: .9em; opacity: .33; }
+#top a.firstarrow img, #sidebar a.firstarrow img { opacity: .5; }
+.unseen > a.firstarrow img, .unseen > blockquote cite a.firstarrow img { opacity: .6; }
+a.firstarrow:hover img, .unseen > a.firstarrow:hover img, .unseen > blockquote cite a.firstarrow:hover img, #sidebar a.firstarrow:hover img, #top a.firstarrow:hover img { opacity: .8; }
+body.topics #main a.firstarrow img { width: 1.1em; height: 1.1em;}
+
+a.backlink { display: block; font-size: 1.2em; padding: .5em 0; margin: 1em 0 0 0; }
+
+img.rotate {-webkit-animation: 'spinnerRotate' 2s infinite linear; /*-moz-animation: 'spinnerRotate' 2s infinite linear;*/}
+
+@-webkit-keyframes spinnerRotate {
+	from {
+		-webkit-transform:rotate(0deg);
+	}
+	to {
+		-webkit-transform:rotate(360deg);
+	}
+}
+
+/*@-moz-keyframes spinnerRotate {
+	from {
+		-moz-transform:rotate(0deg);
+	}
+	to {
+		-moz-transform:rotate(360deg);
+	}
+}
+
+@keyframes spinnerRotate {
+	from {
+		-webkit-transform:rotate(0deg);
+		-moz-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	to {
+		-webkit-transform:rotate(360deg);
+		-moz-transform:rotate(360deg);
+		transform:rotate(360deg);
+	}
+}*/
+
+/*** LAYOUT ***/
+#main, #generic { padding: 1em 0 3em 0; float: left; width: 71.8%; min-width: 690px; margin-right: 20px; }
+#sidebar { float: left; width: 26%; min-width: 250px; }
+body.topics #main, body.posts #main { width: 81%; min-width: 780px; }
+body.topics #sidebar { width: 16.6%; min-width: 160px; }
+body.posts #content > .wrapper { position: relative; }
+body.posts #sidebar { position: absolute; top: 0; right: 0; width: 16.6%; min-width: 160px; }
+body.posts #main, body.inbox #main { width: 100%; }
+body.posts #main > h2 { width: 82%; }
+
+/*** GENERIC PAGES ***/
+#generic { padding-top: 2em; }
+#generic h2 { font-size: 2em; margin: 1.5em 0 .5em; }
+#generic h3 { font-size: 1.6em; margin: 1.5em 0 .5em; }
+#generic p { font-size: 1.2em; margin-top: 1em; }
+
+#generic ul { font-size: 1.2em; margin: 2em 0 0 2em; overflow: auto; }
+	#generic ul li { list-style: circle inside; padding: .5em; }
+	#generic ul.nav li { float: left; }
+
+#generic blockquote { margin-top: 1em; padding: .5em; overflow: auto; }
+	#generic blockquote p { line-height: 1.3em; margin: 1em; }
+
+/*** MAIN PAGE ***/
+/* #TOP */
+#top { padding-top: 2em; }
+  #top .wrapper {position:relative;}
+	#top h2 { float: left; clear: left; padding-right: 50px; min-width: 240px; height: 97px; padding-top:15px; background: transparent url(images/welcome.png) left center no-repeat; }
+		#top h2 a { display: block; min-width: 176px; height: 85px; text-indent: -9000px; }
+	#top #fangamer { display: block; text-align: right; width: 64.5%; position:absolute; top:0;right:0; }
+	#top ul#banners { height: 85px; }
+		#top ul#banners li { float: left; }
+		#top ul#banners li a { float: left; padding-right: 20px; border-right: 1px solid #001835; width: 199px; height: 85px; text-indent: -9000px; background-position: center center; background-repeat: no-repeat; }
+			#top ul#banners li#top-swag a { background-image: url(images/top-swag.png); }
+			#top ul#banners li#top-games a { background-image: url(images/top-games.png); }
+			#top ul#banners li#top-donate a { background-image: url(images/top-donate.png); border-right: 0; }
+
+	#top ul.tabs { clear: left; padding-top: 15px; }
+
+body.main #main, body.inbox #main, body.cat #main { padding-top: 4em; }
+body.main #top #fangamer { padding-left:50px;}
+
+/* #CONTENT */
+/* Category Header */
+.cat-header { clear: both; height: 2.75em; margin: 0 0 .75em; padding: .5em; }
+	.cat-header h2 a { float: left; font-size: 2.4em; }
+	.cat-header a.arrow { width: 13px; height: 2.1em; line-height: 4em; padding: .5em 1em; background-image: url(images/cat-arrow-right.png); }
+		.expanded .cat-header a.arrow { background-image: url(images/cat-arrow-down.png); }
+	.cat-header p { float: right; line-height: 2.8em; padding-right: 1em; }
+
+.cat-body { margin-bottom: 4em; }
+
+/* Forum Header */
+.forum-header { clear: both; padding-left: .75em; min-height: 3em;}
+	.forum-header h2 a { font-size: 1.8em; line-height: 1em; padding: .4em 0 0 0; }
+	.forum-header.topic-header h2 { font-size: .5em; }
+		.forum-header.topic-header h2 a.firstarrow img { padding: .6em .5em 0 0; width: 1.3em; height: 1.3em; }
+	.forum-header a { float: left; }
+		a.markasread { float: normal; padding: .3em .2em; margin: 0 .6em; height: .6em; width: 2em; text-align: center; }
+			.cat-header a.markasread { float: left; margin-top: .6em; }
+			a.markasread img { width: 1.6em; height: .8em; }
+	.forum-header p { clear: right; font-size: 1.1em; line-height: 1.6em; padding: .8em 0 .2em 1em; }
+
+/* Forum arrows */
+.forum .forum-header a.arrow { padding: 1em; width: 12px; height: 1.2em; background-image: url(images/forum-arrow-dark-right.png); }
+	.forum.expanded .forum-header a.arrow { background-image: url(images/forum-arrow-dark-down.png); }
+	.forum.unseen .forum-header a.arrow { background-image: url(images/forum-arrow-light-right.png); }
+		.forum .forum-header.topic-header a.arrow { cursor: default; }
+		.forum.unseen .forum-header.topic-header a.arrow { cursor: pointer; }
+	.forum.unseen.expanded .forum-header a.arrow { background-image: url(images/forum-arrow-light-down.png); }
+	.forum.move .forum-header a.arrow { background-image: url(images/forum-arrow-dark-all.png); }
+	.forum.unseen.move .forum-header a.arrow { background-image: url(images/forum-arrow-light-all.png); }
+	
+/* custom organization mode */
+  .forum .forum-header ul.sites { display:none; }
+  .forum.move .forum-header ul.sites { display: block; }
+    .forum.move .forum-header ul.sites li { float: left; margin: .5em .5em 0 .5em; }
+    .forum.move .forum-header ul.sites li.fangamer { background-image: url(images/fangamer-logo.png); width: 30px; height: 30px;}
+    .forum.move .forum-header ul.sites li.starmen { background-image: url(images/starmen-logo.png); width: 40px; height: 30px;}
+      .forum.move .forum-header ul.sites li span { display:none; }
+
+/* Forum Body */
+	.forum-body { position: relative; display: none; overflow: hidden; top: -.8em; left: 5.5em; clear: both; width: 80%; margin: 0 0 1em 0 !important; padding: 0 0 .5em 2.5em; }
+		.forum.unseen.expanded .forum-body.topic-body { display: block !important; }
+	.forum.expanded .forum-body { display: block; }
+	.forum-body ul > li { position: relative; margin: .8em 0 0 0; line-height: 1em; font-size: 1.1em; }
+		.forum-body.topic-body ul > li { font-size: 1em; }
+		.forum-body ul > li blockquote p { line-height: 1.3em; margin: 1em 0 0 0; }
+		.forum-body ul > li blockquote cite { display: block; margin: .3em 0 0 2em; }
+		.forum-body ul > li a.topic { font-size: 1.2em; line-height: 1.2em; }
+
+/* SIDEBAR */
+#sidebar .boxy { position: relative; margin-bottom: 4em; }
+	#sidebar .boxy ul.tabs { position: absolute; top: -2.4em; width: 100%; }
+	#sidebar .boxy-body { padding: .5em 1em 2em; overflow: hidden;}
+		#sidebar .boxy-body ul li { font-size: 1.1em; padding: 1.5em 0 0 20px; background: url(images/bullet.png) .5em 1.7em no-repeat; }
+
+/* Forum Spy */
+.spymsg { position: relative; line-height: 1.2em; padding: 2em 1em 0 40px; }
+	.spymsg > a img { position: absolute; top: 1.25em; left: 0; }
+	.spymsg blockquote p { padding-top: .25em; }
+		.spymsg blockquote p a { line-height: 1.2em; }
+
+/* Forum News */
+#sidebar #news blockquote { padding: 1em; }
+#sidebar #announcements .boxy-body p { padding: 0em 2em 0 1em; }
+	#sidebar #news blockquote p, #sidebar #announcements .boxy-body { font-size: 1.1em; line-height: 1.2em; padding: 1.25em 0 1em 1em; }
+#sidebar #news blockquote p img, #sidebar #announcements .boxy-body img { max-width:100%;}
+
+/* Forum Stats */
+#sidebar #stats .boxy-body ul li ul { padding: .5em 0 0 1em; }
+#sidebar #stats .boxy-body ul li ul li { display: inline; font-size: 1em; line-height: 1.3em; padding: 0; background: none; }
+#sidebar #stats .boxy-body ul li ul li:after { content: ","; }
+#sidebar #stats .boxy-body ul li ul li.others:after { content: ""; }
+
+/* Forum Moderators */
+
+#sidebar #moderators .boxy-body ul { list-style-image:url(images/bullet.png); margin-left:1.5em;}
+#sidebar #moderators .boxy-body ul li { padding: 0.5em 0 0em; background:none;}
+
+/* BOTTOM */
+#bottom { float: left; width: 100%; min-width: 960px; padding-top: 40px; }
+p.backtotop { position: relative; float: left; clear: both; top: -38px; left: 0px; margin-right: -51px; width: 51px; height: 40px; background: url(images/backtotop.png); }
+	p.backtotop a { display: block; width: 51px; height: 40px; text-indent: -9000px; }
+
+#bottom div.left, #bottom div.right { width: 50%; }
+#bottom div.left { clear: left; }
+
+.topposts h2 { font-size: 1.4em; }
+	.topposts h2 span { font-size: .8em; }
+.topposts ul { margin: 2em 0 4em 5em; padding-left: 1.5em; border-left: 1px solid #165581; }
+	.topposts li { position: relative; padding-top: .8em; font-size: 1.1em; }
+	.topposts li:first-child { padding-top: 0; }
+		.topposts li p { position: absolute; width: 5em; left: -8em; text-align: right; }
+			.topposts li p span { display: none; }
+
+/*** TOPIC LISTING PAGE ***/
+/* #TOP */
+body.topics #top h2#banner, body.posts #top h2#banner { float: left; width: 35%; padding:0; margin:0; height: 110px; background-position: center center; }
+body.topics #top h2#banner a, body.posts #top h2#banner a { width: 300px; height: 110px; }
+/*body.topics #top #fangamer { float:left; width:64.5%; padding:0; margin:0; text-align:right;}*/
+
+#top h3 { font-size: 1.4em; line-height: 1em; font-weight: normal; }
+#top .topposts { width: 40%; padding: 10px 30px 0 30px; }
+	#top .topposts h3 span { font-size: .8em; }
+	#top .topposts ul { margin: 10px 0 0 35px; }
+		#top .topposts li:first-child { padding-top: 0; }
+#top .moderators { float: right; width: 16.6%; min-width: 130px; padding: 10px 0 0 0; }
+#top .moderators ul { margin: 10px 0 0 18px; }
+	#top .moderators ul li { font-size: 1.1em; padding: 2px 0; }
+
+body.topics #top ul.tabs, body.posts #top ul.tabs { padding-top: 15px; }
+
+/* #CONTENT */
+body.topics #main ul.buttons { position: relative; top: 2.5em; left: .2em; }
+
+#content table { width: 100%; }
+#content table thead tr th { font-size: 1.1em; padding: .5em 0 1em; vertical-align: bottom; }
+#content table thead tr th { min-width: 4em; text-align: center; }
+#content table thead tr th.icon, #content table thead tr th.recent { text-indent: -9000px; }
+	#content table thead tr th.icon { width: 80px; }
+	#content table thead tr th.starter, #content table thead tr th.replies, #content table thead tr th.views { width: 4em; }
+	#content table thead tr th.starter, #content table tbody tr td.starter { text-align: center; min-width: 7em; }
+
+#content table tbody tr td { padding: 1em 0; vertical-align: middle; }
+#content table tbody tr td.icon { text-align: center; }
+	#content table tbody tr td.topic-info a.topic { font-size: 1.5em; line-height: 1.3em; }
+	#content table tbody tr td.topic-info span.page_links { font-size: 1.2em; line-height: 1.3em; }
+	#content table tbody tr td.topic-info p.byline { float: left; font-size: 1.2em; line-height: 1.3em; margin-left: 1.2em; }
+	#content table tbody tr td.topic-info p.recenttime { display: inline; float: left; font-size: 1.2em; line-height: 1.3em; margin-left: .5em; }
+#content table tbody tr td.replies, #content table tbody tr td.views, #content table tbody tr td.starter { font-size: 1.1em; text-align: center; margin: 0; }
+#content table tr th.views, #content table tr td.views { padding-right: 1em; }
+#content table tbody tr td.replies { font-size: 1.6em; }
+
+/* Topic States */
+#content table tbody tr td.topic-info ul.status { position: relative; float: left; top: .5em; margin-left: -1.5em; }
+	#content table tbody tr td.topic-info ul.status li { float: left; margin: 0 .25em; }
+		#content table tbody tr td.topic-info ul.status li img { width: 1em; height: 1em; opacity: .7; }
+
+#content table tbody tr.locked td.topic-info a.topic { text-decoration: line-through; }
+
+/* Topic Admin */
+#content table tbody tr td.topic-info ul.admin { position: absolute; left: 14.1%; margin: -2em -9em 0 -11em; }
+
+/* SIDEBAR */
+#sidebar #quicksearch { z-index: 2; }
+#sidebar #quicksearch .boxy-body form#searchy { padding: 1em 1em 0em .5em; }
+	#sidebar #quicksearch .boxy-body form#searchy input#q { width: 100%; }
+			#sidebar #quicksearch .boxy-body #searchresults #searchclear { width: 100%; clear: both; margin: 1em 0; }
+			#sidebar #quicksearch .boxy-body #searchresults p { font-size: 1.1em; margin-top: 1em; }
+				#sidebar #quicksearch .boxy-body #searchresults p a { font-weight: bold; }
+
+/*** POST LISTING PAGE ***/
+/* #CONTENT */
+body.posts #main { padding-top: 4em; }
+
+#main div.errorExplanation { font-size: 1.25em;}
+#main div.errorExplanation h2 { font-size: 1.5em; }
+#main div.errorExplanation ul li { list-style: circle inside; padding: .25em; }
+
+#main h2 a.topic { font-size: 3em; width: 75%; line-height: 1.2em; font-weight: normal; }
+#main p#byline { font-size: 1.2em; width: 75%; line-height: 1.4em; min-height: .8em; margin: .4em 0 0 1em; }
+
+.toolbar { position: relative; width: 100%; height: 3em; margin: 1.5em 0 6px; }
+	.toolbar ul { clear: both; }
+		.toolbar ul li, .toolbar div.pagination span, .toolbar div.pagination a { float: left; }
+			.toolbar ul li a, .toolbar div.pagination span, .toolbar div.pagination a { display: block; font-size: 1.25em; height: 1em; line-height: 1em; padding: .75em 1em; }
+			.toolbar ul li.selected a, .toolbar div.pagination span.current, .toolbar div.pagination a.current { height: 1.6em; padding-bottom: .6em; background: transparent url(images/pagination-arrow.png) 50% 100% no-repeat; }
+			
+				.toolbar ul li a span { display: block; font-size: 1.7em; }
+			.toolbar ul li.text { position: relative; font-size: 1em; width: 151px; line-height: 3em; padding: 0 1em 0 3em; left: -1.5em; text-align: right; }
+			.toolbar ul li.ellipsis { line-height: 2em; font-size: 1.25em; padding: 0 .5em; }
+			.toolbar ul li.util { float: right; }
+	.toolbar ul.actions { position: absolute; top: -3.2em; right: 0; z-index: 1; }
+		.toolbar ul.actions li a { font-size: 1.1em; padding: .9em; }
+	#main #page-header { top: 5px; }
+	#main #page-footer { top: -5px; }
+		#page-footer.toolbar { position: relative; margin: .6em 0 1.5em; }
+			body.forum #main #page-footer.toolbar { margin-top: 3em; }
+			.toolbar a#goreply { position: absolute; top: -.2em; left: .1em; }
+			#page-footer.toolbar ul li.selected a, #page-footer.toolbar div.pagination span.current, #page-footer.toolbar div.pagination a.current  { position: relative; top: -.6em; padding-top: 1.35em; padding-bottom: .15em; background-position: 50% 0; }
+
+#main .post { padding: 0 0 0 0; overflow: hidden; clear: both; }
+	#main .post .post-header { position: relative; float: left; width: 151px; min-height: 4em; padding: 2em 0; left: 1em; text-align: right; }
+		#main .post .post-header acronym { font-size: 100%; letter-spacing: 0; }
+		#main .post .post-header h3 a { font-size: 1.7em; margin: 0 0 1em 0; }
+		#main .post .post-header h3 p.rank { padding-top: .3em; }
+		#main .post .post-header h3 img.sprite { vertical-align: top; }
+		#main .post .post-header ul.badges { float: right; clear: both; margin: 1em 0; }
+			#main .post .post-header ul.badges li { display: inline; padding: .5em 0 .5em .5em; }
+
+	#main .post.admin .post-header h3,
+	#main .post.supermod .post-header h3,
+	#main .post.mod .post-header h3,
+	#main .post.fangamer .post-header h3,
+	#main .post.staff .post-header h3,
+	#main .post.radiopsi .post-header h3 { background: url(/include/images/forum/emblems/mod.png) no-repeat 100% 100%; padding-bottom:30px;}
+	
+	#main .post.admin .post-header h3 {background-image:url(/include/images/forum/emblems/admin.png)}
+	#main .post.supermod .post-header h3 {background-image:url(/include/images/forum/emblems/supermod.png)}
+	#main .post.mod .post-header h3 {background-image:url(/include/images/forum/emblems/mod.png)}
+	#main .post.fangamer .post-header h3 {background-image:url(/include/images/forum/emblems/fangamer.png)}
+	#main .post.staff .post-header h3 {background-image:url(/include/images/forum/emblems/staff.png)}
+	#main .post.radiopsi .post-header h3 {background-image:url(/include/images/forum/emblems/radiopsi.png)}
+			
+	/*padding needs to be same as header*/
+	#main .post .post-not-shown { padding:2em 0 2em 191px; font-size: 1.3em; }
+	
+	#main .post .hidden-because-deleted { display: none; }
+
+	#main .post .post-body { position: relative; float: left; width: 74%; padding: 0 0 1em 40px; margin-top: 1.8em; }
+		#main .post .post-body table { margin-bottom: 2em; margin-top: 1em; }
+				#main .post .post-body table tr th { text-align: left; }
+				#main .post .post-body table tr td, #main .post .post-body table tr th { padding: .5em 1em; vertical-align: top; }
+
+		#main .post .post-body p.meta { position: absolute; bottom: -1em; right: 1em; margin-top: 1em; text-align: right; }
+		#main .post .post-body > div { font-size: 1.3em; line-height: 1.6; padding-top: .2em; overflow: hidden; }
+			#main #reply .post-body .buttons { font-size: 1em; min-height: 3.3em; overflow: visible; }
+				#main #reply .post-body ul.wtftabs { font-size: .8em; }
+			#main .post .post-body div p { margin: 1em 0; }
+			#main .post .post-body div .spoiler_container + p { clear: both; padding-top: 1em; }
+
+			#main .post .post-body div .left, #main .post .post-body div .picleft { float: left; margin-right: 1em; }
+			#main .post .post-body div .right { float: right; margin-left: 1em; }
+			#main .post .post-body div .center, #main .post .post-body div .centered { text-align: center; }
+				#main .post .post-body div p:first-child { margin-top: 0; }
+			#main .post-body div blockquote { margin-bottom: 1em; padding: 1em 1em 0; overflow: auto; }
+				#main .post-body div blockquote div { font-size: 1em !important; }
+					#main .post .post-body div blockquote div.quotey blockquote div.citey { display:block; width:90%; text-align:left; padding:.5em 0 .5em 1em; margin:0;}
+					#main .post .post-body div blockquote div.quotey blockquote div.quotey { padding-left: 2em; width: 90%; }
+			#main .post-body div dt { margin-top: 2em; }
+			#main .post-body div dd { margin-left: 1em; margin-top: .5em; }
+			#main .post-body div ul { padding-left: 2em; margin-bottom: 1em; list-style: disc; }
+			#main .post-body div .taglist { font-size: .8em; }
+				#main .post-body div .taglist p { float: left; margin: 1em 0; padding: .5em .5em 0; clear: left; }
+				#main .post-body div .taglist ul { list-style: none; min-height: 2em; clear: right; margin: 0; padding: 0; }
+					#main .post-body div .taglist ul li { float: left; margin: .5em; }
+						#main .post-body div .taglist ul li a { padding: .5em 1em; }
+			#main .post-body div ol { padding-left: 2em; margin-bottom: 1em; list-style: decimal; }
+				#main .post-body div dl + ul, #main .post-body div dl + ul { padding-left: 3em; margin-top: .5em; }
+				#main .post-body div li > ul, #main .post-body div li > ol { margin-top: 0; margin-bottom: .5em; }
+			#main .post-body div h1, #main .post-body div h2, #main .post-body div h3, #main .post-body div h4, #main .post-body div h5, #main .post-body div h6 { font-weight: bold; margin-top: 1em; margin-bottom: -.5em; }
+			#main .post-body div h1 + ul, #main .post-body div h2 + ul, #main .post-body div h3 + ul, #main .post-body div h4 + ul, #main .post-body div h5 + ul, #main .post-body div h6 + ul, #main .post-body div h1 + ol, #main .post-body div h2 + ol, #main .post-body div h3 + ol, #main .post-body div h4 + ol, #main .post-body div h5 + ol, #main .post-body div h6 + ol { margin-top: 1em; }
+			#main .post-body div h1 { font-size: 2em; }
+			#main .post-body div h2 { font-size: 1.7em; }
+			#main .post-body div h3 { font-size: 1.3em; }
+			#main .post-body div h4 { font-size: 1.15em; }
+			#main .post-body div h5 { font-size: 1em; }
+			#main .post-body div h6 { font-size: 1em; font-weight: normal; }
+						
+			#main .post-body div img { max-width: 100%;}
+			#main .post-body div table tr td { padding: 0 1em; }
+
+			#main .post-body div.sig { position: relative; top: .5em; padding-top: .5em; font-size: 1em; min-height: 2em; max-height: 6em; line-height: 1.5em; margin: 1em 0 0 0; overflow: hidden; }
+				#main .post-body div.sig p { padding: 0 1em; margin: 0; }
+				
+			#main .post-body div blockquote img { max-width: 100px; max-height:100px;}
+
+			#main .post-body div > blockquote, #main .post-body div > h1, #main .post-body div > h2, #main .post-body div > h3, #main .post-body div > ul, #main .post-body div > ol, #main .post-body div > table { margin-top: 0; }
+
+		/* fanart update styling from the main site */
+#main .post-body div ul.submissions { position: relative; margin: 1em 0 2em 0; padding: 0; list-style: none; }
+#main .post-body div ul.submissions li { position: relative; float: left; width: 49%; height: 6.25em; overflow: hidden; margin: 0 0 1em 0; padding: 0; background: transparent url(images/fileIconBlank.png) 8px 0 no-repeat;  	}
+	#main .post-body div ul.submissions li.excerpts, ul.excerpts > li { height: 9.75em !important; }
+	#main .post-body div ul.submissions li.fanimation, ul.fanimation > li, ul.submissions li.fangame, ul.fangame > li, ul.submissions li.fanmusic, ul.fanmusic > li { height: 8em !important; }
+	#main .post-body div ul.submissions li.fanart, ul.fanart li { background-image: url(images/fileIconFanart.png); }
+	#main .post-body div ul.submissions li.fanimation, ul.fanimation li { background-image: url(images/fileIconFanimation.png); }
+	#main .post-body div ul.submissions li.fanfic, ul.fanfic li { background-image: url(images/fileIconFanfic.png); }
+	#main .post-body div ul.submissions li.fanmusic, ul.fanmusic li { background-image: url(images/fileIconFanmusic.png); }
+	#main .post-body div ul.submissions li.article, ul.article li { background-image: url(images/fileIconArticle.png); }
+	#main .post-body div ul.submissions li.poemsong, ul.poemsong li { background-image: url(images/fileIconPoemsong.png); }
+	#main .post-body div ul.submissions li ul li { float: none; height: auto; width: auto; overflow: visible; margin: 0; padding: 0; background: none; }
+	#main .post-body div ul.submissions li a { text-decoration: none; border: 0; }
+	#main .post-body div ul.submissions li h4 { position: relative; margin-top: 0; padding: 0 0 0 90px; font-size: 1.4em; }
+	#main .post-body div ul.submissions li a.thumbnail { display: block; width: 80px; height: 80px; position: absolute; top: 0; left: 0; }
+	#main .post-body div ul.submissions li.spoiler a.thumbnail { background: transparent url(images/spoilers.png) center center no-repeat; }
+		#main .post-body div ul.submissions li a.thumbnail img { position: absolute; width: 80px; padding: 0; height: 80px; top: 0; left: 0; border: 0; }
+			#main .post-body div ul.submissions li.spoiler a.thumbnail img { visibility: hidden; }
+				#main .post-body div ul.submissions li.spoiler a.thumbnail:hover img { visibility: visible; }
+	#main .post-body div ul.submissions li div.player { padding-left: 85px; background-color: transparent; }
+	#main .post-body div ul.submissions li ul.meta { position: relative; left: -.5em; margin: .5em 0 0 0; padding: 0 0 0 90px; list-style: none; font-size: .85em; }
+		#main .post-body div ul.submissions li ul.meta li { display: inline; width: auto; margin: 0; padding: 0 .5em; color: #9aa696; border-left: 1px solid #677962; line-height: 1.5em; }
+			#main .post-body div ul.submissions li ul.meta li.awards { border: 0; }
+			#main .post-body div ul.submissions li ul.meta li.awards b { display: none; }
+			#main .post-body div ul.submissions li ul.meta li.awards ul { position: relative; display: block; margin: 5px 0 0 4px; padding: 0; }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li { position: relative; border: 0; float: left; width: 65px; height: 13px; margin-bottom: 5px; padding: 0 0 0 5px; background: transparent url(images/badgeThematic.png) no-repeat center center; }
+				ul.awards { margin: 0; padding: 0; }
+					ul.awards > li { float: left; min-width: 21em; list-style: none; margin: 0; padding: 2em 1em 0 0; font-weight: lighter; }
+						ul.awards li b { font-weight: lighter; font-size: 1.5em; }
+						ul.awards li a { position: relative; border: 0 !important; font-size: 1.1em !important; text-decoration: none !important; }
+						ul.awards li ul { margin: 0; padding: 0; }
+						ul.awards li ul li { padding: 5px 0 5px 100px; min-height: 13px; line-height: .6em; list-style: none; margin: 0 0 0 1em; background: transparent url(images/badgeThematic.png) no-repeat center left; }
+					ul.overall { margin: 2em 0 0 1em; }
+						ul.overall li { min-width: 10em; margin-left: 0; }
+
+						ul.overall li ul li { padding: 23px 0 23px 60px; min-height: 16px; }
+					ul.awards .skill .first { background-image: url(images/badgeSkillFirst.png); }
+					ul.awards .skill .runner { background-image: url(images/badgeSkillRunner.png); }
+					ul.awards .labor .first { background-image: url(images/badgeLaborFirst.png); }
+					ul.awards .labor .runner { background-image: url(images/badgeLaborRunner.png); }
+					ul.awards .love .first { background-image: url(images/badgeLoveFirst.png); }
+					ul.awards .love .runner { background-image: url(images/badgeLoveRunner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.funnyfirst, ul.awards .funny .first { background-image: url(images/badgeFunny.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.funnyrunner, ul.awards .funny .runner { background-image: url(images/badgeFunny-runner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.funnyhonorable, ul.awards .funny .honorable { background-image: url(images/badgeFunny-honorable.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.offbeatfirst, ul.awards .offbeat .first { background-image: url(images/badgeOffbeat.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.offbeatrunner, ul.awards .offbeat .runner { background-image: url(images/badgeOffbeat-runner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.offbeathonorable, ul.awards .offbeat .honorable { background-image: url(images/badgeOffbeat-honorable.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.epicfirst, ul.awards .epic .first { background-image: url(images/badgeEpic.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.epicrunner, ul.awards .epic .runner { background-image: url(images/badgeEpic-runner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.epichonorable, ul.awards .epic .honorable { background-image: url(images/badgeEpic-honorable.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.stylishfirst, ul.awards .stylish .first { background-image: url(images/badgeStylish.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.stylishrunner, ul.awards .stylish .runner { background-image: url(images/badgeStylish-runner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.stylishhonorable, ul.awards .stylish .honorable { background-image: url(images/badgeStylish-honorable.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.idealfirst, ul.awards .ideal .first { background-image: url(images/badgeIdeal.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.idealrunner, ul.awards .ideal .runner { background-image: url(images/badgeIdeal-runner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.idealhonorable, ul.awards .ideal .honorable { background-image: url(images/badgeIdeal-honorable.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.detailedfirst, ul.awards .detailed .first { background-image: url(images/badgeDetailed.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.detailedrunner, ul.awards .detailed .runner { background-image: url(images/badgeDetailed-runner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.detailedhonorable, ul.awards .detailed .honorable { background-image: url(images/badgeDetailed-honorable.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.thematicfirst, ul.awards .thematic .first { background-image: url(images/badgeThematic.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.thematicrunner, ul.awards .thematic .runner { background-image: url(images/badgeThematic-runner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.thematichonorable, ul.awards .thematic .honorable { background-image: url(images/badgeThematic-honorable.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.halloweeniestfirst, ul.awards .halloweeniest .first { background-image: url(images/badgeHalloweeniest.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.halloweeniestrunner, ul.awards .halloweeniest .runner { background-image: url(images/badgeHalloweeniest-runner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.halloweeniesthonorable, ul.awards .halloweeniest .honorable { background-image: url(images/badgeHalloweeniest-honorable.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.pkrockinfirst, ul.awards .pkrockin .first { background-image: url(images/badgePKRockin.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.pkrockinrunner, ul.awards .pkrockin .runner { background-image: url(images/badgePKRockin-runner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.pkrockinhonorable, ul.awards .pkrockin .honorable { background-image: url(images/badgePKRockin-honorable.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.idealerfirst, ul.awards .idealer .first { background-image: url(images/badgeIdealer.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.idealerrunner, ul.awards .idealer .runner { background-image: url(images/badgeIdealer-runner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.idealerhonorable, ul.awards .idealer .honorable { background-image: url(images/badgeIdealer-honorable.png); }
+
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.urffirst,
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.urfrunner,
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.urfhonorable,
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.rockinfirst,
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.rockinrunner,
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.rockinhonorable { position: absolute; width: 49px; height: 57px; top: -23px; left: -52px; z-index: 3; }
+					#main .post-body div ul.submissions li.fanart ul.meta li.awards ul li.urffirst,
+					#main .post-body div ul.submissions li.fanart ul.meta li.awards ul li.urfrunner,
+					#main .post-body div ul.submissions li.fanart ul.meta li.awards ul li.urfhonorable,
+					#main .post-body div ul.submissions li.fanart ul.meta li.awards ul li.rockinfirst,
+					#main .post-body div ul.submissions li.fanart ul.meta li.awards ul li.rockinrunner,
+					#main .post-body div ul.submissions li.fanart ul.meta li.awards ul li.rockinhonorable,
+					#main .post-body div ul.submissions li.fanimation ul.meta li.awards ul li.urffirst,
+					#main .post-body div ul.submissions li.fanimation ul.meta li.awards ul li.urfrunner,
+					#main .post-body div ul.submissions li.fanimation ul.meta li.awards ul li.urfhonorable,
+					#main .post-body div ul.submissions li.fanimation ul.meta li.awards ul li.rockinfirst,
+					#main .post-body div ul.submissions li.fanimation ul.meta li.awards ul li.rockinrunner,
+					#main .post-body div ul.submissions li.fanimation ul.meta li.awards ul li.rockinhonorable
+						{ top: -10px; left: -48px; }
+					ul.awards li.urf li, ul.awards li.rockin li { padding: 5px 0 0 55px; height: 50px; line-height: 50px; }
+						ul.awards li.urf li.runner, ul.awards li.rockin li.runner { background-position: 6px center; }
+						ul.awards li.urf li.honorable, ul.awards li.rockin li.honorable { background-position: 10px center; }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.urffirst, ul.awards li.urf li.first { background-image: url(images/badgeUrf.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.urfrunner, ul.awards li.urf li.runner { background-image: url(images/badgeUrf-runner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.urfhonorable, ul.awards li.urf li.honorable { background-image: url(images/badgeUrf-honorable.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.rockinfirst, ul.awards li.rockin li.first { background-image: url(images/badgeRockin.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.rockinrunner, ul.awards li.rockin li.runner { background-image: url(images/badgeRockin-runner.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li.rockinhonorable, ul.awards li.rockin li.honorable { background-image: url(images/badgeRockin-honorable.png); }
+				#main .post-body div ul.submissions li ul.meta li.awards ul li span { display: none; }
+			#main .post-body div ul.submissions li ul.meta li.alternate a.youtube { position: relative; width: 42px; height: 15px; background: transparent url(images/youtube.png) center center no-repeat; }
+				#main .post-body div ul.submissions li ul.meta li.alternate a.youtube span { position: relative; width: 42px; visibility: hidden; }
+			#main .post-body div ul.submissions li ul.meta li:first-child { border: 0; }
+	#main .post-body div ul.submissions li p { font-size: .85em; margin: 0 3em 0 90px; clear: both; }
+		#main .post-body div ul.submissions li p.excerpt { font-style: italic; font-size: .9em; font-family: Georgia,Times,serif; }
+		#main .post-body div ul.submissions li p.description { display: block; }
+		#main .post-body div ul.submissions li.audio p.description { display: none; }
+
+#main .post-body div ul.submissions + .hr { padding: .75em; }
+
+/* attribute order */
+/* position float clear top|bottom left|right font-size width height line-height margin padding border text-* letter-spacing background-* */
+
+#ZOMGTEHSPRITE { float: left; padding: 0 2em; }
+		#main .post-body .poll-header h3 { display: inline; font-size: 1.6em; padding-left: 1.2em; }
+		#main .post-body .poll-header p.total { display: inline; font-size: 1em; }
+		#main .post-body .poll ol { margin: 1em 0 0 0; }
+			#main .post-body .poll ol li { width: 70%; padding: .75em; margin-bottom: 1px; }
+		#main .post-body .poll .poll-buttons { margin: 0 0 0 2em; padding-bottom: 3em; }
+			#main .post-body .poll .poll-buttons button { font-size: 1em; }
+		#main .post-body .poll .poll-results ol { position: relative; list-style: none; margin-left: 5em; }
+			#main .post-body .poll .poll-results ol li { position: relative; min-height: 2em; margin-left: 1em; padding-right: 56px; -webkit-background-clip: padding; -moz-background-clip:padding; }
+					#main .post-body .poll .poll-results ol li p { margin: 0; padding: 0; }
+					#main .post-body .poll .poll-results ol li p.votes { position: absolute; top: 1em; left: -5em; font-size: 1em; }
+					#main .post-body .poll .poll-results ol li p.pollinfo { position: relative; margin-top: .25em; left: -1em; z-index: 2; margin-left: 2em; }
+					#main .post-body .poll .poll-results ol li .myvote, #main .post-body .poll .poll-results ol li .thewinner { position: absolute; top: 0; right: -50px; width: 58px; height: 100%; text-indent: -9000px; z-index: 2; background: transparent url(images/poll-myvote.png) center right no-repeat; }
+						#main .post-body .poll .poll-results ol li .thewinner { background-image: url(images/poll-winner.png); }
+						#main .post-body .poll .poll-results ol li.voted .thewinner { background-image: url(images/poll-myvote-winner.png); right: -97px; width: 105px; }
+					#main .post-body .poll .poll-results ol li div.percentage { position: absolute; top: 0; left: 0; z-index: 1; height: 100%; }
+
+					#main .post-body .poll .poll-results ol li div.percentage, #main .post-body .poll .poll-results ol li.winner, #main .post-body .poll .poll-results ol li.voted { background-image: url(images/poll-bg-thin.png); }
+						#main .post-body .poll .poll-results ol li.odd div.percentage, #main .post-body .poll .poll-results ol li.odd.winner, #main .post-body .poll .poll-results ol li.odd.voted { background-image: url(images/poll-bg-thick.png); }
+							#main .post-body .poll .poll-results ol li.winner div.percentage { background-image: none; }
+				#main .post-body .poll .poll-results .poll-buttons { margin: 1em 0 0 8em; }
+
+
+	#main .post#postpreview, #main .post#topicbump{ margin-top: 2em; padding: 0; }
+		#main .post#postpreview #previewnotice p,#main .post#postpreview #topicbump p { width: 100%; font-size: 1.2em; padding: 1em 0 !important; text-align: center; }
+		#main .post .notice p { width: 100%; font-size: 1.2em; padding: 1em 0 !important; text-align: center; }
+		
+
+	#main .post .post-footer { position: relative; width: auto; padding-left: 191px; height: 3em; text-align: left; clear: both; margin-right:2em;}
+		#main .post .post-footer p { float: left; padding: .4em 2em 0 0; }
+			/*#main .post .post-footer p span { padding-left: .6em; }*/
+		#main .post .post-footer ul { padding-right: 1em; }
+		#main .post .post-footer ul li { float: left; padding: 0 1em 0 0; }
+			#main .post .post-footer ul li a img { width: 1.6em; height: 1.6em; opacity: .4; }
+				#main .post .post-footer ul li a:hover img, #main .post .post-footer ul li a:focus img { opacity: .9; }
+
+		#main .post .post-footer ul.scorecard { float: left; }
+			#main .post .post-footer ul.scorecard li { position: relative; float: left; }
+				#main .post .post-footer ul.scorecard li.score, #main .post .post-footer ul.scorecard li.meta, #main .post .post-footer ul.scorecard li.ipaddress { padding-top: .4em; }
+				#main .post .post-footer ul.scorecard li.thumbsup { top: -.2em; }
+				#main .post .post-footer ul.scorecard li.thumbsdown { top: .2em; }
+				#main .post .post-footer ul.scorecard li.used.thumbsup { background: url(/incluimages/forum/button-thumbs-up-voted.png) no-repeat; }
+				#main .post .post-footer ul.scorecard li.used.thumbsdown { background: url(/incluimages/forum/button-thumbs-down-voted.png) no-repeat; }
+				#main .post .post-footer ul.scorecard li.used a img, #main .post .post-footer ul.scorecard li.used a:hover img, #main .post .post-footer ul.scorecard li.used a:focus img { visibility: hidden;}
+
+		#main .post .post-footer ul.utils { float: right; }
+		  #main .post .post-footer ul.utils a span { display: none; }
+		  
+		#main .post div.dropdown { position: absolute; z-index: 2; right: 0;float: none; min-width: 10em; padding:1em;}
+		  #main .post div.dropdown ul.utils li { padding: .25em 0;  }
+		    #main .post div.dropdown ul.utils li a { text-decoration: none; font-size: 1.5em; opacity: .6;}
+		    #main .post div.dropdown ul.utils li a:hover,#main .post div.dropdown ul.utils li a:focus { opacity: 1; }
+		      #main .post div.dropdown ul.utils li a img { vertical-align: top; }
+		      #main .post div.dropdown ul.utils li a span { opacity: 1; }
+
+	#main .post-body textarea { width: 100%; font-size: 1.2em;}
+	#main .hints, body.main .tabley .hints, #main .smilies { clear: both; position: relative; font-size: 1.1em; width: 100%; margin: .5em 0; }
+		#main .hints { }
+			#main .hints a { display: block; float: left; padding-right: 1em; }
+			#main .hints span { display: block; float: left; width: 60%; }
+		#main .smilies img { cursor: pointer; }
+
+	#main .post-body .checky, #main .post-body #formatting { float: left; font-size: 1em; padding: 1em 0.9em; }
+    #main .post-body .checky label { display:block;}
+	    #main .post-body #selectemblem label select { font-size:1em; }
+	    #main .post-body #selectemblem .emblemselectdiv { padding-top:1em; }
+	#main .post-body #formatting { float: right; }
+		#main .post-body #formatting button { padding: 0; font-size: 1em; background-color: transparent; margin-top: -.5em; }
+		#main .post-body .checky label input { margin: 0 .3em 0 0; }
+		#main .post-body .checky label span { padding-top: 2em; }
+
+	#main .post-body #poll { overflow: auto; }
+	#main .post-body #thumbnailing { clear: both; padding: .5em;}
+		#main .post-body #thumbnailing label { display: block; float: left; padding: 0 1em; }
+
+		#attachments ul { margin: 0; padding: 0; }
+			#attachments li { position: relative; width: 97%; height: 2.4em; line-height: 2.4em; padding: 1em; }
+				#attachments li span { font-size: 1.2em; padding-left: 1em; }
+				#attachments li a:link, #attachments li a:visited { text-decoration: none; }
+					#attachments li span.filename { display: block; width: 30em; overflow: hidden; }
+					  
+					#attachments li button { position: absolute; right: 2em; top: 1.8em; font-size: .8em; }
+					#attachments li button.add { right: 9em; }
+						#attachments li button span { border: 0; }
+							#attachments li button span img { position: relative; border: 0; top: .25em; left: -.5em; }
+					#attachments li span.thumb { display: block; float: left; padding-left: 0; width: 10em; text-align: center; }
+						#attachments li span.thumb img { height: 2.4em; max-width: 2.4em; vertical-align: middle; }
+
+					#attachments li a.filename { display: block; max-width: 28em; }
+					#attachments li span.thumb { display: block; float: left; width: 3em; text-align: center; }
+						#attachments li span.thumb img { max-height: 2em; vertical-align: middle; }
+
+		#main .post-body .attachments h4 { font-size: 1em; margin-top: 1em; }
+			.attachments ul { margin: 0; padding: 0;}
+				.attachments ul li.attachedimage { list-style: none; float: left; padding: 0 1em 0 0; }
+				
+#main div.post.submission .post-body { width:100%; padding-left:0; }
+#main div.post.submission .post-body h3 { text-align:center; font-size:2em; font-weight:normal; padding-bottom:0.5em; }
+#main div.post.submission .post-body ul.submission_types { margin:0 auto; display:block; width:625px; }
+#main div.post.submission .post-body ul.submission_types li { float:left; width:125px; height:137px; }
+#main div.post.submission .post-body ul.submission_types li a { display:block; width:125px; height:137px; color:#c6d2e0; text-decoration:none; font-size:12px; text-align:center; padding-top:125px; }
+#main div.post.submission .post-body ul.submission_types li.image { background: URL(images/image.png) no-repeat; }
+#main div.post.submission .post-body ul.submission_types li.lit { background: URL(images/literature.png) no-repeat; }
+#main div.post.submission .post-body ul.submission_types li.audio { background: URL(images/audio.png) no-repeat; }
+#main div.post.submission .post-body ul.submission_types li.video { background: URL(images/video.png) no-repeat; }
+#main div.post.submission .post-body ul.submission_types li.other { background: URL(images/other.png) no-repeat; }
+
+#main div.post.submission .post-body ul.supported_lit_types { list-style:disc; margin-left:1em; }
+#main div.post.submission .post-body ul.supported_lit_types li { font-weight:normal; margin-bottom:0.5em; }
+
+#main div.post.submission .post-body dl { }
+#main div.post.submission .post-body dt {padding-top:0.1em;}
+#main div.post.submission .post-body textarea { font-size: 1.25em; }
+#main div.post.submission .post-body input[type=text] { font-size:1.25em; }
+#main div.post.submission .post-body input[type=text],#main div.post.submission .post-body textarea {background:#bfcfe1; width:90%; font-family:monaco, 'Lucida Console', courier, mono-space;;}
+
+#main div.post.submission .post-body dd.file input { background-color:#273a3a; padding:1.5%; width:87%; }
+#main div.post.submission .post-body button { float:none !important; display: inline; }
+
+#main div.post.final-submission .post-body h1 a { background: none; }
+#main div.post.final-submission .post-body audio { width:100%; }
+#main div.post.final-submission .post-body .youtube, #main div.post.final-submission .post-body audio, #main div.post.final-submission .post-body .litview { margin-bottom: 1em; }
+
+/* Misc Forms -- Reply, Edit, Report, Etc */
+/* new topic page*/
+#content .post#titley, #content .post#byliney { padding: 0; }
+	#content .post#titley div, #content .post#byliney div { min-height: 1em; margin: 0; }
+	#content .post#titley .post-header, #content .post#byliney .post-header { padding-top: 1em; }
+	#content .post#byliney .post-body {padding-top:0.5em;}
+
+body.forum #main p#byline { margin-bottom: 1em; }
+
+.newfck, .newfck textarea { font-size: 1.2em; }
+
+#content #generic form { margin-bottom: 3em; }
+#content #generic table tbody tr td form { margin-bottom: 0pt;}
+#content form #titley label, #content form #byliney label, #content form #addressee label { font-size: 1.5em; }
+#content form input#topic_name, #content form input#newtopic_name, #content form input.pm_title { font-size: 1.5em; line-height: 1.2em; width: 75%; }
+#content form input#topic_byline, #content form input#newtopic_byline, #content form input#pm_addressee { font-size: 1em; width: 75%; }
+
+#content form fieldset { display: block; clear: both; min-width: 30em; min-height: 5em; margin: 1em 0 .5em; padding: 1em; clear: right; }
+	#content form fieldset legend { font-size: 1.5em; }
+		#content form fieldset legend span { display: block; padding: .3em .5em; }
+		#content form fieldset.tabley label span { display: block; float: left; clear: left; width: 17.5%; margin: 0 2.5% 1em 0; line-height: 1.5em; text-align: right; }
+		#content form fieldset.tabley label input { float: left; clear: right; }
+
+    #content form fieldset.miscoptions label {display:block; font-size:1.2em; padding-bottom:0.25em;}
+		#content form fieldset.miscoptions label input { margin-left: 1em; }
+		#content form fieldset.miscoptions label input[type='checkbox'],#content form fieldset.miscoptions label input[type='radio'] { width:2em; height:1.2em; margin: 0.5em 0 0.5em 1em; padding:0; }
+		#content form fieldset.miscoptions .emblemselectdiv { padding-left:2.5em; padding-bottom:0.25em;}
+		#content form fieldset.miscoptions label.nocheckbox { margin-left: 3em; padding:0.4em 0;}
+		#content form fieldset.miscoptions label span.help { font-size:0.75em; font-weight:bold;}
+		
+		#content form fieldset.withtextarea textarea {margin:0 2% 1em; width:96%;}
+
+#generic table { clear: both; }
+#generic table tbody tr td { font-size: 1.1em; line-height: 1.4em; }
+#generic table thead, #generic table tbody tr td.topicname, #generic table tbody tr td.messagename { font-size: 1.3em; }
+#generic table thead tr th, #generic table tbody tr td { padding: 1em; }
+#generic table th, #generic table tbody tr td:first-child { padding-left: 1em; }
+#generic table thead tr th { text-align: left; }
+
+/* SIDEBAR */
+#sidebar .boxy-body form label { font-size: 1.1em; }
+#sidebar .boxy-body form input { font-size: 1.1em; }
+#sidebar .boxy-body dl { padding-left: .5em; }
+	#sidebar .boxy-body dt { padding-top: 1em; }
+		#sidebar .boxy-body dd { padding-left: 1em; }
+
+
+/*** MISC ***/
+form { margin-top: .5em; }
+
+/* TABLEY PAGES */
+.tabley h2 { position: relative; left: 25%; }
+	.tabley h2 span { font-size: .5em; }
+	p.indent { margin-left: 25%; }
+.tabley div.errorExplanation h2 { left: 0; }
+.tabley dl { width: 100%; margin-top: 2em; font-size: 1.2em; overflow: auto; }
+	.tabley dl dt { float: left; clear: left; width: 22.5%; margin: 0 2.5% 1em 0; text-align: right; }
+	.tabley dl dd { float: left; clear: right; width: 75%; margin-bottom: 1em; }
+
+.tabley button { position: relative; float: left; clear: both; margin: 0 0 1em 0; left: 25%; }
+.tabley dd button { left: 0;}
+
+/* uberCMS stuff */
+
+#generic .user_header { padding:1em; background: #A5CCFB; color:#1B477B;}
+#generic .user_header h3 { margin:0; font-size:2em;}
+#generic .user_nav { clear: both; background:#2B578B; margin:0; padding:1.5em;}
+#generic .user_nav li { list-style-type:none;  padding-top: 52px; float:left; text-align:center;}
+#generic .user_nav li a { color:#A5CCFB; }
+#generic .user_nav #user_login { background:url('images/ubercms/users/login_icon.png') no-repeat 50% 0%;}
+#generic .user_nav #user_punishments { background:url('images/ubercms/users/punishments_icon.png') no-repeat 50% 0%;}
+
+#litboxbody dd {width:50%;}

@@ -6,6 +6,9 @@ Rails.application.configure do
   # ryan added this because this is how i like to do localhost
   config.hosts << "127.0.0.1.xip.io"
 
+  # backwards compat
+  ::CACHE = nil
+
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

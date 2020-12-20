@@ -1,3 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="-1" />
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <title><%= @topic.name+" &laquo; " if @topic.is_a?(Topic) && @topic.name.is_a?(String) -%><%= @forum.name+" &laquo; " if @forum.is_a?(Forum) && @forum.name.is_a?(String) -%>Forum &laquo; <%= @site.name -%></title>
+  <link rel="icon" type="image/png" href="/include/images/favicon-fg-blue.png" />
+  <script type="text/javascript" src="/include/javascripts/jquery.js"></script>
+<% for js in @neededjavascripts -%>
+  <script type="text/javascript" src="<%= js -%>"></script>
+<% end -%>
+  <link rel="stylesheet" type="text/css" media="screen,projection" href="/include/stylesheets/universal/universal.css?v=3" />
+  <link rel="stylesheet" type="text/css" media="screen,projection" href="/include/stylesheets/forum/base/forum-base.css?v=3" />
+<% if @logged_in_user && @logged_in_user.theme.is_a?(Theme) -%>
+  <link rel="stylesheet" type="text/css" media="screen,projection" href="<%= @logged_in_user.theme.url -%>" />
+<% else -%>
+  <link rel="stylesheet" type="text/css" media="screen,projection" href="/include/stylesheets/forum/default/forum-default.css?v=3" />
+<% end #if @liu -%>
+<% if @site.google_analytics -%>
+  <script type="text/javascript">
+  if (navigator && navigator.doNotTrack){}else{
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));}
+  </script>
+  <script type="text/javascript">
+  if (navigator && navigator.doNotTrack){}else{
+  try {
+  var pageTracker = _gat._getTracker("<%= @site.google_analytics -%>");
+  pageTracker._trackPageview();
+  } catch(err) {}}</script>
+<% end -%>
+</head>
+<body class="forum <%= @page || "main" -%> default" id="<%= form_authenticity_token %>">
+  <body class="forum <%= @page || "main" -%> default" id="<%= form_authenticity_token %>">
+<% if false %><!-- KISSinsights for starmen.net -->
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript" src="//s3.amazonaws.com/ki.js/9612/1Gd.js" async="true"></script><% end %>
+<div id="container">
+<% unless flash.blank? %>
+  <div id="flash">
+<% flash.each do |key, msg| -%>
+<% if key.to_s[0..1] != "id" %>
+    <div class="<%=h key%>">
+      <div class="hide"><a href="#"><img src="/include/images/button-x-close.png" alt="X button image" title="Hide this Message" /></a></div>
+      <p><%= '<a '+@flash[key].to_s+'>' -%><%=(key == :system ? msg : (h msg)).gsub("&lt;br/&gt;","<br/>")%><%= '</a>' -%></p>
+      <span class="hide">(<a href="#">hide</a>)</span>
+    </div>
+<% end %>
+<% end -%>
+  </div><!-- #flash -->
+<% end %>
+  <div id="header">
+    <div class="wrapper">
+      <div class="right">
+        <ul>
+<% if @logged_in_user -%>
+          <li id="profile">
+            <%= sprite @logged_in_user.sprite,11.0,:left=>"1em" -%>
+            <%= user_link(@logged_in_user) %>&nbsp;
+            <form id="logoutform" method="POST" action="/login/logout/">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token -%>">
+              <input type="hidden" name="_method" value="delete">
+              <input id="logout" type="image" src="/include/images/logout.png" alt="Logout" title="Logout" border="0">
+            </form>  
+          </li>
+          <li id="inbox">
+            <img class="sprite" style="width: 1.6em; height: 1.6em;" src="/include/images/sprites/sprite1010.gif" alt="Mailbox sprite" title="2 Private Messages" />
+            <a href="/forum/inbox">Inbox<%= " ("+@pmcount.to_s+")" if @pmcount -%></a>
+          </li>
+<% else -%>
+          <li id="register">
+            <img class="sprite" style="width: 1.6em; height: 1.6em; top: .8em; left: 1.2em;" src="/include/images/sprites/sprite1112.gif" alt="Hawkeye sprite" title="Register" />
+            <a href="/login/register" id="registerlink">Register</a>
+          </li>
+          <li id="login">
+            <img class="sprite" style="width: 1.6em; height: 1.6em; top: .8em; left: 1.1em;" src="/include/images/sprites/sprite1104.gif" alt="Zappy Mcsprite" title="Login" /> 
+            <a href="/login/login_oauth" id="loginlink">Login</a>
+          </li>
+<% end -%>
+        </ul>
+      </div><!-- .right -->
+      <div class="left">
+        <h1 class="<%= h @bookcrumbs.first[2] -%>"><a href="<%= h @bookcrumbs.first[1] -%>"><%= h @bookcrumbs.first[0] -%></a></h1>
+        <ul>
+<% for bookcrumb in @bookcrumbs[1..100] -%>
+          <li<%= ' class="selected"' if bookcrumb == @bookcrumbs.last -%>>
+            <a href="<%= h bookcrumb[1] -%>"><span>&raquo;</span> <%= h bookcrumb[0] -%></a>
+          </li>
+<% end -%>
+        </ul>
+      </div><!-- .left -->
+      <div class="hr"><hr /></div>
+    </div><!-- .wrapper -->
+  </div><!-- #header -->
+  <div id="top">
+    <div class="wrapper">
+      <h2 id="banner" style="background-image: url(https://www.starmen.net/forumbanners/<%= (@forum.id.to_s if @forum)||"welcome" -%>.png);"><a href="/forum<%= "/"+@forum.category.nickname+"/"+@forum.nickname if @forum.is_a?(Forum) && @forum.category.is_a?(Category) -%>"><span><%= ((h @forum.name) if @forum)||"Starmen.Net Forum Main Page" -%></span></a></h2>
+<%= fangamer_ad %>
+      <ul class="tabs">
+<% if @forum -%>
+<% cache "tabs_forum_"+@forum.id.to_s, :expire=>60.minutes do %>
+<%= display_tabs(@forum.id) -%>
+<% end #cache %>
+<% else -%>
+        <li<%= ' class="selected"' if request.parameters['controller'] == 'forum' && request.parameters['action'] == 'rules' -%>>
+          <a href="/forum/rules/">
+            <img class="sprite" style="width: 3.2em; height: 3.2em; top: -1.4em; left: .1em;" src="/include/images/sprites/sprite171.gif" alt="Hint Man sprite" title="Read the freaking rules you little monsters" />
+            <span>Forum Rules</span>
+          </a>
+        </li>
+        <li<%= ' class="selected"' if request.parameters['controller'] == 'forum' && request.parameters['action'] == 'faq' -%>>
+          <a href="/forum/faq/">
+            <img class="sprite" style="width: 1.6em; height: 1.6em; top: .2em; left: .7em;" src="/include/images/sprites/sprite1061.gif" alt="Question Mark sprite" title="FAQ: Freaking Ask Questions (before you post)." />
+            <span>FAQ / Information</span>
+          </a>
+        </li>
+        <li>
+          <a href="/members/">
+            <img class="sprite" style="width: 1.6em; height: 2.4em; top: -.4em; left: .7em;" src="/include/images/sprites/sprite974.gif" alt="Starman sprite" title="Member List" />
+            <span>Member List</span>
+          </a>
+        </li>
+        <li<%= ' class="selected"' if request.parameters['controller'] == 'Forum::Search' -%>>
+          <a href="/forum/search/">
+            <img class="sprite" style="width: 1.6em; height: 1.6em; top: 0; left: .9em;" src="/include/images/sprites/sprite1132.gif" alt="light bulb sprite" title="Forum Search" />
+            <span>Forum Search</span>
+          </a>
+        </li>
+<% if liu_is_modadmin? -%>
+        <li<%= ' class="selected"' if request.parameters['controller'] == 'Forum::Reports' && request.parameters['action'] == 'index' -%>>
+          <a href="/forum/reports">
+            <img class="sprite" style="width: 1.6em; height: 1.6em; top: .3em; left: .9em;" src="/include/images/sprites/sprite1123.gif" alt="Exclamation sprite" title="My Reports" />
+            <span>My Reports</span>
+          </a>
+        </li>
+<% end -%>
+<% if @logged_in_user && (@logged_in_user.has_permission("View_UberCMS")) -%>
+        <li<%= ' class="selected"' if request.parameters['controller'] == 'ubercms' -%>>
+          <a href="/ubercms/">
+            <img class="sprite" style="width: 1.6em; height: 1.6em; top: 0; left: .9em;" src="/include/images/sprites/sprite1113.gif" alt="CB Radio sprite" title="uberCMS" />
+            <span>uberCMS</span>
+          </a>
+        </li>
+<% end -%>
+<% end -%>
+      </ul>
+    </div><!-- .wrapper -->
+  </div><!-- #top -->
+
+<%= yield %>
+
+  <div class="hr bottom"><hr /></div>
+  <div id="footer">
+    <div class="wrapper">
+      <p class="backtotop"><a href="#top">Back to top</a></p>
+      <div class="left">
+        <p class="<%= h @bookcrumbs.first[2] -%>"><a href="<%= h @bookcrumbs.first[1] -%>">All rights reserved by <%= h @bookcrumbs.first[0] -%></a></p>
+        <ul>
+<% for bookcrumb in @bookcrumbs[1..100] -%>
+          <li<%= ' class="selected"' if bookcrumb == @bookcrumbs.last -%>>
+            <a href="<%= h bookcrumb[1] -%>"><span>&raquo;</span> <%= h bookcrumb[0] -%></a>
+          </li>
+<% end -%>
+        </ul>
+      </div><!-- .left -->
+      <div class="right">
+        <p><a href="http://fangamer.com/forum/software">Forum by Fangamer</a></p>
+      </div><!-- .right -->
+      <div class="hr"><hr /></div>
+    </div><!-- .wrapper -->
+  </div><!-- #footer -->
+</div><!-- #container -->
+</body>
+</html><% flash.clear -%>
+
+<% if false %>
+<%# this is just the rails original for reference %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,3 +194,4 @@
     <%= yield %>
   </body>
 </html>
+<% end %>

@@ -1,0 +1,543 @@
+html { color: #c6d2e0; background-color: #2E8B57;}
+#top { color: #165581; background: #a5ccfb url(images/header-bg.png) 0 -220px repeat-x; }
+
+abbr[title], acronym[title], dfn[title] { border-bottom-color: #6c839d; }
+
+a:link { color: #00FF00; }
+a:visited { color: #87a1c1; }
+a:hover { color: #aed3ff; }
+a:focus { color: #aed3ff; }
+a:active { color: #cde3ff; }
+
+/* FONTS -- I'd like to declare fonts just once. Add your elements to the list. */
+.cat-header, .forum-header, #litboxinner #litboxheader h1, .post .attachments h4, .post .taglist, #main .post-body div ul.submissions
+{ font-family: "Trebuchet MS",Trebuchet,Helvetica,sans-serif; }
+.forum-body ul > li blockquote p, .spymsg blockquote p, #sidebar #news blockquote p, .topics table tbody tr td blockquote p, body.posts #main .post .post-body div.message-content, body.posts #main .post .post-not-shown, .newfck textarea
+{ font-family: "Georgia","Times New Roman",Times,serif; }
+html, cite, a.topic, body.posts #main #newpost .post-body, #main .post .post-body table, #main div.post.submission .post-body h3, body.posts #main .sig, button, ul.buttons li a span, a.button span, body.posts #main .post #previewnotice, body.posts #main form input, body.posts #main .post .post-body .checky, body.posts #main .post .post-body #formatting, body.posts #main form #reply .post-body, .poll
+{ font-family: helvetica,verdana,"microsoft sans serif",arial,sans-serif; }
+.hints p span, pre, code, body.posts #main .post .post-body pre.notextile
+{ font-family: "Courier New",Courier,monospace; }
+
+/* TABS and BUTTONS */
+ul.tabs li a { background-color: #2b578b; text-decoration: none; }
+ul.tabs li a:link { color: #89c0e6; }
+ul.tabs li a:visited { color: #89c0e6; }
+ul.tabs li a:hover { background-color: #3166a5; color: #c8e6fa; cursor: pointer; }
+ul.tabs li a:focus { background-color: #3166a5; color: #c8e6fa; }
+ul.tabs li.selected a { background-color: #001835; cursor: default; }
+
+#sidebar ul.tabs li a { background-color: #113662; }
+#sidebar ul.tabs li a:hover { background-color: #134989; }
+#sidebar ul.tabs li a:focus { background-color: #134989; }
+#sidebar ul.tabs li.selected a { background-color: #2b578b; cursor: default; }
+
+button, ul.buttons li a, a.button { background-color: #176d4a; }
+button, ul.buttons li a:link, a.button:link { color: #a5cdbc; }
+button:visited, ul.buttons li a:visited, a.button:visited { color: #a5cdbc; }
+button:hover, ul.buttons li a:hover, a.button:hover { background-color: #2b8b63; color: white; cursor: pointer; }
+button:focus, ul.buttons li a:focus, a.button:focus { background-color: #2b8b63; color: white; }
+
+button.neutral, ul.buttons li.neutral a, a.button.neutral { background-color: #215ea5; }
+button.neutral, ul.buttons li.neutral a:link, a.button.neutral:link { color: #b0c2d8; }
+button.neutral:visited, ul.buttons li.neutral a:visited, a.button.neutral:visited { color: #b0c2d8; }
+button.neutral:hover, ul.buttons li.neutral a:hover, a.button.neutral:hover { background-color: #2775d1; color: white; }
+button.neutral:focus, ul.buttons li.neutral a:focus, a.button.neutral:focus { background-color: #2775d1; color: white; }
+
+button.negative, ul.buttons li.negative a, a.button.negative { background-color: #6d1717; }
+button.negative, ul.buttons li.negative a:link, a.button.negative:link { color: #cda5a5; }
+button.negative:visited, ul.buttons li.negative a:visited, a.button.negative:visited { color: #cda5a5; }
+button.negative:hover, ul.buttons li.negative a:hover, a.button.negative:hover { background-color: #8b2b2b; color: white; }
+button.negative:focus, ul.buttons li.negative a:focus, a.button.negative:focus { background-color: #8b2b2b; color: white; }
+
+button.empty { background-color: transparent; }
+button.empty:visited { background-color: transparent; }
+button.empty:hover { background-color: transparent;  }
+button.empty:focus { background-color: transparent; }
+
+/* MEMBERS */
+a.member { text-decoration: none; }
+
+#top a.member:link { color: #0654b4; }
+#top a.member:visited { color: #0654b4; }
+#top a.member:hover { color: #2178e3; }
+#top a.member:focus { color: #2178e3; }
+#top a.member:active { color: #4799fe; }
+
+#top a.member.mod:link { color: #a28b0d; }
+#top a.member.mod:visited { color: #a28b0d; }
+#top a.member.mod:hover { color: #b99d04; }
+#top a.member.mod:focus { color: #b99d04; }
+#top a.member.mod:active { color: #f3f49f; }
+
+#top a.member.supermod:link { color: #dcc155; }
+#top a.member.supermod:visited { color: #dcc155; }
+#top a.member.supermod:hover { color: #ffe375; }
+#top a.member.supermod:focus { color: #ffe375; }
+#top a.member.supermod:active { color: #ffe680; }
+
+#top a.member.admin:link { color: #cc5914; }
+#top a.member.admin:visited { color: #cc5914; }
+#top a.member.admin:hover { color: #de7434; }
+#top a.member.admin:focus { color: #de7434; }
+#top a.member.admin:active { color: #f68f50; }
+
+#top a.member.fangamer:link { color: #99ca69; }
+#top a.member.fangamer:visited { color: #99ca69; }
+#top a.member.fangamer:hover { color: #aae76f; }
+#top a.member.fangamer:focus { color: #aae76f; }
+#top a.member.fangamer:active { color: #b5f576; }
+
+#top a.member.staff:link { color: #68d5c7; }
+#top a.member.staff:visited { color: #68d5c7; }
+#top a.member.staff:hover { color: #97f8eb; }
+#top a.member.staff:focus { color: #97f8eb; }
+#top a.member.staff:active { color: #cafff8; }
+
+/* TOPICS / POSTS */
+.topics blockquote a, .post-body blockquote a, .forum-body ul > li a, .spymsg a { text-decoration: none; }
+.forum-body ul > li.unseen blockquote p, .forum-body ul > li.unseen blockquote p a, .topics table tbody tr td blockquote p a { color: #93aecf; }
+
+/* "Skip to first post" arrows */
+h2 a.topic, a.topic,.forum .forum-body ul li a.topic { text-decoration: none; }
+table tbody tr td.topic-info span.page_links a:link, .forum .forum-body ul li a.topic:link, a.topic:link { color: #6a7470; }
+table tbody tr td.topic-info span.page_links a:visited, .forum .forum-body ul li a.topic:visited, a.topic:visited { color: #6a7470; }
+table tbody tr td.topic-info span.page_links a:hover, .forum .forum-body ul li a.topic:hover, a.topic:hover { color: #bbffc0; }
+table tbody tr td.topic-info span.page_links a:focus, .forum .forum-body ul li a.topic:focus, a.topic:focus { color: #bbffc0; }
+table tbody tr td.topic-info span.page_links a:active, .forum .forum-body ul li a.topic:active, a.topic:active { color: #e2ffe4; }
+
+table tbody tr.unseen td.topic-info span.page_links a:link, .forum .forum-body ul li.unseen a.topic:link, .unseen td.topic-info > a.topic:link, .unseen a.topic:link { color: #92ed99; }
+table tbody tr.unseen td.topic-info span.page_links a:visited, .forum .forum-body ul li.unseen a.topic:visited, .unseen td.topic-info > a.topic:visited, .unseen a.topic:visited { color: #92ed99; }
+table tbody tr.unseen td.topic-info span.page_links a:hover, .forum .forum-body ul li.unseen a.topic:hover, .unseen td.topic-info > a.topic:hover, .unseen a.topic:hover { color: #c9ffcd; }
+table tbody tr.unseen td.topic-info span.page_links a:focus, .forum .forum-body ul li.unseen a.topic:focus, .unseen td.topic-info > a.topic:focus, .unseen a.topic:focus { color: #84b288; }
+table tbody tr.unseen td.topic-info span.page_links a:active, .forum .forum-body ul li.unseen a.topic:active, .unseen td.topic-info > a.topic:active, .unseen a.topic:active { color: #b2d6b5; }
+
+#sidebar a.topic:link { color: #9ccc9f; }
+#sidebar a.topic:visited { color: #9ccc9f; }
+#sidebar a.topic:hover { color: #abeaaf; }
+#sidebar a.topic:focus { color: #abeaaf; }
+#sidebar a.topic:active { color: #d3f7d6; }
+
+#top a.topic:link { color: #33795c; }
+#top a.topic:visited { color: #33795c; }
+#top a.topic:hover { color: #2daa76; }
+#top a.topic:focus { color: #2daa76; }
+#top a.topic:active { color: #5cbf96; }
+
+/* GENERIC */
+#generic blockquote { background-color: black; font-style: italic; }
+	#generic blockquote cite { color: #71af73; }
+
+/* MAIN PAGE */
+
+/* Category Header */
+.cat-header { color: #5d94d6; background-color: #006400; }
+.cat-header h2 { font-weight: normal; }
+.cat-header h2 a { color: #00FA9A; text-decoration: none; }
+.cat-header p { color: #4173af; }
+.cat-header p b { color: #5d94d6; font-weight: normal; }
+
+/* Forum Headers */
+.forum .forum-header .sprite { opacity: .25; }
+.forum .forum-header h2 a { color: #00FA9A; font-weight: normal; text-decoration: none; }
+.forum.unseen .forum-header h2 a { color: #5d94d6; }
+a.markasread { opacity: .4; }
+a.markasread:hover { opacity: .7; }
+a.markasread:active { opacity: .9; }
+.forum.unseen .forum-header .sprite { opacity: 1; }
+.forum.unseen .forum-header a.arrow { cursor: pointer !important; }
+.forum-header p { color: #526b8a; }
+
+/* - Forum Body */
+.forum-body { border-left: 1px solid #2E8B57; }
+.forum-body ul > li, .forum-body ul > li a { color: #FFA500; }
+
+/* TOPIC LISTING PAGE */
+#top .topposts h3 { color: #133256; }
+#top .topposts h3 span { color: #3d6391; }
+#top .topposts ul { border-color: #5b8ecb; }
+
+table thead tr th { color: #7e858c; font-weight: normal; }
+	table thead tr th.recent { color: white; }
+table tbody tr.odd td { background-color: #001228; }
+table tbody tr td.topic-info p.byline { color: #686c73; }
+table tbody tr td.topic-info p.recenttime { color: #536377; }
+table tbody tr td.starter a { opacity: .5; }
+table tbody tr.unseen td.starter a { opacity: 1; }
+table tbody tr td.replies, table tbody tr td.views { color: #686c73; }
+table tbody tr td.icon img { opacity: .4; }
+	table tbody tr:hover td.icon img { opacity: .7; }
+	table tbody tr.unseen td.icon img { opacity: .9; }
+		table tbody tr.unseen:hover td.icon img { opacity: 1; }
+	table tbody tr.unseen td.topic-info p.byline { color: #aab1bc; }
+	table tbody tr.unseen td.topic-info p.recenttime { color: #8497ad; }
+
+	table tbody tr.unseen td.views { color: #7e858c; }
+	table tbody tr.unseen td.replies { color: #93aecf; }
+	
+/* inbox unseen*/
+table tbody tr.unseen td.messagename a { color: #AED3FF;}
+
+/* Locked Topics */
+table tbody tr.locked td.topic-info,
+table tbody tr.locked td.topic-info p.byline,
+table tbody tr.locked td.topic-info blockquote cite,
+table tbody tr.locked td.topic-info a:link,
+table tbody tr.locked td.topic-info a:visited,
+table tbody tr.locked td.views,
+table tbody tr.locked td.starter a.member,
+table tbody tr.locked td.replies { color: #3a4b60; }
+table tbody tr.locked td.topic-info a.topic { font-weight: normal; }
+table tbody tr.locked td.icon img { opacity: .15; }
+table tbody tr.locked td.replies { font-size: .8em; }
+table tbody tr.unseen.locked td.topic-info a.topic:link, table tbody tr.unseen.locked td.topic-info a.topic:visited { color: #687a69; }
+table tbody tr.unseen.locked td.icon img { opacity: .3; }
+
+/* Sticky Topics */
+table tbody tr.sticky { border-color: #001835; }
+table tbody tr.sticky td { background-color: #032147; border-top: 2px solid #001835; }
+	table tbody tr.unseen.sticky td.topic-info a.topic { color: #a4eda9; text-decoration: none; }
+	table tbody tr.unseen.sticky td.topic-info a.topic:visited { color: #91c895; }
+	table tbody tr.unseen.sticky td.topic-info a.topic:hover { color: #d3f4d6; }
+	table tbody tr.unseen.sticky td.topic-info a.topic:focus { color: #d3f4d6; }
+
+/* POST LISTING PAGE */
+body.posts #main h2 a  { color: #9bdba0; }
+
+body.posts #main h2 input.topic  { color: #9bdba0; background: #1B375B; border: 0; }
+body.posts #main h2 div.fieldWithErrors input.topic  { background: #8B1B37; }
+body.posts #main p#bylineinput input  { color: #ffffff; background: #1B375B; border: 0; }
+body.posts #main p#bylineinput div.fieldWithErrors input { background: #8B1B37; }
+body.posts #main h2 label, body.posts #main p label { background: #000; }
+
+/*body.posts #main p#spriteinput { background: #1B375B;}*/
+
+.toolbar { background-color: #01070e; }
+.toolbar ul li a, .toolbar div.pagination span, .toolbar div.pagination a { text-decoration: none; font-weight: bold; }
+.toolbar ul.actions li a { font-weight: normal; color: #3d5879; }
+	.toolbar ul li.selected a, .toolbar div.pagination span.current, .toolbar div.pagination a.current { color: white; }
+		.toolbar ul li.prev a, .toolbar ul li.next a { background-color: #092343; }
+		.toolbar ul li.first a, .toolbar ul li.last a { font-weight: normal; }
+		.toolbar ul li:hover a, .toolbar div.pagination span:hover, .toolbar div.pagination a:hover { color: #c8e9ff; background-color: #203c5e; }
+		.toolbar ul li.selected a:hover, .toolbar ul li.selected a:focus, .toolbar div.pagination span.current:hover, .toolbar div.pagination a.current:hover { cursor: default; color: white; background-color: transparent; }
+		.toolbar ul li.noclicky a, .toolbar div.pagination span.disabled, .toolbar div.pagination a.disabled { cursor: default; color: #364b63; background-color: transparent; }
+		.toolbar ul li.text, .toolbar ul li.ellipsis { color: #364b63; }
+		.toolbar ul li.ellipsis { letter-spacing: .25em; }
+		.toolbar div.pagination input { border: 1px #364b63 solid; background:#01070e; color:#71B1FF; font-size: .8em; padding:0;}
+		.toolbar div.pagination form { margin: 0;}
+	.toolbar ul.actions li a.notice { color:#ffffff; }	
+#main .post.odd,#main .post.odd div.dropdown { background-color: #001228; }
+#main .post.even,#main .post.even div.dropdown { background-color: #010b17; }
+#main .post.odd.final-submission { background-color:#122800;}
+#main .post.even.final-submission { background-color: #0c1b00; }
+#main .post.new { background-color: #032147; }
+#main .post.odd#newpost { background-color: #000000; }
+#main .post.even#newpost { background-color: #010b17; }
+
+#main .post#postpreview #previewnotice, #main .post .notice.explaination { color: #a5cdbc; background-color: #083a26; font-style: italic; }
+#main .post#postpreview #topicbump { color: #cdaca5; background-color: #4a0608; font-style: italic; }
+	#main .post-header h3 a { color: #9ec4f3; text-decoration: none; font-weight: normal; }
+		#main .post .post-header h3 a acronym { border-bottom-color: #97aeca; }
+	#main .post .post-header h3 p.rank { color: #455F7E; font-weight: normal; text-transform: normal; line-height: 1.3em; }
+		#main .post .post-header h3 p.rank acronym { border-bottom: 1px dotted #465475; text-transform: none; }
+	#main .post .post-header h3 p.fg_title { color: #7291b9; }
+
+	#main .post .post-not-shown { color: #303d4c; }
+	  #main .post .post-not-shown a { color: #647282; }
+
+#main .post-body div { color: #98a8bc; }
+	#main .post-body div .taglist { color: #61774f; }
+	#main .post-body div .taglist p { color: #737a6d; }
+	#main .post-body div .taglist ul li a { border: 0; color: #61774f; text-decoration: none; }
+	#main .even.final-submission .post-body div .taglist ul li a { background-color: #122800; }
+	#main .odd.final-submission .post-body div .taglist ul li a { background-color: #0c1b00; }
+	#main .final-submission .post-footer hr { border-top-color: #1c3507; color: #1c3507; }
+
+	#main .post .post-body table tr { background-color: #001228; }
+	#main .post .post-body table tr:nth-child(2n+1) { background-color: #010b17; }
+	#main .post .post-body table tr:hover { background-color: #09203c; }
+		#main .post .post-body table tr th { background-color: #2b578b; text-align: left; }
+	#main .post-body div ins { text-decoration:none; border-bottom:1px dashed #98a8bc; }
+	#main .post-body div a:visited, #generic blockquote p a:visited { text-decoration: none; border-bottom: 1px dotted #87a1c1; }
+		#main .post-body div a.button { border: 0; }
+	#main .post-body div blockquote, #main .post-body div.youtube { background-color: black; font-style: italic; }
+		#main .post-body div.youtube .youtube_title { display: none; }
+		#main .post.odd .post-body div blockquote div.quotey blockquote, #main .post.odd blockquote div.quotey div.youtube { background-color: #001228; }
+		#main .post.even .post-body div blockquote div.quotey blockquote, #main .post.even blockquote div.quotey div.youtube { background-color: #010b17; }
+			#main .post .post-body div blockquote div.quotey blockquote div.quotey blockquote,  #main .post.even div blockquote div.quotey blockquote div.quotey div.youtube { background-color: black;  }
+				#main .post.odd .post-body div blockquote div.quotey blockquote div.quotey blockquote div.quotey blockquote, #main .post.even div blockquote div.quotey blockquote div.quotey blockquote div.quotey div.youtube { background-color: #001228; }
+				#main .post.even .post-body div blockquote div.quotey blockquote div.quotey blockquote div.quotey blockquote, #main .post.even div blockquote div.quotey blockquote div.quotey blockquote div.quotey div.youtube { background-color: #010b17; }
+
+	#main .post-body div ul.submissions li a:link { color: #83cc6f; }
+	#main .post-body div ul.submissions li a:visited { color: #98bb8f; }
+	#main .post-body div ul.submissions li a:hover { color: #a2f68c; }
+	#main .post-body div ul.submissions li a:focus { color: #a2f68c; }
+	#main .post-body div ul.submissions li a:active { color: #dbffd2; }
+
+		#main .post-body div blockquote div.citey a, #main .post-body div blockquote div.citey a:visited, #main .post-body div.youtube div.youtube_title a { color: #71af73; border: 0; }
+		#main .post-body div blockquote div.quotey { color: #8090a3; }
+		#main .post-body .sig { color: #455f7e; border-top: 1px solid #061e3b; }
+			#main .post hr { border: 0; border-top: 1px solid #061e3b; color: #061e3b; }
+body.posts #main .post-body textarea { background-color: #bfcfe1; }
+body.posts #main .post-body div.fieldWithErrors textarea { background-color: #e1bfcf; }
+#main .post-footer p, #main .post-footer ul { opacity: .5; }
+#main .post-footer:hover p, #main .post-footer:hover ul { opacity: .9; }
+#main .post-footer p { color: #5a728f; }
+#main .post-footer p.ipaddress a { color: #5a728f; text-decoration: none; }
+#main .post-footer ul.utils li.score { color: #68819e; }
+
+
+
+/* polls */
+#main .post-body .poll-header h3 { color: #8ea5a5; font-weight: normal; font-style: italic; }
+#main .post-body .poll-header p.total { color: #568787; }
+#main .post-body .poll-header p.total span { font-weight: bold; }
+
+#main .post-body .poll ol li { color: #bceaea; }
+#main .post-body .poll .poll-body ol li.odd, body.posts #main .post-body .poll .poll-results ol li.odd div.percentage { background-color: #273a3a; }
+#main .post-body .poll .poll-body ol li.even, body.posts #main .post-body .poll .poll-results ol li.even div.percentage { background-color: #395555; }
+
+#main .post-body .poll .poll-results ol li:first-child { border-top: 1px dotted #273a3a; }
+#main .post-body .poll .poll-results ol li { border-bottom: 1px dotted #273a3a; }
+#main .post-body .poll .poll-results ol li.winner { color: #def3f3; font-weight: bold; }
+#main .post-body .poll .poll-results ol li.novotes p { color: #4f5f5f; }
+#main .post-body .poll .poll-results ol li.voted { color: #def3f3; font-weight: bold; }
+
+/* Misc Forms -- Replies, Edits, Reports, Etc */
+#content form fieldset { border: 1px solid #001228; background-color: black; }
+	#content form fieldset legend { background-color: black; }
+
+* html #overlay { background-color: #333; }
+#litboxinner { background-color: #04244A; }
+	#litboxinner #litboxheader { background-color: #2b578b; }
+		#litboxinner #litboxheader h1 { color: white; font-weight: normal; font-style: italic; }
+	#litboxinner #litboxbody, #litboxinner iframe { /*color: #ad3d3d;*/ background-color: #04244a; } 
+		#litboxinner #litboxbody #loginbad p { font-weight: bold; color: #cda5a5; background-color: #6d1717; }
+		#litboxinner #litboxbody form label { color: white; }
+
+#attachments li { background-color: #273a3a; }
+	#attachments li.even { background-color: #395555; }
+	#attachments li span.filename { color: #bde0e0; }
+	#attachments li button span img { opacity: .5; }
+	#attachments li button:hover span img { opacity: 1; }
+
+#attachments li span.delete a img { opacity: .5; }
+	#attachments li span.delete a:hover img { opacity: 1; }
+
+.attachments h4 { color: #485c75; font-weight: normal !important; width: 100%; border-bottom: 1px dotted #485c75; }
+.attachments ul li.attachedimage a { border: 0; }
+	.attachments ul li.attachedimage a img { padding: .25em; }
+
+.tabley dl dt { font-weight: normal; }
+.tabley dl dd { font-weight: bold; }
+
+/* SIDEBAR */
+#sidebar .boxy { background-color: #2b578b; }
+.spymsg blockquote p a { color: #e9f3f9; }
+#sidebar #news blockquote cite { color: #a6bfcf; font-style: normal; }
+#sidebar #news blockquote cite b span { color: white; }
+#sidebar #news blockquote p { color: #e3f0ff; }
+	#sidebar #news blockquote p a:link { color: #b4d1f4; }
+	#sidebar #news blockquote p a:visited { color: #cdd9e7; border-bottom-color: #cdd9e7; }
+	#sidebar #news blockquote p a:hover { color: #e3f0ff; }
+	#sidebar #news blockquote p a:focus { color: #e3f0ff; }
+	#sidebar #news blockquote p a:active { color: #e3f0ff; }
+
+#sidebar .boxy-body ul li { color: #a6bfcf; }
+#sidebar .boxy-body ul li b span { color: #e3f0ff; }
+#sidebar .boxy-body dt { color: #77a3d7; }
+#sidebar .boxy-body dd { color: #c7ddf8; }
+
+/* BOTTOM */
+#bottom { background-color: #113662; }
+#bottom .topposts h2 { color: white; font-weight: normal; }
+#bottom .topposts h2 span { color: #73879f; }
+
+#generic textarea { background-color: #bfcfe1; }
+
+
+/* The following comes thanks to Alexander Kaiser at http://pooliestudios.com/projects/iconize/  */ 
+/* Icons by http://famfamfam.com/ */
+/* Iconize 0.5 */
+
+/* websites (pictures and movies) */
+#main .post-body a[href *="youtube.com/watch?"], #main .post-body a[href *="sevenload.com/videos/"], #main .post-body a[href *="metacafe.com/watch/"] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_film.gif) no-repeat center right;
+}
+
+#main .post-body a[href *="flickr.com/photos/"], #main .post-body a[href *="zooomr.com"], #main .post-body a[href *="imageshack.us"], #main .post-body a[href *="bubbleshare.com"], #main .post-body a[href *="sevenload.com/bilder/"] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_pic.gif) no-repeat center right;
+}
+
+/* extensions */
+
+#main .post-body a[href$='.doc'], #main .post-body a[href$='.docx'] {
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_doc.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.rtf'] {
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_txt.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.txt'] {
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_txt.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.xls'] {
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_xls.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.rss'], #main .post-body a[href$='.atom'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_feed.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.opml'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_opml.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.php'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_php.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.phps'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_php.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.torrent'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_torrent.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.vcard'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_vcard.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.exe'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_exe.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.dmg'], #main .post-body a[href$='.app'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_dmg.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.pps'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_pps.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.pdf'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_pdf.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.xpi'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_plugin.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.fla'], #main .post-body a[href$='.swf'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_flash.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.zip'], #main .post-body a[href$='.rar'], #main .post-body a[href$='.gzip'], #main .post-body a[href$='.bzip'], #main .post-body a[href$='.ace'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_archive.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.ical'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_ical.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.css'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_css.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.ttf'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_ttf.gif) no-repeat center right;
+}
+
+/*#main .post-body a[href$='.jpg'], #main .post-body a[href$='.gif'], #main .post-body a[href$='.png'], #main .post-body a[href$='.bmp'], #main .post-body a[href$='.jpeg'], #main .post-body a[href$='.svg'], #main .post-body a[href$='.eps'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_pic.gif) no-repeat center right;
+}*/
+
+#main .post-body a[href$='.mov'], #main .post-body a[href$='.wmv'], #main .post-body a[href$='.mp4'], #main .post-body a[href$='.avi'], #main .post-body a[href$='.mpg'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_film.gif) no-repeat center right;
+}
+
+#main .post-body a[href$='.mp3'], #main .post-body a[href$='.wav'], #main .post-body a[href$='.ogg'], #main .post-body a[href$='.wma'], #main .post-body a[href$='.m4a'] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_music.gif) no-repeat center right;
+}
+
+/* messenger */
+#main .post-body a[href ^="aim:"] {
+	padding: 5px 20px 5px 0;
+    background: transparent url(/include/images/url_icons/icon_aim.gif) no-repeat center right;
+}
+
+#main .post-body a[href ^="msnim:"] {
+	padding: 5px 20px 5px 0;
+    background: transparent url(/include/images/url_icons/icon_msn.gif) no-repeat center right;
+}
+
+#main .post-body a[href ^="xmpp:"] {
+	padding: 5px 20px 5px 0;
+    background: transparent url(/include/images/url_icons/icon_jabber.gif) no-repeat center right;
+}
+
+#main .post-body a[href *="icq.com"] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_icq.gif) no-repeat center right;
+}
+
+#main .post-body a[href *="edit.yahoo.com/config/send_webmesg?"] { 
+	padding: 5px 20px 5px 0;
+	background: transparent url(/include/images/url_icons/icon_yim.gif) no-repeat center right;
+}
+
+#main .post-body a[href ^="callto:"] {
+	padding: 5px 20px 5px 0;
+    background: transparent url(/include/images/url_icons/icon_call.gif) no-repeat center right;
+}
+
+#main .post-body a[href ^="skype:"] {
+	padding: 5px 20px 5px 0;
+    background: transparent url(/include/images/url_icons/icon_skype.gif) no-repeat center right;
+}
+
+#main .post-body a[href ^="gg:"] {
+	padding: 5px 20px 5px 0;
+    background: transparent url(/include/images/url_icons/icon_gadugadu.gif) no-repeat center right;
+}
+
+/* email */
+#main .post-body a[href ^="mailto:"] {
+	padding: 5px 20px 5px 0;
+    background: transparent url(/include/images/url_icons/icon_mailto.gif) no-repeat center right;
+}
+
+/* use this class to make sure that images won't get iconized */
+
+.imageLink {
+	padding-right: 0px !important;
+	background: none !important;
+}

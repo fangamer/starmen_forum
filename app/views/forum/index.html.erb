@@ -1,0 +1,123 @@
+  <div id="content">
+    <div class="wrapper">
+      <div id="main">
+<% unless @single_cat || !@logged_in_user || !@subscriptions_exist -%>
+        <div class="cat<%= " expanded" if @subexpanded -%>" id="cat0">
+          <div class="cat-header">
+            <%= link_to "Show / Hide this Category",{:action=>:collapse_category,:id=>0},:class=>"arrow" %>
+            <h2><a name="subscribed" href="/forum/subscribed_topics">Subscribed Topics</a></h2>
+            <p><b><%= @subscriptionsnewcount -%></b> new posts, <b><%= @subscriptionscount -%></b> posts total</p>
+          </div>
+<% if @subexpanded -%>
+          <div class="cat-body">
+<% for topic in @subscriptions -%>
+<% begin
+    @logged_in_user.preferences['collapse_topic'][topic.id] != :expand ? topicexpanded = false : topicexpanded = true
+  rescue
+    topicexpanded = true
+  end -%>
+            <div class="forum topic <% read = Read.find(:first,:conditions=>{:topic_id=>topic.id,:user_id=>@logged_in_user.id}) unless @logged_in_user.blank? -%><%= ' unseen' if @logged_in_user.blank? || topic.last_message.nil? || read.nil? || read.last_view < topic.last_message -%><%= ' expanded' if topicexpanded %>" id="topic<%= topic.id %>">
+              <div class="topic-header forum-header">
+                <a href="<%=topic.URL-%>">
+<% if topic.forum.sprite -%>
+                  <img class="sprite" style="width: 3.2em; height: 3.2em;" src="<%= topic.forum.sprite.public_filename -%>" alt="<%= h topic.name-%> sprite" title="<%= h topic.name-%>" />
+<% end #if topic.forum.sprite  %>
+                </a>
+                <%= link_to "Show / Hide Topics for this Topic",{:action=>:collapse_topic,:id=>topic.id.to_s},:class=>"arrow" %>
+                <h2>
+                  <%= topic_link(topic) %>
+                </h2>
+                <p>&nbsp;</p>
+              </div><!-- .topic-header -->
+<%# if topicexpanded %>
+              <div class="topic-body forum-body">
+                <ul>
+<% for message in topic.messages.find(:all,:conditions=>{:deleted=>false},:order=>"#{Message.qtcn("created_at")} DESC",:limit=>3).reverse -%>
+                  <li <%= 'class="unseen"' if read.last_view < message.created_at rescue nil -%>>
+                    <blockquote>
+                      <p>
+                        &ldquo; <a href="<%= topic.URL -%>"><%= message.preview(110) -%></a>
+                        <span class="ellipsis">...</span> &rdquo;
+                      </p>
+                      <cite>
+                        <span><%= time_ago_in_words(message.created_at) unless topic.last_message.nil? -%> ago</span> by
+                        <%= user_link(message.creator) %>
+                      </cite>
+                    </blockquote>
+                  </li>
+<% end # for message in messages -%>
+<% oneunread = false %>
+                </ul>
+              </div><!-- .topic-body .forum-body -->
+<%# end # if topicexpanded %>
+            </div><!-- .topic .forum -->
+<% end %>
+          </div>
+<% end %>
+        </div>
+<% end %>
+<% for category in @categories -%>
+<% begin 
+    @single_cat || @logged_in_user.preferences['collapse_category'][category.id] != :collapse ? catexpanded = true : catexpanded = false 
+  rescue 
+    catexpanded = true 
+  end -%>
+        <div class="cat<%= " expanded" if catexpanded -%>" id="cat<%= category.id -%>">
+          <div class="cat-header">
+            <a href="/forum/collapse_category/<%= category.id -%>" class="arrow">Show / Hide this Category</a>
+            <h2>
+              <a href="/forum/<%= category.nickname -%>"><%= h category.name -%></a>
+            </h2>
+            <a class="markasread" href="/forum/<%= category.nickname -%>/mark_category_as_read?index=true"><img src="/include/images/forum/button-markasread.png" alt="Sunglasses Icon" title="Mark all messages in <%= h category.name -%> as read" /></a>
+            <p>
+              <%= "<b>"+Message.count(:conditions=>["#{Forum.qtcn("category_id")} = ? AND (#{Message.qtcn("deleted")} = 0 OR #{Message.qtcn("deleted")} IS NULL) AND #{Message.qtcn("created_at")} > ?" , category.id,@old_last_visit.to_formatted_s(:db)],:include=>{:topic=>:forum}).to_s + "</b> new posts, " if @logged_in_user -%><b><%= @sorted_forums[category.id].inject(0) {|sum, forum| sum += forum.post_count || 0} || 0 -%></b> posts total
+            </p>
+          </div>
+<% if catexpanded -%>
+          <div class="cat-body">
+<% for forum in @sorted_forums[category.id] -%>
+            <div class="forum<%= " unseen" if @logged_in_user.blank? || forum.last_view.blank? || forum.last_message.blank? || (forum.last_view.is_a?(Time) ? forum.last_view : Time.parse(forum.last_view)) < forum.last_message -%><%= " expanded" if @forumexpanded[forum.id] -%>" id="forum<%= forum.id -%>">
+<% #cache "index_forum"+forum.id.to_s,:expire=>10.seconds do -%>
+              <div class="forum-header">
+                <a href="<%=forum.URL-%>">
+
+<% if forum.sprite -%>
+                  <img class="sprite" style="width: 3.2em; height: 3.2em;" src="<%= forum.sprite.public_filename -%>" alt="<%= h forum.name-%> sprite" title="<%=h forum.name-%>" />
+<% else -%>
+                  <img class="sprite" style="width: 3.2em; height: 3.2em;" src="/include/images/sprites/icon-forum-blanko.png" alt="<%= h forum.name-%> sprite" title="<%=h forum.name-%>" />
+<% end #if forum.sprite -%>
+                </a>
+                <a href="/forum/collapse_forum/<%= forum.id -%>" class="arrow">Show / Hide Topics for this Forum</a>
+                <h2>
+                  <a href="<%= forum.URL -%>"><%= h forum.name -%></a>
+                </h2>
+                <p><a class="markasread" href="<%= forum.URL -%>/mark_all_messages_as_read?index=true"><img src="/include/images/forum/button-markasread.png" alt="Sunglasses Icon" title="Mark all messages in <%= h forum.name -%> as read" /></a> <%=h forum.tagline-%></p>
+              </div><!-- .forum-header -->
+              <%= render :partial=>"index_forum_body", :locals=>{:forum=>forum} if @forumexpanded[forum.id] -%>
+            </div><!-- .forum -->
+<% end %>
+          </div><!-- .cat-body -->
+<% end #if catexpanded -%>
+        </div><!-- .cat#<%= category.id -%> -->
+<% end -%>
+      </div><!-- #main -->
+      <div id="sidebar">
+        <% cache "sidebar_forumspy", :expire=>10.seconds do %>
+        <%= render :partial=>"sidebar_forumspy" %>
+        <% end #cache -%>
+
+        <% cache "sidebar_forumnews", :expire=>24.hours do %>
+        <%= render :partial=>"sidebar_news" %>
+        <% end #cache -%>
+        
+        <% if !SystemPreference.find("show_forum_stats_to_mod_admins") || (SystemPreference.find("show_forum_stats_to_mod_admins") && liu_is_modadmin?) %>
+          <% cache "index_forumstats", :expire=>10.minutes do %>
+          <%= render :partial=>"sidebar_stats" %>
+          <% end %>
+        <% end %>
+      </div><!-- #sidebar -->
+    </div><!-- .wrapper -->
+  </div><!-- #content -->
+<% cache "index_bottomstats", :expire=>10.minutes do %>
+<%= render :partial=>"forum/bottom" %>
+<% end #cache -%>

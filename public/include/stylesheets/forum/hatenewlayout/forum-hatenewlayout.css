@@ -1,0 +1,237 @@
+.cat-header, .forum-header, #litboxinner #litboxheader h1, .post .attachments h4 { font-family: Tahoma,Verdana,"Myriad Web",Syntax,sans-serif; }
+.forum-body ul > li blockquote p, .spymsg blockquote p, #sidebar #news blockquote p, .topics table tbody tr td blockquote p, body.posts #main .post .post-body div.message-content, .newfck textarea, body.posts #main .post .post-body pre.notextile { font-family: Tahoma,Verdana,"Myriad Web",Syntax,sans-serif; }
+html, cite, a.topic, body.posts #main #newpost .post-body, body.posts #main .sig, button, ul.buttons li a span, a.button span, body.posts #main .post #previewnotice, body.posts #main form input, body.posts #main .post .post-body .checky, body.posts #main .post .post-body #formatting, body.posts #main form #reply .post-body, .poll { font-family: Tahoma,Verdana,"Myriad Web",Syntax,sans-serif; }
+.hints p span { font-family: Tahoma,Verdana,"Myriad Web",Syntax,sans-serif; }
+
+a:link {
+color:#99A1CA;
+}
+
+a:hover {
+        color: #e6e8fa;
+}
+
+a:visited {
+        color: #d7d7e0;
+}
+
+h2 a.topic, a.topic { text-decoration: none; }
+a.topic:link { color: #6a7470; }
+a.topic:visited { color: #6a7470; }
+a.topic:hover { color: #bbffc0; }
+a.topic:focus { color: #bbffc0; }
+a.topic:active { color: #e2ffe4; }
+
+ul.tabs li a { background-color: #2b578b; text-decoration: none; }
+ul.tabs li a:link { color: #89c0e6; }
+ul.tabs li a:visited { color: #89c0e6; }
+ul.tabs li a:hover { background-color: #3166a5; color: #c8e6fa; cursor: pointer; }
+ul.tabs li a:focus { background-color: #3166a5; color: #c8e6fa; }
+ul.tabs li.selected a { background-color: #001835; cursor: default; }
+
+#sidebar ul.tabs li a { background-color: #223667; }
+#sidebar ul.tabs li a:hover { background-color: #134989; }
+#sidebar ul.tabs li a:focus { background-color: #134989; }
+#sidebar ul.tabs li.selected a { background-color: #223667; cursor: default; }
+
+button, ul.buttons li a, a.button { background-color: #176d4a; }
+button, ul.buttons li a:link, a.button:link { color: #a5cdbc; }
+button:visited, ul.buttons li a:visited, a.button:visited { color: #a5cdbc; }
+button:hover, ul.buttons li a:hover, a.button:hover { background-color: #2b8b63; color: white; cursor: pointer; }
+button:focus, ul.buttons li a:focus, a.button:focus { background-color: #2b8b63; color: white; }
+
+button.neutral, ul.buttons li.neutral a, a.button.neutral { background-color: #215ea5; }
+button.neutral, ul.buttons li.neutral a:link, a.button.neutral:link { color: #b0c2d8; }
+button.neutral:visited, ul.buttons li.neutral a:visited, a.button.neutral:visited { color: #b0c2d8; }
+button.neutral:hover, ul.buttons li.neutral a:hover, a.button.neutral:hover { background-color: #2775d1; color: white; }
+button.neutral:focus, ul.buttons li.neutral a:focus, a.button.neutral:focus { background-color: #2775d1; color: white; }
+
+button.negative, ul.buttons li.negative a, a.button.negative { background-color: #6d1717; }
+button.negative, ul.buttons li.negative a:link, a.button.negative:link { color: #cda5a5; }
+button.negative:visited, ul.buttons li.negative a:visited, a.button.negative:visited { color: #cda5a5; }
+button.negative:hover, ul.buttons li.negative a:hover, a.button.negative:hover { background-color: #8b2b2b; color: white; }
+button.negative:focus, ul.buttons li.negative a:focus, a.button.negative:focus { background-color: #8b2b2b; color: white; }
+
+#sidebar a.topic:link { color: #9ccc9f; }
+#sidebar a.topic:visited { color: #9ccc9f; }
+#sidebar a.topic:hover { color: #abeaaf; }
+#sidebar a.topic:focus { color: #abeaaf; }
+#sidebar a.topic:active { color: #d3f7d6; }
+
+/* SIDEBAR */
+#sidebar .boxy { background-color: #223667; color:white;}
+.spymsg blockquote p a { color: #ffffff; text-decoration: none; }
+#sidebar #news blockquote cite { color: #a6bfcf; font-style: normal; }
+#sidebar #news blockquote cite b span { color: white; }
+#sidebar #news blockquote p { color: #e3f0ff; }
+	#sidebar #news blockquote p a:link { color: #8481f4; }
+	#sidebar #news blockquote p a:visited { color: #cdd9e7; border-bottom-color: #cdd9e7; }
+	#sidebar #news blockquote p a:hover { color: #e3f0ff; }
+	#sidebar #news blockquote p a:focus { color: #e3f0ff; }
+	#sidebar #news blockquote p a:active { color: #e3f0ff; }
+
+#sidebar .boxy-body ul li { color: #a6bfcf; }
+#sidebar .boxy-body ul li b span { color: #e3f0ff; }
+#sidebar .boxy-body dt { color: #77a3d7; }
+#sidebar .boxy-body dd { color: #c7ddf8; }
+
+
+body { background: #001035;}
+
+body.main .cat { }
+
+body.main .cat-header { background: #476896; border-color:#000000; border-left:1px solid black;border-right:1px solid black;border-bottom:1px solid black; padding:0.25em 0.4em; background-color:#476896;
+color:#FFFFFF;
+font-weight:bold; margin:0; }
+
+body.main .cat-header h2 a { color:#99A1CA; font-family:Tahoma,Verdana,"Myriad Web",Syntax,sans-serif;
+font-size:13px; text-decoration:none; margin-top:6px; }
+
+body.main .cat .cat-body {margin:0; padding:0;}
+
+body.main .cat .cat-body .forum { background:#141C48;}
+
+body.main .cat .cat-body .forum .forum-header { padding:0; height: 40px;  border-bottom:1px black solid; border-right: 1px black solid; }
+
+body.main .cat .cat-body .forum .forum-header a { float:none; }
+
+body.main .cat .cat-body .forum .forum-header a img.sprite {  border-left: 1px black solid; padding:5px; width:30px !important; height:30px !important; float:left; }
+
+
+body.main .cat .cat-body .forum .forum-header a.arrow { background:url(http://starmen.net/zomgoldforum/theme/hijola/images/existing_content.png) no-repeat #223667; height: 40px; padding:0 1em 0 0; margin:0; background-position: .4em .5em; border-left: 1px black solid; float:left; border-right: 1px black solid;}
+
+body.main .cat .cat-body .forum.unseen .forum-header a.arrow { background:url(http://starmen.net/zomgoldforum/theme/hijola/images/new_content.png) no-repeat #223667; background-position: .4em .5em;}
+
+body.main .cat .cat-body .forum .forum-header h2 { padding-top: 5px; margin-left: 70px; }
+
+body.main .cat .cat-body .forum .forum-header h2 a {  font-weight: normal; font-size:13px; font-family:Tahoma,Verdana,"Myriad Web",Syntax,sans-serif;}
+
+body.main .cat .cat-body .forum .forum-header p { font-family:Tahoma,Verdana,"Myriad Web",Syntax,sans-serif;font-size:13px; color:white; padding:0;margin-left: 70px; overflow:hidden; height: 25px;}
+body.main .cat .cat-body .forum .forum-header p a {display:none;}
+
+body.main .cat .cat-body .forum .forum-body { top:0; background: #141C48; color: white; margin: 0pt !important; border-left: black solid 1px; left:0; padding-left:70px; border-bottom:solid black 1px; width:auto; border-right: 1px black solid}
+
+#bottom { background-color: #141C48; color: white;}
+#bottom .topposts h2 { color: white; font-weight: normal; }
+#bottom .topposts h2 span { color: #73879f; }
+
+body { color:white }
+
+body #top { background:#141C48 }
+
+body.topics #main ul { float:right; }
+
+body.topics #main ul.buttons li a#create_new_topic { background:URL(http://starmen.net/zomgoldforum/themes/default/buttons/newtopic.png); min-height: 20px; width:109px; height:24px !important; padding:0 !important; }
+body.topics #main ul.buttons li a#create_new_topic img { display:none; }
+body.topics #main ul.buttons li a#create_new_topic span { display:none; }
+
+body.topics #main table {margin-top:25px; border-collapse:separate;border-spacing:1px;}
+body.topics #main table thead tr {  background: #86A5CF; font-size:13px;  color:black;  border:1px black solid; }
+body.topics #main table thead tr th { text-align:left; padding-left: 10px; padding:5px; margin:0;}
+
+
+body.topics #content table thead tr th.icon { width:20px; padding:0;margin:0;min-width:0; }
+body.topics #content table thead tr th.recent { text-indent: 0; }
+body.topics #content table thead tr th.starter { text-indent: 0; text-align:center; }
+
+body.topics #content table tbody tr {background:#223667; min-height: 16px; padding: 0px; }
+body.topics #content table tbody tr td {min-height: 16px; padding: 2px;}
+body.topics #content table tbody tr td.topic-info { background:#141C48; text-size:13px; overflow:hidden;}
+body.topics #content table tbody tr td.topic-info br { line-height: 0px; display:none; }
+
+body.topics #content table tbody tr td.topic-info { padding-left: 20px; background-image:URL(http://starmen.net/zomgoldforum/theme/hijola/images/read.png); background-repeat: no-repeat; background-position: 4px 50%;}
+body.topics #content table tbody tr.unseen td.topic-info { padding-left: 20px; background-image:URL(http://starmen.net/zomgoldforum/theme/hijola/images/unread.png); background-repeat: no-repeat; background-position: 4px 50%;}
+
+body.topics #content table tbody tr.locked td.topic-info img[src='/include/images/forum/lock.png'] { display:none; }
+body.topics #content table tbody tr.locked td.topic-info { padding-left: 20px; background-image:URL(http://starmen.net/zomgoldforum/theme/hijola/images/readlocked.png); background-repeat: no-repeat; background-position: 4px 50%;}
+body.topics #content table tbody tr.locked.unseen td.topic-info { padding-left: 20px; background-image:URL(http://starmen.net/zomgoldforum/theme/hijola/images/unreadlocked.png); background-repeat: no-repeat; background-position: 4px 50%;}
+
+body.topics #content table tbody tr.sticky td.topic-info img[src='/include/images/forum/sticky-pin-needle.png'] { display:none; }
+
+body.topics #content table tbody tr.sticky td.topic-info:before { content:"STICKY:"; font-size:13px; color:green; padding-left: 3px; }
+
+#content table tbody tr td.topic-info a.topic { font-size: 13px; }
+body.topics #content table tbody tr.unseen td.topic-info a.topic {color:#D7D7E0; text-decoration:underline;}
+body.topics #content table tbody tr td.topic-info a.topic {color:#6981AA}
+body.topics #content table tbody tr td.topic-info p { display:inline; float:none; color:#464668; }
+
+
+.toolbar { background-color: #01070e; }
+.toolbar ul li a, .toolbar div.pagination span, .toolbar div.pagination a { text-decoration: none; font-weight: bold; }
+.toolbar ul.actions li a { font-weight: normal; color: #3d5879; }
+	.toolbar ul li.selected a, .toolbar div.pagination span.current, .toolbar div.pagination a.current { color: white; }
+		.toolbar ul li.prev a, .toolbar ul li.next a { background-color: #092343; }
+		.toolbar ul li.first a, .toolbar ul li.last a { font-weight: normal; }
+		.toolbar ul li:hover a, .toolbar div.pagination span:hover, .toolbar div.pagination a:hover { color: #c8e9ff; background-color: #203c5e; }
+		.toolbar ul li.selected a:hover, .toolbar ul li.selected a:focus, .toolbar div.pagination span.current:hover, .toolbar div.pagination a.current:hover { cursor: default; color: white; background-color: transparent; }
+		.toolbar ul li.noclicky a, .toolbar div.pagination span.disabled, .toolbar div.pagination a.disabled { cursor: default; color: #364b63; background-color: transparent; }
+		.toolbar ul li.text, .toolbar ul li.ellipsis { color: #364b63; }
+		.toolbar ul li.ellipsis { letter-spacing: .25em; }
+#main .post {border-left: 1px solid black;border-bottom: 1px solid black;border-right: 1px solid black; color: white;}
+#main .post.odd { background-color: #141C48; }
+#main .post.even { background-color: #223667; }
+#main .post.new { background-color: #032147; }
+#main .post.odd#newpost { background-color: #141C48; }
+#main .post.even#newpost { background-color: #223667; }
+
+#main .post#postpreview #previewnotice { color: #a5cdbc; background-color: #083a26; font-style: italic; }
+	#main .post-header h3 a { color: #9ec4f3; text-decoration: none; font-weight: normal; }
+		#main .post .post-header h3 a acronym { border-bottom-color: #97aeca; }
+	#main .post .post-header h3 p.rank { color: #455F7E; font-weight: normal; text-transform: normal; line-height: 1.3em; }
+		#main .post .post-header h3 p.rank acronym { border-bottom: 1px dotted #465475; text-transform: none; }
+	#main .post-body div { color: #98a8bc; }
+	#main .post-body div ins { text-decoration:none; border-bottom:1px dashed #98a8bc; }
+	#main .post-body div a:visited, #generic blockquote p a:visited { text-decoration: none; border-bottom: 1px dotted #87a1c1; }
+		#main .post-body div a.button { border: 0; }
+	#main .post-body div blockquote { background-color: black; font-style: italic; }
+		#main .post.odd .post-body div blockquote div.quotey blockquote { background-color: #001228; }
+		#main .post.even .post-body div blockquote div.quotey blockquote { background-color: #010b17; }
+			#main .post .post-body div blockquote div.quotey blockquote div.quotey blockquote { background-color: black;  }
+				#main .post.odd .post-body div blockquote div.quotey blockquote div.quotey blockquote div.quotey blockquote { background-color: #001228; }
+				#main .post.even .post-body div blockquote div.quotey blockquote div.quotey blockquote div.quotey blockquote { background-color: #010b17; }
+
+		#main .post-body div blockquote div.citey a, #main .post-body div blockquote div.citey a:visited { color: #71af73; border: 0; }
+		#main .post-body div blockquote div.quotey { color: #8090a3; }
+		#main .post-body .sig { color: #455f7e; border-top: 1px solid #061e3b; }
+			#main .post hr { display:none  }
+body.posts #main .post-body textarea { background-color: #bfcfe1; }
+body.posts #main .post-body div.fieldWithErrors textarea { background-color: #e1bfcf; }
+#main .post-footer p, #main .post-footer ul { opacity: .5; }
+#main .post-footer:hover p, #main .post-footer:hover ul { opacity: .9; }
+#main .post-footer p { color: #5a728f; }
+#main .post-footer p.ipaddress a { color: #5a728f; text-decoration: none; }
+#main .post-footer ul.utils li.score { color: #68819e; }
+
+#main .post .post-header { position: relative; float: left; width: 151px; min-height: 4em; padding: 2em 0; left: 1em; text-align: left; }
+#main .post .post-header ul.badges { float: left; clear: both; margin: 1em 0; }
+
+#main .post .post-body p.meta { position: absolute; bottom: -1em; right: 1em; margin-top: 1em; text-align: left; }
+
+#main .post .post-header {margin:0; padding;0; border-right:1px solid black;}
+#main .post .post-header h3 {font-size:14px;}
+#main .post .post-header h3 a {font-size:14px; color:#99A1CA; text-decoration:none;}
+#main .post .post-header p.rank {font-size:13px; color:white !important;}
+
+#main .post .post-body {border-left: 1px solid black; padding:0; margin:0; margin-left:9px; padding-left:8px; color:white;}
+#main .post .post-body div { color:white; }
+#main .post .post-body div.sig {border-top:1px dotted gray; padding-bottom:20px;}
+
+#main .post .post-footer {margin-left: 161px; padding-left:25px;border-left: 1px solid black; border-top:0; color:white; padding-top:5px; top:0px; border-top:1px solid black;}
+#main .post .post-footer .changeabletime { margin:0; color:white;}
+
+/* polls */
+#main .post-body .poll-header h3 { color: #8ea5a5; font-weight: normal; font-style: italic; }
+#main .post-body .poll-header p.total { color: #568787; }
+#main .post-body .poll-header p.total span { font-weight: bold; }
+
+#main .post-body .poll ol li { color: #bceaea; }
+#main .post-body .poll .poll-body ol li.odd, body.posts #main .post-body .poll .poll-results ol li.odd div.percentage { background-color: #273a3a; }
+#main .post-body .poll .poll-body ol li.even, body.posts #main .post-body .poll .poll-results ol li.even div.percentage { background-color: #395555; }
+
+#main .post-body .poll .poll-results ol li:first-child { border-top: 1px dotted #273a3a; }
+#main .post-body .poll .poll-results ol li { border-bottom: 1px dotted #273a3a; }
+#main .post-body .poll .poll-results ol li.winner { color: #def3f3; font-weight: bold; }
+#main .post-body .poll .poll-results ol li.novotes p { color: #4f5f5f; }
+#main .post-body .poll .poll-results ol li.voted { color: #def3f3; font-weight: bold; }
+
+legend { background:black; }
