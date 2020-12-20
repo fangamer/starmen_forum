@@ -22,4 +22,8 @@ class ForumController < ApplicationController
     @forumexpanded = Hash.new
     forums.each{|forum| collapsing_forum[forum.id] != :expand ? @forumexpanded[forum.id] = false : @forumexpanded[forum.id] = true}
   end
+
+  def category
+    raise NotImplementedError
+  end
 end

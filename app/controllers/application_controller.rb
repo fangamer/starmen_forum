@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_site
   before_action :backwards_compatibility
+  rescue_from NotImplementedError, with: :not_implemented
 
   def set_site
     @site = Site.new
@@ -9,6 +10,10 @@ class ApplicationController < ActionController::Base
   def backwards_compatibility
     @neededjavascripts = []
     @bookcrumbs = [[]]
+  end
+
+  def not_implemented
+    render action: :not_implemented
   end
 
   helper_method def fangamer_ad
