@@ -1,0 +1,145 @@
+  <div id="content">
+    <div class="wrapper">
+      <div id="main">
+<% unless @forum.nil? -%>
+        <ul class="buttons">
+<% if Topic.new(:forum_id=>@forum.id).can_create? || @logged_in_user.nil? -%>
+          <li>
+            <a href="<%= @forum.URL -%>/newtopic" id="create_new_topic">
+              <img class="sprite" style="top: .4em; left: -.5em; width: 1.6em; height: 1.6em;" src="/include/images/sprites/sprite1014.gif" alt="Sparkly sprite" title="Create a New Topic!" />
+              <span>New Topic</span>
+            </a>
+          </li>
+<% end -%>
+<% if @logged_in_user -%>
+          <li>
+            <a href="<%= @forum.URL -%>/mark_all_messages_as_read">
+              <img class="sprite" style="top: .4em; left: -.5em; width: 1.6em; height: 1.6em;" src="/include/images/sprites/sprite1014.gif" alt="Sparkly sprite" title="Mark Topics as Read" />
+              <span>Mark All As Read</span>
+            </a>
+          </li>
+<% end -%>
+<% if @forum.can_splitmerge? -%>
+          <li>
+            <a href="<%= @forum.URL -%>/merge">
+              <img class="sprite" style="top: -.6em; left: -.5em; width: 1.6em; height: 3.2em;" src="/include/images/sprites/sprite817.gif" alt="Talah Rama sprite" title="Merge Topics!" />
+              <span>Merge Topics</span>
+            </a>
+          </li>
+<% end -%>
+          <li>
+            <a href="<%= @forum.URL -%>.rss">
+              <img class="sprite" style="top: .4em; left: -.5em; width: 1.6em; height: 1.6em;" src="/include/images/sprites/sprite1010.gif" alt="Sparkly sprite" title="Create a New Topic!" />
+              <span>RSS</span>
+            </a>
+          </li>
+        </ul>
+<% end -%>
+<div class="hr"><hr /></div>
+
+        <div class="topics" id="forum<%= @forum.id unless @forum.nil? -%>">
+          <table id="topiclist_table">
+            <thead>
+              <tr>
+                <th class="icon">
+                  Icon
+                </th>
+                <th class="recent">
+                  Topic Name and Most Recent Post
+                </th>
+                <th class="starter">
+                  Starter
+                </th>
+                <th class="replies">
+                  Replies
+                </th>
+                <th class="views">
+                  Views
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+<% i = 0 -%>
+<% for topic in @topics -%>
+
+              <tr class="<%= 'unseen ' if @logged_in_user.blank? || @topicreads[topic.id].nil? || topic.last_message.nil? || @topicreads[topic.id].last_view < topic.last_message -%><%= "locked " if topic.locked && (topic.sticky.nil? || topic.sticky == 0) -%><%= "sticky " if (topic.sticky > 0 unless topic.sticky.nil?) && !topic.locked %><%= "sticky stickylocked " if (topic.sticky > 0 unless topic.sticky.nil?) && topic.locked %><%= i%2==0?"odd":"even" -%>">
+                <td class="icon">
+                  <a class="topic" href="<%= topic.URL %>">
+<% if topic.sprite -%>
+                    <img class="sprite" src="<%= topic.sprite.public_filename %>" alt="<%= h topic.sprite.title %> sprite" title="<%= h topic.name %>">
+<% end -%>
+                  </a>
+                </td>
+                <td class="topic-info">
+<% if topic.locked || (!topic.sticky.nil? && topic.sticky > 0) -%>
+                  <ul class="status">
+<% if !topic.sticky.nil? && topic.sticky > 0 -%>
+                    <li class="sticky"><img src="/include/images/forum/sticky-pin-needle.png" alt="Pin Icon" title="Sticky Topic" /></li>
+<% end -%>
+<% if topic.locked -%>
+                    <li class="locked"><img src="/include/images/forum/lock.png" alt="Lock Icon" title="Topic Locked - NO REPLY FOR YOU" /></li>
+<% end -%>
+                  </ul>
+<% end -%>
+                  <%= topic_link(topic) -%><%#= topic_page_links topic -%><br />
+                  <% unless topic.byline.blank? %><p class="byline"><%= topic.byline %></p><% end %>
+                  <p class="recenttime"><%= changeable_time topic.last_message -%></p>
+                </td>
+                <td class="starter"><%= user_link(topic.creator) unless topic.creator.blank? %></td>
+                <td class="replies"><%= topic.replies || 0 %></td>
+                <td class="views"><%= topic.views || 0 %></td>
+              </tr>
+<% i += 1 -%>
+<% end -%>
+            </tbody>
+          </table>
+        </div><!-- .topics -->
+<% if ( i > 29 ) || ( params[:page].to_i > 1 ) %>
+        <div id="page-footer" class="toolbar">
+          <%= will_paginate @topics %>
+        </div><!-- #page-footer.toolbar -->
+<% end -%>
+      </div><!-- #main -->
+
+      <div id="sidebar">
+        <% if @forum.is_a?(Forum) %>
+          <% cache "moderators_"+@forum.id.to_s, :expire=>24.hours do %>
+          <div class="boxy" id="moderators">
+            <div class="boxy-header">
+              <ul class="tabs">
+                <li class="selected">
+                  <a href="#" onClick="return false;">
+                    <img class="sprite" style="width: 1.6em; height: 1.6em; top: .2em; left: .7em;" src="/include/images/sprites/sprite1123.gif" alt="Exclamation Mark sprite" title="Attention! Attention! I pooted!" />
+                    <span>Moderators</span>
+                  </a>
+                </li>
+              </ul>
+            </div><!-- .boxy-header -->
+            <div class="boxy-body">
+              <%= display_moderators(@forum) %>
+            </div>
+          </div><!-- .boxy#quicksearch -->
+          <% end %>
+        <% end %>
+
+        <%= render :partial=>"sidebar_quicksearch" %>
+
+        <div class="boxy" id="announcements">
+          <div class="boxy-header">
+            <ul class="tabs">
+              <li class="selected">
+                <a href="#" onClick="return false;">
+                  <img class="sprite" style="width: 1.6em; height: 1.6em; top: .2em; left: .7em;" src="/include/images/sprites/sprite1123.gif" alt="Exclamation Mark sprite" title="Attention! Attention! I pooted!" />
+                  <span>Announcement</span>
+                </a>
+              </li>
+            </ul>
+          </div><!-- .boxy-header -->
+          <div class="boxy-body">
+            <p>Problems are being fixed! Report any issues you encounter on the <a href="/forum/Site/BugsAndFeatures">Bugs and Features Forum</a>!</p>
+          </div>
+        </div><!-- .boxy#quicksearch -->
+
+      </div><!-- #sidebar -->
+    </div><!-- .wrapper -->
+  </div><!-- #content -->

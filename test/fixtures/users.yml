@@ -1,0 +1,89 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  passhash: MyString
+  salt: MyString
+  banned: false
+  ban_reason: MyText
+  signature: MyText
+  signature_original: MyText
+  has_first_key: false
+  first_key: MyString
+  first_key_salt: MyString
+  super_user: false
+  show_sig_default: false
+  avatar_xhtml: MyText
+  badge_xhtml: MyText
+  last_visit: 2020-12-19 20:50:12
+  emblem_id: 1
+  info: MyText
+  sprite_id: 1
+  disable_smilies_default: false
+  permalink: MyString
+  email: MyString
+  seen_rules: false
+  email_validation: MyString
+  rank: MyString
+  oldbadges: MyText
+  disable_textile_default: false
+  theme_id: 1
+  invisible: false
+  password_confirmation: MyString
+  preferences: MyText
+  timezone: MyString
+  email_subscriptions: false
+  email_pms: false
+  hide_thumbing: false
+  hide_avatars: false
+  hide_signatures: false
+  immune_to_alerts: false
+  registration_ip: MyString
+  sb_avatar: MyText
+  points: 1
+  next_point_expiration: 2020-12-19 20:50:12
+  infraction_punishment_id: 1
+
+two:
+  name: MyString
+  passhash: MyString
+  salt: MyString
+  banned: false
+  ban_reason: MyText
+  signature: MyText
+  signature_original: MyText
+  has_first_key: false
+  first_key: MyString
+  first_key_salt: MyString
+  super_user: false
+  show_sig_default: false
+  avatar_xhtml: MyText
+  badge_xhtml: MyText
+  last_visit: 2020-12-19 20:50:12
+  emblem_id: 1
+  info: MyText
+  sprite_id: 1
+  disable_smilies_default: false
+  permalink: MyString
+  email: MyString
+  seen_rules: false
+  email_validation: MyString
+  rank: MyString
+  oldbadges: MyText
+  disable_textile_default: false
+  theme_id: 1
+  invisible: false
+  password_confirmation: MyString
+  preferences: MyText
+  timezone: MyString
+  email_subscriptions: false
+  email_pms: false
+  hide_thumbing: false
+  hide_avatars: false
+  hide_signatures: false
+  immune_to_alerts: false
+  registration_ip: MyString
+  sb_avatar: MyText
+  points: 1
+  next_point_expiration: 2020-12-19 20:50:12
+  infraction_punishment_id: 1

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def backwards_compatibility
     @neededjavascripts = []
-    @bookcrumbs = [[]]
+    @bookcrumbs = [["forum","/forum"]]
   end
 
   def not_implemented

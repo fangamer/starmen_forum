@@ -1,0 +1,30 @@
+<div class="boxy" id="quicksearch">
+  <div class="boxy-header">
+    <ul class="tabs">
+      <li class="selected">
+        <a href="/forum/search">
+          <img class="sprite" style="width: 1.6em; height: 1.6em; top: .1em; left: .7em;" src="/include/images/sprites/sprite1132.gif" alt="Lightbulb sprite" title="Searcha da forummmms wait for da quorum bustin up results with the utmost of decorummmm" />
+          <span>Search</span>
+        </a>
+      </li>
+    </ul>
+  </div><!-- .boxy-header -->
+  <div class="boxy-body">
+    <form method="get" action="/forum/search" name="searchy" id="searchy">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+      <input type="hidden" name="searchword[order]" value="DESC" />
+      <input id="q" name="searchword[message_body]" type="text" maxlength="100" size="20" value="Click Here to Start!" /><br/>
+      <% if @forum.is_a?(Forum) && @page!="posts" -%>
+        <input id="forums" class="just" name="searchword[forums][]" type="checkbox" checked="checked" value="f<%= @forum.id -%>" /><label for="forumonly">This forum only</label>
+      <% end -%>
+      <% if @page=="posts" && @topic.is_a?(Topic) -%>
+        <input id="topiconly" class="just" name="just" type="checkbox" checked="checked" value="t<%= @topic.id -%>" /><label for="topiconly">This topic only</label>
+      <% end -%>
+      <% if @pms.is_a?(Array) && @pms.first.is_a?(PrivateMessage) -%>
+        <input id="inbox" class="just" name="just" type="radio" value="inbox" checked="checked" /><label for="inbox">inbox</label>
+        <input id="sentbox" class="just" name="just" type="radio" value="sentbox" /><label for="sentbox">sentbox</label>
+      <% end -%>
+    </form>
+    <div id="searchresults"></div>
+  </div><!-- .boxy-body -->
+</div><!-- .boxy#quicksearch -->

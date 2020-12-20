@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  order: 1
+  permission_name: MyString
+  group_id: 1
+  css: MyString
+
+two:
+  name: MyString
+  order: 1
+  permission_name: MyString
+  group_id: 1
+  css: MyString
