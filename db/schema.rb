@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_20_041413) do
+ActiveRecord::Schema.define(version: 2020_12_24_230457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2020_12_20_041413) do
     t.datetime "updated_at"
     t.string "nickname", limit: 510
     t.integer "order"
+    t.index ["nickname"], name: "index_categories_on_nickname"
   end
 
   create_table "contests", id: :serial, force: :cascade do |t|
@@ -301,6 +302,8 @@ ActiveRecord::Schema.define(version: 2020_12_20_041413) do
     t.boolean "serious_business"
     t.boolean "allow_attachments", null: false
     t.boolean "disable_swear_filter"
+    t.index ["category_id"], name: "index_forums_on_category_id"
+    t.index ["nickname"], name: "index_forums_on_nickname"
   end
 
   create_table "forums_sites", id: false, force: :cascade do |t|
@@ -448,6 +451,7 @@ ActiveRecord::Schema.define(version: 2020_12_20_041413) do
     t.boolean "disable_textile"
     t.integer "emblem_id"
     t.integer "deleted_by"
+    t.index ["topic_id"], name: "index_messages_on_topic_id"
   end
 
   create_table "messages_searchwords", id: false, force: :cascade do |t|
@@ -852,6 +856,8 @@ ActiveRecord::Schema.define(version: 2020_12_20_041413) do
     t.integer "emblem_id"
     t.string "original_name", limit: 510
     t.string "original_byline", limit: 510
+    t.index ["forum_id"], name: "index_topics_on_forum_id"
+    t.index ["permalink"], name: "index_topics_on_permalink"
   end
 
   create_table "uploaded_images", id: :serial, force: :cascade do |t|
@@ -911,6 +917,7 @@ ActiveRecord::Schema.define(version: 2020_12_20_041413) do
     t.integer "points"
     t.datetime "next_point_expiration"
     t.integer "infraction_punishment_id"
+    t.index ["name"], name: "index_users_on_name"
   end
 
   create_table "users_copy", id: :serial, force: :cascade do |t|

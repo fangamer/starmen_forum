@@ -38,7 +38,7 @@ private
 public
 
   def index
-    @categories = Category.order(:order=>:asc).all.to_a
+    @categories = Category.order(:order=>:asc).preload(:forums=>:sprite).all.to_a
     @page = "main"
 
     # backwards compat
