@@ -14,7 +14,7 @@ class User < ApplicationRecord
   serialize :info
   has_many :forum_reads
   belongs_to :sprite
-  has_many :messages
+  has_many :messages, inverse_of: :creator
   belongs_to :theme
   serialize :preferences
   has_many :friends

@@ -35,7 +35,8 @@ module ApplicationHelper
     out << '<img class="sprite" src="'+user.sprite.public_filename+'" alt="sprite" /> ' if user.sprite && user.avatar_xhtml.blank?
     out << '<a class="member '+(h color)+'" href="/members/'+(user.permalink)+'">'+((user.avatar_xhtml unless user.avatar_xhtml.blank?) || (h user.name))+'</a>'
     out << '<p class="rank">'+user.rank+'</p>' unless user.rank.blank?
-    out
+    out << '<p class="rank">TODO: check avatar html safety'
+    out.html_safe
   end
 
   def user_link(user,specialpage=nil)
@@ -104,6 +105,11 @@ module ApplicationHelper
       out = '<span class="changeabletime" title="'+exact_string+'">'+approximate_string+'</span>'
     end
     out.html_safe
+  end
+
+  def postMatoCode(input,forum=nil)
+    #stub
+    input
   end
 
   def will_paginate(*args)

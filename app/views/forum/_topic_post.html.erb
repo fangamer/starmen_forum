@@ -1,0 +1,100 @@
+<% if (@logged_in_user.preferences['ignored_users'].include?(message.creator.id) rescue nil) -%>
+        <div class="post <%= i%2==0 ? "odd" : "even" -%>" id="post<%= message.id -%>">
+          <div class="post-not-shown ignored">
+            You have ignored all messages by <%= user_link message.creator -%>.
+          </div>
+        </div>
+<% else -%>
+        <div class="post <%= i%2==0 ? "odd" : "even" -%><%= " final-submission nqe" if (@topic.kind == "c" && @submissions[message.id] rescue false) -%><%= " #{user_class(message.emblem_id)}" -%>" id="post<%= message.id -%>">
+          <% if flash["idpost#{message.id}"] %>
+            <div class="notice explaination">
+              <p><%= flash["idpost#{message.id}"] %></p>
+            </div>
+          <% end %>
+          <% if message.deleted -%>
+            <div class="post-not-shown deleted">
+              This message has been deleted.
+            </div>
+          <% end -%>
+          <div class="post-header<%= " hidden-because-deleted" if message.deleted -%>">
+            <h3>
+              <%= user_link(message.creator,:with_avatar) %>
+              <p class='rank'>TODO: Check badge html safety</p>
+            </h3>
+            <%= message.creator.badge_xhtml.html_safe unless (@forum && @forum.serious_business && !message.creator.sb_avatar.blank?) unless message.deleted || message.creator.nil? unless (@logged_in_user.hide_avatars rescue false) %>
+          </div><!-- .post-header -->
+          <div class="post-body<%= " hidden-because-deleted" if message.deleted -%>">
+            <div class="message-content">
+              <% if (@topic.kind == "c" && @submissions[message.id] rescue false) %>
+                <% for submission in @submissions[message.id] %>
+                  <h1><a href="<%= submission.URL ? submission.URL : submission.public_filename -%>"><%= h submission.name %></a></h1>
+                  <p><%= h submission.desc %></p>
+                  <% if submission.image? %>
+                    <p><a href="<%= submission.public_filename -%>"><img src="<%= submission.public_filename(:large) -%>" /></a></p>
+                  <% elsif submission.literature? %>
+                    <p><a class="litview" href="http://www.scribd.com/vacuum?url=<%= submission.public_filename-%>">Click here to view in your browser</a></p>
+                    <!--iframe style="width:100%;height:700px;" src=""></iframe>-->
+                  <% elsif submission.audio? %>
+                    <% test = submission.id+rand(100000) %>
+                    <audio controls preload="none">
+<source src="<%= submission.public_filename("streaming") -%>" />
+<source src="<%= submission.public_filename("streaming","ogg") -%>" />
+<p>Forum audio support requires Firefox 3.5 or Safari 4. A download link is provided.</p></audio>
+                  <% elsif submission.video? %>
+                    <%= message.body %>
+                  <% end %>
+                  <% if submission.submission_tags.is_a?(Array) %>
+                  <div class="taglist">
+                    <p>Tags:</p>
+                    <ul>
+                      <% for tag in submission.submission_tags %>
+                        <li><a href="<%= @topic.URL -%>/tags/<%= CGI.escape(tag.name) %>"><%= h tag.name -%></a></li>
+                      <% end  %>
+                    </ul>
+                  </div>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <p>TEST MESSAGE BODY HTML SAFETY!</p>
+                <% if message.poll -%>
+                  <%= drawPoll(message.poll_id) %>
+                <% end -%>
+                <%= postMatoCode(message.body,@forum).html_safe %>
+              <% end %>
+            </div><!-- .message-content -->
+            <%= attachments(message.forumAttachments,message.thumbnail) %>
+<% if message.show_sig && !message.creator.blank? && !message.creator.signature.blank? && !(@logged_in_user.hide_signatures rescue false) -%>
+
+            <div class="sig">
+                <p>TODO: Test Signature html safety</p>
+                <%= message.creator.signature.html_safe %>
+            </div><!-- .sig -->
+<% end %>
+          </div><!-- .post-body -->
+          <div class="post-footer<%= " hidden-because-deleted" if message.deleted -%>">
+            <hr />
+            <p>Posted <%= changeable_time message.created_at -%><% if message.created_at.is_a?(Time) && message.updated_at.is_a?(Time) && (message.updated_at - message.created_at) > 120 -%> (edited <%= changeable_time message.updated_at %>)<% end %></p>
+            <ul class="scorecard">
+    <% if (@topic.kind == "c" && @submissions[message.id] rescue false) -%>
+              <li class="score">Score: <%= display_score(message.score) -%></li>
+    <% if @logged_in_user -%>
+              <li class="thumbsup <%= "used" unless message.thumbs.select{|x| x.user_id == @logged_in_user.id && x.score == 1}.empty? -%>"><a href="/forum/thumbup/<%= message.id -%>"><img src="/include/images/forum/button-thumbs-up.png" alt="Thumbs Up Icon" title="Thumbs Up (<%= message.thumbs.select{|x| x.score == 1}.to_a.length -%> so far)" /></a></li>
+              <li class="thumbsdown <%= "used" unless message.thumbs.select{|x| x.user_id == @logged_in_user.id && x.score == -1}.empty? -%>"><a href="/forum/thumbdown/<%= message.id -%>"><img src="/include/images/forum/button-thumbs-down.png" alt="Thumbs Down Icon" title="Thumbs Down (<%= message.thumbs.select{|x| x.score == -1}.to_a.length -%> so far)" /></a></li>
+    <% end %>
+    <% end -%>
+              <%= '<li class="meta">(User was infracted for this post)</li>' unless message.infraction.blank? %>
+            </ul>
+<% if (message.topic.forum.is_moderator? rescue false) %>
+            <p class="ipaddress"><a href="/forum/ip_address?ip=<%= message.ip_address -%>"><%= message.ip_address -%></a></p>
+<% end %>
+            <ul class="utils">
+              <% if message.can_edit? %><li class="edit js_dropdown"><a href="<%= message.url %>/edit"><img src="/include/images/forum/button-edit.png" alt="Edit Icon" title="Edit this Post" /> <span>Edit</span></a></li><% end %>
+              <% if message.can_create? || @logged_in_user.nil? %><li class="quote"><a href="<%= message.url %>/quote"><img src="/include/images/forum/button-quote.png" alt="Quote Icon" title="Quote this User" /> <span>Quote</span></a></li><% end %>
+              <% if message.can_delete? %><li class="delete js_dropdown"><a href="<%= message.url %>/delete"><img src="/include/images/forum/button-delete.png" alt="Delete Icon" title="Delete this Post" /> <span>Delete</span></a></li><% end %>
+              <% if message.can_infract? %><li class="infract js_dropdown"><a href="<%= message.url %>/infract"><img src="/include/images/forum/button-infract.png" alt="Banhammer Icon" title="Infract this User" /> <span>Infract</span></a></li><% end %>
+              <% if @logged_in_user %><li class="report js_dropdown"><a href="<%= message.url %>/report"><img src="/include/images/forum/button-report.png" alt="Report Icon" title="Report this Post" /> <span>Report</span></a></li><% end %>
+              <li class="permalink"><a href="<%= message.url -%>/<%= message.id -%>"><img src="/include/images/forum/button-permalink.png" alt="Permalink Icon" title="Permalink (use this for copy/pasting)" /> <span>Permalink</span></a></li>
+            </ul>
+          </div><!-- .post-footer -->
+        </div><!-- .post -->
+<% end -%>

@@ -1,0 +1,143 @@
+  <div id="content">
+    <div class="wrapper">
+      <div id="main">
+        <h2>
+          <a class="topic" id="topic<%= @topic.id -%>" href="<%= @topic.URL -%>">
+<% if @topic.sprite %>
+            <img class="sprite" src="<%= @topic.sprite.public_filename %>" alt="<%= h @topic.sprite.title %> sprite" title="<%= h @topic.name %>" />
+<% end %>
+            <span><%= h @topic.name %></span>
+          </a>
+        </h2>
+        <p id="byline">
+          <%= h @topic.byline %>
+        </p>
+
+        <div id="page-header" class="toolbar">
+          <ul class="actions">
+            <li><noscript><%= link_to "Reply To Topic",:controller=>"forum/reply",:type=>"reply" unless @topic.locked -%></noscript></li>
+<% if !@logged_in_user.blank? -%>
+<% subscribe = Subscription.exists?(:user_id => @logged_in_user.id,:topic_id=>@topic.id) if @logged_in_user -%>
+            <li><a id="subscribetopic" href="<%= @topic.URL -%>/subscribe"><%= (subscribe ? "Uns" : "S") -%>ubscribe</a></li>
+<% end -%>
+            <% if @topic.can_edit? %><li><a id="edittopic" href="<%= @topic.url %>/edit">Edit</a></li><% end %>
+            <% if @topic.can_move? %><li><a href="<%= @topic.url %>/move">Move</a></li><% end %>
+            <% if @topic.can_lock? && !@topic.locked %><li><a href="<%= @topic.url %>/lock">Lock</a></li><% end %>
+            <% if @topic.can_lock? && @topic.locked %><li><a href="<%= @topic.url %>/lock">Unlock</a></li><% end %>
+            <% if @topic.can_splitmerge? %><li><a href="<%= @topic.url %>/split">Split</a></li><% end %>
+            <% if @forum.try(:is_supermod?) %><li><a href="/ubercms/downvotes/topic/<%= @topic.id %>">Thumb Viewer</a></li><% end %>
+            <li><a href="<%= @topic.url -%>.rss">RSS</a></li>
+          </ul>
+
+<%= render :partial=>"topic_pagination" -%>
+        </div><!-- #page-header.toolbar -->
+<% i=0 -%>
+<% for message in @messages -%>
+  <%= render :partial=>"topic_post",:locals=>{:message=>message,:i=>i} -%>
+<% i+=1 -%>
+<% end -%>
+<% number_of_pages = ((@topic.replies)/50)+1 -%>
+<% if (!@topic.locked || @topic.can_lock?) && (@message.can_create? || @logged_in_user.nil?) && @page_number == number_of_pages -%>
+  <% if @topic.kind == "c" && !@topic.contest.nil? %>
+    <div class="quick post <%= i%2==0 ? "odd" : "even" -%> submission" id="newpost">
+      <div class="post-body">
+        <% if @topic.contest.end_date < Time.now %>
+        <h3><%= h @topic.contest.name %> has stopped allowing submissions.</h3>
+        <% else %>
+        <h3>Submit to <%= h @topic.contest.name %></h3>
+        <% form_for :message, @message,:url=>@topic.URL+"/reply",:html=>{:name=>"reply_form",:onsubmit=>"javascript: document.reply_form.submit_reply.disabled = true;"} do |f| %>
+          <ul class="submission_types">
+            <li class="image"><a href="<%= @topic.URL %>/reply/image">Image</a></li>
+            <li class="lit"><a href="<%= @topic.URL %>/reply/literature">Literature</a></li>
+            <li class="audio"><a href="<%= @topic.URL %>/reply/audio">Audio</a></li>
+            <li class="video"><a href="<%= @topic.URL %>/reply/video">Video</a></li>
+            <li class="other"><a href="<%= @topic.URL %>/reply/other">Other</a></li>
+          </ul>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% i += 1 %>
+  <% end %>
+        <div class="quick post <%= i%2==0 ? "odd" : "even" -%>" id="newpost">
+          <div class="post-header">
+            <h3>
+              <%= user_link(@logged_in_user,:with_avatar) -%>
+            </h3>
+            <%= @logged_in_user.badge_xhtml if @logged_in_user %>
+          </div><!-- .post-header -->
+          <div class="post-body">
+            <% form_for :message, @message,:url=>@topic.URL+"/reply",:html=>{:name=>"reply_form",:onsubmit=>"javascript: document.reply_form.submit_reply.disabled = true;"} do |f| %>
+            <%= f.hidden_field :loaded_timestamp, :value=>Time.now.to_i -%>
+            <%= f.hidden_field :preview_topic_id, :value=>@topic.id -%>
+              <div class="newfck">
+                <%= text_area :message, :body_original, :rows=>10 %>
+              </div>
+              <button id="submit" type="submit" name="submit_reply">
+                <img class="sprite" style="top: -.1em; left: -.5em; width: 1.6em; height: 2.4em;" src="/include/images/sprites/sprite879.gif" alt="Pencil icon" title="Submit your Reply" />
+                <span>Reply!</span>
+              </button>
+              <button class="preview" type="submit" name="preview" value="Preview">
+                <img class="sprite" style="top: .5em; left: -.6em; width: 1.6em; height: 1.6em;" src="/include/images/sprites/sprite1112.gif" alt="Hawkeye icon" title="Preview your Reply" />
+                <span>Preview!</span>
+              </button>
+              <div class="checky" id="signature">
+                <label>
+                  <%= f.check_box :show_sig,:checked => (@logged_in_user && @logged_in_user.show_sig_default ? 'checked' : '') %>
+                  <span>Show Signature</span>
+                </label>
+              </div>
+<% unless (@logged_in_user.emblem_id rescue false) %>
+              <div class="checky" id="nosmilies">
+                <label>
+                  <%= f.check_box :disable_smilies,:checked => (@logged_in_user && @logged_in_user.disable_smilies_default ? 'checked' : '') %>
+                  <span>Disable Smilies</span>
+                </label>
+              </div>
+<% end %>
+<% if @topic.can_lock? %>
+              <div class="checky" id="topiclock">
+                <label>
+                  <%= check_box :topiclocked,:locked,:checked=>@topic.locked %>
+                  <span>Topic Locked</span>
+                </label>
+              </div>
+<% else -%>
+              <div class="checky" id="notextile">
+                <label>
+                  <%= f.check_box :disable_textile,:checked=>(@logged_in_user && @logged_in_user.disable_textile_default ? 'checked' : '') %>
+                  <span>Disable Textile</span>
+                </label>
+              </div>
+<% end -%>
+
+<% if (@logged_in_user.emblem_id rescue false) %>
+              <div class="checky" id="selectemblem">
+                <label>
+                  <%= check_box_tag :post_with_emblem,:checked=>@message.emblem_id %> 
+                  <span>Post With Emblem</span>
+                </label>
+                <div class="emblemselectdiv" style="display:none;"><%= f.select :emblem_id,[["No Emblem",nil]]+@logged_in_user.emblems.map{|x| [x.name,x.id]} %></div>
+              </div>
+<% end %>
+              <div id="formatting">
+                <button id="formatting_to_preview" type="submit" name="preview" value="Preview" class="post_and_formatting">
+                  More posting &amp; formatting options &raquo;
+                </button>
+              </div>
+            <% end %>
+          </div><!-- .post-body -->
+          <div class="hr"><hr /></div>
+        </div><!-- .quick .post -->
+<% end %>
+<% if @topic.replies > 49 %>
+        <div id="page-footer" class="toolbar">
+<%= render :partial=>"topic_pagination" -%>
+        </div><!-- #page-footer.toolbar -->
+<% end %>
+      </div><!-- #main -->
+      <div id="sidebar">
+        <%= render :partial=>"sidebar_quicksearch" %>
+      </div><!-- #sidebar -->
+    </div><!-- .wrapper -->
+  </div><!-- #content -->

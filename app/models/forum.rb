@@ -18,4 +18,14 @@ class Forum < ApplicationRecord
     return true if Rails.env.development?
     false
   end
+
+  def is_moderator?
+    ActiveSupport::Deprecation.warn("Forum#is_moderator? is moving somewhere else")
+    false
+  end
+
+  def is_supermod?
+    ActiveSupport::Deprecation.warn("Forum#is_supermod? is moving somewhere else")
+    false
+  end
 end

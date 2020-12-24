@@ -78,6 +78,11 @@ module ForumHelper
     out
   end
 
+  def attachments(forumAttachments,size)
+    #stub
+    nil
+  end
+
   def display_moderators(forum)
     return "" unless forum.is_a?(Forum)
     output = "<ul>"

@@ -1,5 +1,6 @@
 class ForumController < ApplicationController
   before_action :require_forum, except: [:index,:category]
+  before_action :require_topic, except: [:index,:category,:topiclist]
   after_action  :reset_expirations
 
 private
@@ -14,6 +15,17 @@ private
     end
     raise ActiveRecord::RecordNotFound.new("Cannot find forum with that nickname") if @forum.blank?
     @bookcrumbs << [@forum.name,@forum.URL]
+  end
+
+  def require_topic
+    if params[:topic] =~ /\A\d+\z/
+      @topic = Topic.find(params[:topic])
+      @forum = @topic.forum
+    else
+      @topic = @forum.topics.find_by_permalink!(params[:topic])
+    end
+    #TODO: no bans from topic
+    @bookcrumbs << [@topic.truncate_name,@topic.URL]
   end
 
   # pretty sure this prevents caching on the local browser when going back so it's always fresh?
@@ -61,5 +73,23 @@ public
     @page = "topics" # set css
     #TODO: page numbering
     @topics = @topics.limit(50) # basic pages for now
+  end
+
+  def topic
+    # no bans from forum
+    # redirect to unread page logic
+    # page number logic, below is stubbed
+    @messages = @topic.messages.order(:created_at).preload(:creator=>:sprite).limit(50).to_a
+    # remove the deleted messages from this view
+    @messages.reject!{|x| x.deleted} unless @forum.is_moderator? if @forum
+    # update topic reads
+    # update forum reads
+    # update topic views, unless was already last visited topic
+
+    # set css
+    @page = "posts"
+
+    # quick message base
+    @message = @topic.messages.new
   end
 end

@@ -1,0 +1,37 @@
+<% number_of_pages = ((@topic.replies)/50)+1 -%>
+<% if @topic.replies > 49 -%>
+
+          <ul class="pagination">
+            <li class="text">Pages:</li>
+<% array_of_pages = ((1..4).to_a + (@page_number-2..@page_number+2).to_a + (number_of_pages-3..number_of_pages).to_a).uniq.sort.reject{|x| x > number_of_pages || x < 1}
+prev = 0 
+array_of_pages.each do |page| %>
+            <%= '
+            <li class="ellipsis">...</li>' if page-1 != prev %>
+            <li<%= ' class="selected"' if page == @page_number -%>><a title="Page <%= page -%>" href="<%= @topic.URL -%>/page/<%= page -%>/"><%= page -%></a></li>
+<% prev = page -%>
+<% end %>
+<% if number_of_pages > 3 %>
+            <li class="util last<%= ' noclicky' if @page_number == number_of_pages -%>">
+              <a title="Last Page"<% if @page_number != number_of_pages %> href="<%= @topic.URL -%>/page/<%= number_of_pages -%>/"<% end %>><span>&raquo;</span></a>
+            </li>
+<% end -%>
+            <li class="util next<%= ' noclicky' if @page_number == number_of_pages -%>">
+              <a title="Next Page"<% if @page_number != number_of_pages %> href="<%= @topic.URL -%>/page/<%= (@page_number + 1) > number_of_pages ? number_of_pages : @page_number+1 -%>/"<% end %>>Next</a>
+            </li>
+            <li class="util prev<%= ' noclicky' if @page_number == 1 -%>">
+              <a title="Prev Page"<% if @page_number != 1 %> href="<%= @topic.URL -%>/page/<%= (@page_number - 1) == 0 ? 1 : @page_number - 1 -%>/"<% end %>>Prev</a>
+            </li>
+<% if number_of_pages > 3 %>
+            <li class="util first<%= ' noclicky' if @page_number == 1 -%>">
+              <a title="First Page"<% if @page_number != 1 %> href="<%= @topic.URL -%>/page/1/"<% end %>><span>&laquo;</span></a>
+            </li>
+          </ul>
+<% end -%>
+<% end -%>
+<% if (!@topic.locked || @topic.can_lock?) && (@message.can_create? || @logged_in_user.nil?) %>
+          <a class="button" id="goreply" href="<%= @topic.URL -%>/page/<%= number_of_pages %>/#footer">
+            <img class="sprite" style="top: .1em; left: -.5em; width: 1.6em; height: 2.4em;" src="/include/images/sprites/sprite879.gif" alt="Pencil icon" title="Submit your Reply" />
+            <span>Reply!</span>
+          </a>
+<% end #if (!@topic.locked || @topic.can_lock?) && (@message.can_create? || @logged_in_user.nil?) && @page_number == number_of_pages %>
