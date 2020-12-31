@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  get 'forum/collapse_forum/:id', controller:'forum', action:'collapse_forum'
+  get 'forum/collapse_category/:id', controller:'forum', action:'collapse_category'
   get 'forum/:cat/:forum/:topic/reply', :controller=>"forum/reply", :action=>"index", :type=>"reply" #TEMPORARY ONLY
   get 'forum/:cat/:forum/:topic/page/:page', :controller=>"forum", :action=>"topic"
   get 'forum/:cat/:forum/:topic', :controller=>"forum", :action=>"topic"

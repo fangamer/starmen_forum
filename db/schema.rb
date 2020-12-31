@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_31_104038) do
+ActiveRecord::Schema.define(version: 2020_12_31_164032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -451,6 +451,7 @@ ActiveRecord::Schema.define(version: 2020_12_31_104038) do
     t.boolean "disable_textile"
     t.integer "emblem_id"
     t.integer "deleted_by"
+    t.index ["created_at"], name: "index_messages_on_created_at"
     t.index ["topic_id"], name: "index_messages_on_topic_id"
   end
 

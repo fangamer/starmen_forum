@@ -1,6 +1,6 @@
 class ForumController < ApplicationController
-  before_action :require_forum, except: [:index,:category]
-  before_action :require_topic, except: [:index,:category,:topiclist]
+  before_action :require_forum, except: [:index,:category,:collapse_forum,:collapse_category]
+  before_action :require_topic, except: [:index,:category,:topiclist,:collapse_forum,:collapse_category]
   after_action  :reset_expirations
 
 private
@@ -46,9 +46,23 @@ public
     @categories.each{|cat| @sorted_forums[cat.id] = cat.forums}
     @categories.reject!{|x| @sorted_forums[x.id].length == 0}
     forums = @sorted_forums.values.map(&:to_a).flatten
+    # TODO: Reject forums user does not have access to
 
     if @logged_in_user
-      #TODO
+      #TODO: collapse category
+      #TODO: collapse forum
+      @old_last_visit = @logged_in_user.last_visit || Time.now
+      @logged_in_user.update_attribute(:last_visit,Time.now)
+
+      @since_last_visit = Hash.new(0)
+      @categories.each do |cat|
+        forum_ids = @sorted_forums[cat.id].map(&:id)
+        @since_last_visit[cat.id] = Message.with_forum_ids(forum_ids).where(deleted:[false,nil]).where("created_at > ?",@old_last_visit).count
+      end
+
+      # raise Message.with_forum_ids(1).where(.count.inspect
+
+      #TODO: topic subscriptions
     else
       #get list of collapsed stuff from session data
       collapsing_forum = session[:preferences]['collapse_forum'] rescue nil
@@ -60,6 +74,14 @@ public
     #store all collapsed forums
     @forumexpanded = Hash.new
     forums.each{|forum| collapsing_forum[forum.id] != :expand ? @forumexpanded[forum.id] = false : @forumexpanded[forum.id] = true}
+  end
+
+  def collapse_forum
+    raise NotImplementedError
+  end
+
+  def collapse_category
+    raise NotImplementedError
   end
 
   def category

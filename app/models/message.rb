@@ -17,6 +17,25 @@ class Message < ApplicationRecord
   validates_format_of :body, :with => /[a-z]/i,:message=>"must contain at least one letter."
   # more custom validations such as can_create? and spam_test
 
+  # okay this is huge and we need to unpack this
+  scope :with_forum_ids, ->(forum_ids){
+    # first get a search for the forum by topic
+    topic = Topic.where(forum_id:forum_ids)
+
+    # then also add a query for messages.topic_id = topics.id
+    topic = topic.where(Topic.arel_table[:id].eq(Message.arel_table[:topic_id]))
+
+    # finally wrap all that in an EXISTS(select..), this functions like a JOIN but without all the nastiness of doing a join,
+    # such as additional columns or like having to have specific table names
+    # so we can look for where(created_at:Time.now) on message and not have it whine and complain about created_at exists on topics and forums
+    # since our exists subquery is scoped
+    topic = topic.arel.exists
+
+    # add the EXISTS() query as a where phrase to the main query
+    where(topic)
+  }
+  # the alternative to the above is we just add a forum_id column to message, but that avoids the #1 thing about the rails 6 port: no unnecessary schema changes
+
   def url
     if self.topic.is_a?(Topic) && self.topic.forum.is_a?(Forum)
       "#{self.topic.URL}/#{self.id}"

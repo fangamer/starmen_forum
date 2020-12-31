@@ -70,13 +70,16 @@
             </h2>
             <a class="markasread" href="/forum/<%= category.nickname -%>/mark_category_as_read?index=true"><img src="/include/images/forum/button-markasread.png" alt="Sunglasses Icon" title="Mark all messages in <%= h category.name -%> as read" /></a>
             <p>
-              <%= "<b>"+Message.count(:conditions=>["#{Forum.qtcn("category_id")} = ? AND (#{Message.qtcn("deleted")} = 0 OR #{Message.qtcn("deleted")} IS NULL) AND #{Message.qtcn("created_at")} > ?" , category.id,@old_last_visit.to_formatted_s(:db)],:include=>{:topic=>:forum}).to_s + "</b> new posts, " if @logged_in_user -%><b><%= @sorted_forums[category.id].inject(0) {|sum, forum| sum += forum.post_count || 0} || 0 -%></b> posts total
+              <% if @logged_in_user  %>
+                <b><%= @since_last_visit[category.id] %></b> new posts,
+              <% end %>
+              <b><%= @sorted_forums[category.id].sum(&:post_count) -%></b> posts total
             </p>
           </div>
 <% if catexpanded -%>
           <div class="cat-body">
 <% for forum in @sorted_forums[category.id] -%>
-            <div class="forum<%= " unseen" if @logged_in_user.blank? || forum.last_view.blank? || forum.last_message.blank? || (forum.last_view.is_a?(Time) ? forum.last_view : Time.parse(forum.last_view)) < forum.last_message -%><%= " expanded" if @forumexpanded[forum.id] -%>" id="forum<%= forum.id -%>">
+            <div class="forum unseen<%= " expanded" if @forumexpanded[forum.id] -%>" id="forum<%= forum.id -%>">
 <% #cache "index_forum"+forum.id.to_s,:expire=>10.seconds do -%>
               <div class="forum-header">
                 <a href="<%=forum.URL-%>">
@@ -89,7 +92,7 @@
                 </a>
                 <a href="/forum/collapse_forum/<%= forum.id -%>" class="arrow">Show / Hide Topics for this Forum</a>
                 <h2>
-                  <a href="<%= forum.URL -%>"><%= h forum.name -%></a>
+                  <a href="<%= forum.URL -%>"><%= h forum.name -%> TODO: UNSEEN</a>
                 </h2>
                 <p><a class="markasread" href="<%= forum.URL -%>/mark_all_messages_as_read?index=true"><img src="/include/images/forum/button-markasread.png" alt="Sunglasses Icon" title="Mark all messages in <%= h forum.name -%> as read" /></a> <%=h forum.tagline-%></p>
               </div><!-- .forum-header -->
