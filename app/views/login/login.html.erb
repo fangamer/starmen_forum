@@ -1,0 +1,31 @@
+<div id="content">
+  <div class="wrapper">
+    <div id="main">
+      <h1><span>Fangamer</span></h1>
+      <div class="loginbox">
+        <h2>Login</h2>
+        <h2>TODO: THIS FORM DOES NOT DO ANY PASSWORDS AND STUFF AND IS PORTED ONLY FOR COMPATIBILITY REASONS</h2>
+        <%= form_for :user, url:{action: :do_login} do |f| %>
+          <dl>
+            <dt><label for="user_name">Username:</label></dt>
+            <dd>
+              <%= f.text_field :name %>
+            </dd>
+            <dt><label for="user_raw_password">Password:</label></dt>
+            <dd>
+              <%= f.password_field :raw_password %>
+            </dd>
+            <dd class="righttext"><input type="submit" value="Login!"></dd>
+          </dl>
+        <% end %>
+      </div>
+      <div class="loginbox">
+        <div class="right"><a href="/login/reset_password">Forgot your password?</a></div>
+        <a href="/login/register">Register!</a>
+      </div>
+      <div class="loginbox">
+        Problems registering? Send an email to <a href="mailto:registration@fangamer.com">registration@fangamer.com</a>. Please include your email and your username used.
+      </div>
+    </div>
+  </div>
+</div>

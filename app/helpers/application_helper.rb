@@ -112,6 +112,14 @@ module ApplicationHelper
     input
   end
 
+  def sprite(sprite,sizeoffset=10.0,options={})
+    if sprite.is_a?(Sprite)
+      %(<img class="sprite" style="width:#{sprite.width/sizeoffset}em; height:#{sprite.height/sizeoffset}em; #{options[:left] ? "left:#{options[:left]};" : ""} #{options[:top] ? "top:#{options[:top]};" : ""}" src="#{sprite.public_filename}" />).html_safe
+    else
+      ""
+    end
+  end
+
   def will_paginate(*args)
     nil
   end

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_site
   before_action :backwards_compatibility
+  before_action :set_logged_in_user, if:->{!session[:logged_in_user].blank?}
   rescue_from NotImplementedError, with: :not_implemented
 
   def set_site
@@ -14,6 +15,10 @@ class ApplicationController < ActionController::Base
 
   def not_implemented
     render action: :not_implemented
+  end
+
+  def set_logged_in_user
+    @logged_in_user = User.find(session[:logged_in_user])
   end
 
   helper_method def fangamer_ad

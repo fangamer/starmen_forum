@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html></html>
+<head>
+  <title>Login &laquo; Fangamer</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="-1" />
+  <link rel="stylesheet" type="text/css" media="screen,projection" href="/include/stylesheets/universal/universal.css" />
+  <link rel="stylesheet" type="text/css" media="screen,projection" href="/include/stylesheets/login/login-base.css" />
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body class="posts">
+  <div id="container">
+    <% unless flash.blank? %>
+      <div id="flash">
+        <% flash.each do |key, msg| %>
+          <div class="<%= (h key) %>">
+            <div class="hide"><a href="#"><img src="/include/images/button-x-close.png" alt="X button image" title="Hide this Message" /></a></div>
+            <p>
+              <%= msg %>
+              <%if false%>i have no idea what i was attempting here?<%# <%= = <a #{@flash[key].to_s}>#{(key == :system ? msg : (h msg)).gsub("&lt;br/&gt;","<br/>")}</a> %>%><%end%>
+            </p>
+            <span class="hide">(<a href="#">hide</a>)</span>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <div id="header">
+      <div class="wrapper">
+        <div class="right">
+          <ul>
+            <% if @logged_in_user %>
+              <li id="profile">
+                <%= sprite @logged_in_user.sprite,11.0,:left=>"1em" %>
+                <%= user_link(@logged_in_user,:edit) %>
+                &nbsp;
+                <form id="logoutform" method="POST" action="/login/logout/"><input type="hidden" name="authenticity_token" value="#{form_authenticity_token}"><input type="hidden" name="_method" value="delete"><input id="logout" type="image" src="/include/images/logout.png" alt="Logout" title="Logout" border="0"></form>
+              </li>
+              <li id="inbox">
+                <img class="sprite" style="width: 1.6em; height: 1.6em;" src="/include/images/sprites/sprite1010.gif" alt="Mailbox sprite" title="2 Private Messages" />
+                <a href="/forum/inbox">Inbox<%= " ("+@pmcount.to_s+")" if @pmcount %></a>
+              </li>
+            <% else %>
+              <li id="register">
+                <img class="sprite" style="width: 1.6em; height: 1.6em; top: .8em; left: 1.2em;" src="/include/images/sprites/sprite1112.gif" alt="Hawkeye sprite" title="Register" />
+                <a href="/login/register" id="registerlink">Register</a>
+              </li>
+              <li id="login">
+                <img class="sprite" style="width: 1.6em; height: 1.6em; top: .8em; left: 1.1em;" src="/include/images/sprites/sprite1104.gif" alt="Zappy Mcsprite" title="Login" />
+                <a href="/login/login_oauth" id="loginlink">Login</a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="left">
+          <h1 class="fangamer"><a href="http://fangamer.com">Fangamer</a></h1>
+          <ul>
+            <li class="selected"><a href="https://secure.fangamer.com/login/login">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <%= yield %>
+  </div>
+</body>
