@@ -69,20 +69,32 @@ public
   def topiclist
     @topics = @forum.topics.reorder(sticky: :desc, last_message: :desc).preload(:sprite) # reorder necessary to prevent default order
     #TODO: mark forum as read
-    #TODO: get topics reads
     @page = "topics" # set css
-    #TODO: page numbering
-    @topics = @topics.limit(50) # basic pages for now
+    @page_number = (params[:page] || 1).to_i
+    @topics = @topics.limit(50).offset((@page_number-1)*50) # basic pages for now
+    #TODO: offset is VERY slow and needs optimization
+
+    if @logged_in_user
+      topic_ids = @topics.map(&:id)
+      @topicreads = Hash.new
+      Read.where(user_id:@logged_in_user.id,topic_id:topic_ids).each do |read|
+        @topicreads[read.topic_id] = read
+      end
+    end
   end
 
   def topic
     # no bans from forum
     # redirect to unread page logic
     # page number logic, below is stubbed
-    @messages = @topic.messages.order(:created_at).preload(:creator=>:sprite).limit(50).to_a
+    @page_number = (params[:page] || 1).to_i
+    @messages = @topic.messages.order(:created_at).preload(:creator=>:sprite).limit(50).offset((@page_number-1)*50).to_a #TODO: offset is VERY slow and needs optimization
     # remove the deleted messages from this view
     @messages.reject!{|x| x.deleted} unless @forum.is_moderator? if @forum
-    # update topic reads
+
+    if @logged_in_user
+      Read.upsert({last_view:Time.now}, unique_by: :index_reads_on_user_id_and_topic_id)
+    end
     # update forum reads
     # update topic views, unless was already last visited topic
 

@@ -63,11 +63,12 @@
           <div class="post-header">
             <h3>
               <%= user_link(@logged_in_user,:with_avatar) -%>
+              <p class='rank'>TODO: Check badge html safety</p>
             </h3>
-            <%= @logged_in_user.badge_xhtml if @logged_in_user %>
+            <%= @logged_in_user.try(:badge_xhtml).try(:html_safe) %>
           </div><!-- .post-header -->
           <div class="post-body">
-            <% form_for :message, @message,:url=>@topic.URL+"/reply",:html=>{:name=>"reply_form",:onsubmit=>"javascript: document.reply_form.submit_reply.disabled = true;"} do |f| %>
+            <%= form_with url:"#{@topic.URL}/reply", model:@message, name:'reply_form', onSubmit:'javascript: document.reply_form.submit_reply.disabled = true;' do |f| %>
             <%= f.hidden_field :loaded_timestamp, :value=>Time.now.to_i -%>
             <%= f.hidden_field :preview_topic_id, :value=>@topic.id -%>
               <div class="newfck">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_31_101654) do
+ActiveRecord::Schema.define(version: 2020_12_31_104038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -644,6 +644,7 @@ ActiveRecord::Schema.define(version: 2020_12_31_101654) do
     t.integer "user_id"
     t.integer "message_id"
     t.datetime "last_view"
+    t.index ["user_id", "topic_id"], name: "index_reads_on_user_id_and_topic_id", unique: true
   end
 
   create_table "reports", id: :serial, force: :cascade do |t|

@@ -21,7 +21,7 @@
               <%= user_link(message.creator,:with_avatar) %>
               <p class='rank'>TODO: Check badge html safety</p>
             </h3>
-            <%= message.creator.badge_xhtml.html_safe unless (@forum && @forum.serious_business && !message.creator.sb_avatar.blank?) unless message.deleted || message.creator.nil? unless (@logged_in_user.hide_avatars rescue false) %>
+            <%= message.creator.badge_xhtml.try(:html_safe) unless (@forum && @forum.serious_business && !message.creator.sb_avatar.blank?) unless message.deleted || message.creator.nil? unless (@logged_in_user.hide_avatars rescue false) %>
           </div><!-- .post-header -->
           <div class="post-body<%= " hidden-because-deleted" if message.deleted -%>">
             <div class="message-content">
