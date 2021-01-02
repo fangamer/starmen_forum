@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_31_164032) do
+ActiveRecord::Schema.define(version: 2021_01_02_204731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -438,7 +438,7 @@ ActiveRecord::Schema.define(version: 2020_12_31_164032) do
     t.string "ip_address", limit: 510
     t.string "hostname", limit: 510
     t.integer "edited_by"
-    t.boolean "deleted", null: false
+    t.boolean "deleted", default: false, null: false
     t.boolean "show_sig"
     t.boolean "locked"
     t.string "thumbnail", limit: 510

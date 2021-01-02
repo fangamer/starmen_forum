@@ -2,6 +2,7 @@ class Forum < ApplicationRecord
   include BackwardsCompat
 
   has_many :topics, ->{order(last_message: :desc).preload(:creator)}, inverse_of: :forum
+  has_many :messages, through: :topics, inverse_of: :forum
   belongs_to :category
   has_many :forum_reads
   belongs_to :sprite
@@ -26,6 +27,14 @@ class Forum < ApplicationRecord
 
   def is_supermod?
     ActiveSupport::Deprecation.warn("Forum#is_supermod? is moving somewhere else")
+    false
+  end
+
+  def can_post_images?
+    self.allow_images
+  end
+
+  def can_attach?
     false
   end
 end

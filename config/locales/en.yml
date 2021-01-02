@@ -31,3 +31,16 @@
 
 en:
   hello: "Hello world"
+
+  # this is stolen directly from rails 2.3.18.
+  activerecord:
+    errors:
+      template:
+        header:
+          one:    "1 error prohibited this %{model} from being saved"
+          other:  "%{count} errors prohibited this %{model} from being saved"
+        # The variable :count is also available
+        body: "There were problems with the following fields:"
+    attributes:
+      message:
+        body_original: "Body"

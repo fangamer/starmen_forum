@@ -2,6 +2,12 @@ require_relative "boot"
 
 require "rails/all"
 
+#BBRedCloth 0.9.0.alpha1 fix
+module REXML
+  module Document
+  end
+end
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)

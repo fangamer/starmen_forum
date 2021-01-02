@@ -1,0 +1,263 @@
+<div id="content">
+  <div class="wrapper">
+    <div id="main">
+    <%= form_with model:@message, url:{action: :index}, id:'postingform', name:'reply_form', onSubmit:'javascript: document.reply_form.submit_reply.disabled = true;', multipart:true do |f| %>
+      <%= f.hidden_field :loaded_timestamp %>
+      <%# looking for how this is built? #error_messages_for is in ApplicationHelper and the actual text is in en.yml %>
+      <%= error_messages_for 'topic' unless @preview %>
+      <%= error_messages_for 'message' unless @preview %>
+      <%= error_messages_for 'poll',:object=>@message.poll %>
+      <%= error_messages_for 'attachments',:object=>@message.forumAttachments %>
+      
+<% if @should_edit_topic %>
+        <div class="post" id="titley">
+          <div class="post-header">
+            <label for="newtopic_name">Topic Title:</label>
+          </div><!-- .post-header -->
+          <div class="post-body">
+            <div>
+              <%= text_field :newtopic,:name,:class=>"topic",:size=>nil,:value=>@topic.name,:tabindex=>1 %>
+            </div>
+          </div><!-- .post-body -->
+        </div><!-- #titley -->
+        <div class="post" id="byliney">
+          <div class="post-header">
+            <label for="newtopic_byline">Byline:</label>
+          </div><!-- .post-header -->
+          <div class="post-body">
+            <div>
+              <%= text_field :newtopic,:byline, :size=>"50",:value=>@topic.byline,:tabindex=>2 %>
+            </div>
+          </div><!-- .post-body -->
+        </div><!-- #byliney -->
+<% else %>
+        <h2>
+          <a class="topic" id="topic<%= @topic.id %>" href="<%= @topic.URL %>">
+            <% if @message.topic.sprite %>
+              <img class="sprite" src="<%= @topic.sprite.public_filename %>" alt="<%= h @topic.sprite.title %> sprite" title="<%= h @topic.name %>" />
+            <% end #if @message.topic.sprite %>
+            <%= h @topic.name %>
+          </a>
+        </h2>
+        <p id="byline">
+          <%= h @topic.byline %>
+        </p>
+<% end %>
+
+<% if (@preview || @message.errors) && !@message.body.blank? %>
+      <div class="post even" id="postpreview">
+        <div id="previewnotice">
+          <p>This is a preview. It has not been posted yet.</p>
+        </div>
+        <% if @message.errors[:override_bump] || @message.override_bump %>
+        <div id="topicbump">
+          <p>You are posting a topic that's older than seven days. You may receive a strike if you bump a topic without a good reason.</p>
+          <p>TOPIC BUMP MANUAL OVERRIDE:&nbsp;&nbsp;&nbsp;<%= check_box :message,:override_bump %></p>
+        </div>
+        <% end #if @message.errors.on(:override_bump) %>
+        <div class="post-header">
+          <h3>
+            <%= user_link(@logged_in_user,:with_avatar) %>
+            <p class='rank'>todo: check badge html safety</p>
+          </h3>
+          <%= @logged_in_user.try(:badge_xhtml).try(:html_safe) if @logged_in_user.is_a?(User) %>
+        </div><!-- .post-header -->
+        <div class="post-body">
+          <div class="message-content">
+            <%= @message.body %>
+          </div>
+          <%= attachments(@message.forumAttachments,@message.thumbnail) %>
+        </div><!-- .post-body -->
+      </div><!-- .post -->
+<% end %>
+      <div class="quick post odd" id="reply">
+        <div class="post-header">
+          <h3>
+            <%= user_link(@logged_in_user,:with_avatar).try(:html_safe) %>
+            <p class='rank'>todo: check badge html safety</p>
+          </h3>
+          <%= @logged_in_user.try(:badge_xhtml).try(:html_safe) if @logged_in_user.is_a?(User) %>
+        </div><!-- .post-header -->
+        <div class="post-body">
+<%  if @preview && !@message.body.blank? %>
+            <div class="buttons">
+              <button id="submit" type="submit" name="submit_reply">
+                <img class="sprite" style="top: .1em; left: -.4em; width: 1.6em; height: 2.4em;" src="/include/images/sprites/sprite879.gif" alt="Pencil icon" title="Submit your Reply" />
+                <span><%= type @type %></span>
+              </button>
+              <button id="preview" type="submit" name="preview" value="Preview">
+                <img class="sprite" style="top: .5em; left: -.5em; width: 1.6em; height: 1.6em;" src="/include/images/sprites/sprite1064.gif" alt="Eyes icon" title="Preview your Reply" />
+                <span>Preview!</span>
+              </button>
+              <button class="stopedit negative" name="cancel" value="Cancel" type="submit">
+                <img class="sprite" style="width: 1.6em; height: 1.6em; top: .5em; left: -.6em;" src="/include/images/sprites/sprite1123.gif" alt="Exclamation sprite" title="Cancel" />
+                <span>Cancel!</span>
+              </button>
+            </div>
+<% end %>
+            <div class="newfck">
+              <%= text_area :message, :body_original, :rows=>20,:class=>"wtf",:tabindex=>3 %>
+            </div>
+            
+            <div class="rules">
+              <p>You are <%= @forum.can_post_images? ? "" : " <b>not</b> " %> allowed to post images.</p>
+            </div>
+            
+            <div class="buttons">
+              <button id="submit" type="submit" name="submit_reply" tabindex="4">
+                <img class="sprite" style="top: .1em; left: -.4em; width: 1.6em; height: 2.4em;" src="/include/images/sprites/sprite879.gif" alt="Pencil icon" title="Submit your Reply" />
+                <span><%= type @type %></span>
+              </button>
+              <button id="preview" type="submit" name="preview" value="Preview">
+                <img class="sprite" style="top: .5em; left: -.5em; width: 1.6em; height: 1.6em;" src="/include/images/sprites/sprite1064.gif" alt="Eyes icon" title="Preview your Reply" />
+                <span>Preview!</span>
+              </button>
+              <button class="stopedit negative" name="cancel" value="Cancel" type="submit">
+                <img class="sprite" style="width: 1.6em; height: 1.6em; top: .5em; left: -.6em;" src="/include/images/sprites/sprite1123.gif" alt="Exclamation sprite" title="Cancel" />
+                <span>Cancel!</span>
+              </button>
+            </div>
+
+            <div class="smilies">
+              <p>Smilies:&nbsp;&nbsp;
+<% for smilie in @smilies %>
+                  <img src="<%= smilie.url %>" style="vertical-align:middle;" alt="<%= smilie.regexp %>" title="<%= smilie.regexp %>" />&nbsp;&nbsp;
+<% end %>
+              </p>
+            </div>
+
+            <div class="hints">
+              <p>
+                <a target="_new" href="/forum/faq/">Formatting hints:</a>
+                <span>
+                  *<b>bold</b>*&nbsp;&nbsp;
+                  _<i>italic</i>_&nbsp;&nbsp;
+                  "google":http://google.com&nbsp;&nbsp;
+                  [spoiler=Ness is...]an uptown girl![/spoiler]&nbsp;&nbsp;
+                </span>
+              </p>
+            </div>
+<% if @should_edit_topic %>            
+            <fieldset id="sprite">
+              <legend>
+                <span>Sprite</span>
+              </legend>
+              <%= spriteDB(:newtopic,:sprite_id,@topic.sprite) %>
+            </fieldset>
+<% end %>
+            
+<% if @logged_in_user %>
+            <fieldset id="polls" class="tabley">
+              <legend<%= ' id="poll'+@message.poll.id.to_s+'"' if @message.poll && @message.poll.id %>>
+                <span>Polls</span>
+              </legend>
+              <ul class="buttons">
+<% if @message.poll %>
+                <li>
+                  <a id="cancelpoll" class="button negative">
+                            <img style="width: 1.6em; height: 1.6em; top: 0.5em; left: -0.6em;" src="/include/images/sprites/sprite1123.gif" alt="Exclamation sprite" title="Cancel" class="sprite"/>
+                            <span>Cancel Poll</span>
+                  </a>
+                </li>
+<% end %>
+                <li>
+                  <a <%= 'style="display:none;"' if @message.poll %> id="insertpoll" class="button" href="/forum/newpoll/<%= @topic.id %>">
+                    <img class="sprite" style="top: .5em; left: -.5em; width: 1.6em; height: 1.6em;" src="/include/images/sprites/button-plus.png" alt="Plus icon" title="Insert Poll" />
+                    <span>Insert Poll</span>
+                  </a>
+                </li>
+              </ul>
+<% if @message.poll %>
+            <label><span>Title:</span><input type="text" size="30" name="poll[name]" id="poll_name" value="<%= @message.poll.name %>"/></label>
+            <label for="poll[multiple]"><span>Multiple / Checkbox:</span><%= check_box :poll,:multiple,{:checked=>@message.poll.multiple} %></label>
+            <label><span>Option 1:</span><input type="text" size="30" name="poll[option0]" id="poll_option0" value="<%= @message.poll.option0 %>"/></label>
+            <label><span>Option 2:</span><input type="text" size="30" name="poll[option1]" id="poll_option1" value="<%= @message.poll.option1 %>"/></label>
+            <label><span>Option 3:</span><input type="text" size="30" name="poll[option2]" id="poll_option2" value="<%= @message.poll.option2 %>"/></label>
+            <label><span>Option 4:</span><input type="text" size="30" name="poll[option3]" id="poll_option3" value="<%= @message.poll.option3 %>"/></label>
+            <label><span>Option 5:</span><input type="text" size="30" name="poll[option4]" id="poll_option4" value="<%= @message.poll.option4 %>"/></label>
+            <label><span>Option 6:</span><input type="text" size="30" name="poll[option5]" id="poll_option5" value="<%= @message.poll.option5 %>"/></label>
+            <label><span>Option 7:</span><input type="text" size="30" name="poll[option6]" id="poll_option6" value="<%= @message.poll.option6 %>"/></label>
+            <label><span>Option 8:</span><input type="text" size="30" name="poll[option7]" id="poll_option7" value="<%= @message.poll.option7 %>"/></label>
+            <label><span>Option 9:</span><input type="text" size="30" name="poll[option8]" id="poll_option8" value="<%= @message.poll.option8 %>"/></label>
+            <label><span>Option 10:</span><input type="text" size="30" name="poll[option9]" id="poll_option9" value="<%= @message.poll.option9 %>"/></label>
+<% end %>
+
+            </fieldset><!-- fieldset#polls -->
+<% end %>
+
+<% if @logged_in_user && @forum.can_attach? %>
+<%= render :partial=>"/forum/posting_attachment",:locals=>{:f=>f} %>
+<% end %>
+
+            <fieldset class="miscoptions">
+              <legend>
+                <span>Misc options</span>
+              </legend>
+              <label>
+                <%= f.check_box :show_sig,:checked => (@message.show_sig || (@logged_in_user && @logged_in_user.show_sig_default) ? 'checked' : '') %>
+                <span>Show Signature</span>
+              </label>
+              <label>
+                <%= f.check_box :disable_smilies,:checked => (@message.disable_smilies ? 'checked' : '') %>
+                Disable Smilies
+              </label>
+<% if @should_edit_topic && @topic.can_sticky? %>
+                <label>
+                  <%= text_field :newtopic,:sticky,:size=>3,:value=>@topic.sticky  %>
+                  <span>Stickiness (higher numbers float to top)</span>
+                </label>
+<% end %>
+<% if @should_edit_topic && @forum.is_supermod? %>
+                <label>
+                  <%= select :newtopic,:kind,Topic.kinds,{:selected=>@topic.kind} %>
+                  <span>Topic Kind</span>
+                </label>
+<% end %>
+<% if @should_edit_topic && @topic.kind == "c" %>
+                <label>
+                  <%= select :newtopic,:contest_id,Contest.ongoing_select %>
+                  <span>Contest Select</span>
+                </label>
+<% end %>
+<% if @topic.can_lock? %>
+              <label>
+                <%= check_box :topiclocked,:locked,:checked=>@topic.locked %>
+                Topic Locked
+              </label>
+
+              <label>
+                                                                <%= f.check_box :disable_textile %>
+                                                                Disable Textile
+                                                              </label>
+<% end %>
+<% if (@logged_in_user.emblem_id rescue false) %>
+                <label>
+                  <%= check_box_tag :post_with_emblem,"1",({:checked=>true} unless @message.emblem_id.nil?) %> 
+                  <span>Post With Emblem</span>
+                </label>
+                <div class="emblemselectdiv"<%= " style=\"display:none;\"" unless @message.emblem_id %>><%= f.select :emblem_id,[["No Emblem",nil]]+@logged_in_user.emblems.map{|x| [x.name,x.id]} %></div>
+<% end %>
+            </fieldset>
+
+            <div class="hr"><hr /></div>
+
+            <div class="buttons">
+              <button id="submit" type="submit" name="submit_reply">
+                <img class="sprite" style="top: .1em; left: -.4em; width: 1.6em; height: 2.4em;" src="/include/images/sprites/sprite879.gif" alt="Pencil icon" title="Submit your Reply" />
+                <span><%= type @type %></span>
+              </button>
+              <button id="preview" type="submit" name="preview" value="Preview">
+                <img class="sprite" style="top: .5em; left: -.5em; width: 1.6em; height: 1.6em;" src="/include/images/sprites/sprite1064.gif" alt="Eyes icon" title="Preview your Reply" />
+                <span>Preview!</span>
+              </button>
+              <button class="stopedit negative" name="cancel" value="Cancel" type="submit">
+                <img class="sprite" style="width: 1.6em; height: 1.6em; top: .5em; left: -.6em;" src="/include/images/sprites/sprite1123.gif" alt="Exclamation sprite" title="Cancel" />
+                <span>Cancel!</span>
+              </button>
+            </div>
+        </div>
+      </div><!-- .quick .post -->
+    <% end %>
+    </div><!-- #main -->
+  </div><!-- .wrapper -->
+</div><!-- #content -->

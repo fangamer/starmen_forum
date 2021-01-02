@@ -3,40 +3,6 @@ class ForumController < ApplicationController
   before_action :require_topic, except: [:index,:category,:topiclist,:collapse_forum,:collapse_category]
   after_action  :reset_expirations
 
-private
-
-  # get the forum by the nickname
-  def require_forum
-    if (params[:cat].blank? || params[:forum].blank?)
-      raise ActiveRecord::RecordNotFound.new("Cannot find forum with that nickname")
-    else
-      @category = Category.find_by_nickname!(params[:cat])
-      @forum = @category.forums.find_by_nickname!(params[:forum])
-    end
-    raise ActiveRecord::RecordNotFound.new("Cannot find forum with that nickname") if @forum.blank?
-    @bookcrumbs << [@forum.name,@forum.URL]
-  end
-
-  def require_topic
-    if params[:topic] =~ /\A\d+\z/
-      @topic = Topic.find(params[:topic])
-      @forum = @topic.forum
-    else
-      @topic = @forum.topics.find_by_permalink!(params[:topic])
-    end
-    #TODO: no bans from topic
-    @bookcrumbs << [@topic.truncate_name,@topic.URL]
-  end
-
-  # pretty sure this prevents caching on the local browser when going back so it's always fresh?
-  # not sure why this was there on the old forum
-  def reset_expirations
-    self.response.headers['Expires'] = 1.day.ago.to_formatted_s(:rfc822)
-    self.response.headers['Cache-Control'] = "no-cache, no-store, private, must-revalidate"
-  end
-
-public
-
   def index
     @categories = Category.order(:order=>:asc).preload(:forums=>:sprite).all.to_a
     @page = "main"
@@ -125,5 +91,18 @@ public
 
     # quick message base
     @message = @topic.messages.new
+  end
+
+  def message
+    if @topic
+      @message = @topic.messages.find(params[:id])
+    else
+      @message = Message.find(params[:id])
+    end
+    #TODO: If not in forum you can read, also return not found
+
+    # holy crap optimize this
+    page_number = (@topic.messages.select(:id).map(&:id).index(@message.id)/50)+1
+    redirect_to action: :topic, page: page_number, anchor: "post#{@message.id}"
   end
 end
