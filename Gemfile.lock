@@ -118,6 +118,7 @@ GEM
 PLATFORMS
   ruby
   x86_64-darwin-19
+  x86_64-darwin-20
 
 DEPENDENCIES
   BBRedCloth (>= 0.9.0.alpha1)
