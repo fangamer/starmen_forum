@@ -21,14 +21,17 @@ gem 'activerecord', '~> 6.1.0'
 gem 'activesupport', '~> 6.1.0'
 gem 'bundler', '>= 1.15.0'
 gem 'railties', '~> 6.1.0'
-gem 'sprockets-rails', '>= 2.0.0'
+
+# exclude sprockets as we are using webpacker instead
+# gem 'sprockets-rails', '>= 2.0.0'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+# excluding because we are using webpacker instead
+# gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -39,6 +42,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+gem 'pagy'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

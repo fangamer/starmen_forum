@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Editing <%= @user.name %></h1>
+</div>
+
+<%= ubercms_form @user, autocomplete:false do |f| %>
+  <h5>Login Info</h5>
+  <%= bs5_text_field(f,:name) %>
+  <%= bs5_text_field(f,:email) %>
+  <%# bs5_password_field(f,:password) %>
+  <%= bs5_checkbox_field(f,:email_confirmed) %>
+  <%= bs5_submit %>
+<% end %>

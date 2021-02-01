@@ -24,5 +24,10 @@ Rails.application.routes.draw do
   get 'login/validate/:validate_key' => 'login#validate'
   delete 'login/logout' => 'login#logout'
 
+  namespace :ubercms do
+    get '/' => 'index#index'
+    resources :users
+  end
+
   root 'forum#index'
 end

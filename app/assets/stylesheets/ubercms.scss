@@ -1,0 +1,169 @@
+// since we are using webpacker, this means to use the bootstrap as imported from yarn
+@import "~bootstrap/scss/bootstrap.scss";
+
+//taken from bootstrap dashboard example.
+body {
+  font-size: .875rem;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  /* rtl:raw:
+  right: 0;
+  */
+  bottom: 0;
+  /* rtl:remove */
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 5rem;
+  }
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #727272;
+}
+
+.sidebar .nav-link.active {
+  color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, .25);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.navbar .navbar-toggler {
+  top: .25rem;
+  right: 1rem;
+}
+
+.navbar .form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+@media (prefers-color-scheme: dark) {
+  $body-color: $gray-100;
+
+  $table-color:                 $body-color;
+  $table-bg:                    transparent;
+
+  $table-th-font-weight:        null;
+
+  $table-striped-color:         $table-color;
+  $table-striped-bg-factor:     .05;
+  $table-striped-bg:            rgba($white, $table-striped-bg-factor);
+
+  $table-active-color:          $table-color;
+  $table-active-bg-factor:      .1;
+  $table-active-bg:             rgba($white, $table-active-bg-factor);
+
+  $table-hover-color:           $table-color;
+  $table-hover-bg-factor:       .075;
+  $table-hover-bg:              rgba($white, $table-hover-bg-factor);
+
+  body {
+    background:#000;
+    color: $gray-100;
+  }
+
+  .bg-light {
+    background: $dark !important;
+  }
+
+  .sidebar .nav-link {
+    color: #ccc;
+  }
+
+  .table {
+    --#{$variable-prefix}table-bg: #{$table-bg};
+    --#{$variable-prefix}table-striped-color: #{$table-striped-color};
+    --#{$variable-prefix}table-striped-bg: #{$table-striped-bg};
+    --#{$variable-prefix}table-active-color: #{$table-active-color};
+    --#{$variable-prefix}table-active-bg: #{$table-active-bg};
+    --#{$variable-prefix}table-hover-color: #{$table-hover-color};
+    --#{$variable-prefix}table-hover-bg: #{$table-hover-bg};
+    color: $table-color;
+  }
+
+  a {
+    color: lighten($blue,10%);
+  }
+
+  .pagination {
+    .page-item {
+      background: $dark;
+      .page-link {
+        background: $dark;
+        border-color: $gray-700;
+      }
+    }
+    .page-item.disabled {
+      background: $dark;
+      .page-link {
+        background: $dark;
+      }
+    }
+  }
+}

@@ -13,16 +13,19 @@ class User < ApplicationRecord
   has_many :acls
   serialize :info
   has_many :forum_reads
-  belongs_to :sprite
+  belongs_to :sprite, optional: true
   has_many :messages, inverse_of: :creator
-  belongs_to :theme
+  belongs_to :theme, optional: true
   serialize :preferences
   has_many :friends
   has_many :submissions
   has_many :emblemeds, :dependent => :delete_all
   has_many :emblems, :through=>:emblemeds
-  belongs_to :emblem
-  belongs_to :infraction_punishment
+  belongs_to :emblem, optional: true
+  belongs_to :infraction_punishment, optional: true
+
+  validates :name, presence: true
+  validates :email, presence: true
 
   def Permissions
     ActiveSupport::Deprecation.warn("Changed #Permissions to #permissions")
@@ -43,5 +46,18 @@ class User < ApplicationRecord
     perm = self.Permissions.reject{|p| p.permission != name || p.individual_id != id || p.value != enable}.flatten
     return false if perm.blank?
     return perm.first
+  end
+
+  def email_confirmed
+    self.email_validation.blank?
+  end
+
+  def email_confirmed=(updated_value)
+    # do nothing if already confirmed
+    return true if email_confirmed
+    # if we are sending false, don't do anything
+    return false if updated_value.blank? || updated_value === false || updated_value == "0" || updated_value == 0
+    # this method is from an admin, so we force the validation to be true
+    self.email_validation = nil
   end
 end
