@@ -1,0 +1,7 @@
+<h1>Banned</h1>
+<p>
+  You are banned. 
+  <% if @logged_in_user.is_a?(User) && @logged_in_user.banned %>
+    <%= link_to "Logout","/login/logout",:method=>:delete %>
+  <% end %>
+</p>
