@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :set_site
   before_action :backwards_compatibility
   before_action :set_logged_in_user, if:->{!session[:logged_in_user].blank?}
+  before_action :no_superbanned_users
   rescue_from NotImplementedError, with: :not_implemented
   rescue_from StarmenForum::LoginRequired, with: :login_required
 
@@ -34,6 +35,10 @@ class ApplicationController < ActionController::Base
   # TODO: permissions
   helper_method def liu_is_modadmin?
     false
+  end
+
+  def no_superbanned_users
+    render partial:"banned" if @logged_in_user.try(:banned)
   end
 
 private

@@ -8,5 +8,7 @@
   <%= bs5_text_field(f,:email) %>
   <%# bs5_password_field(f,:password) %>
   <%= bs5_checkbox_field(f,:email_confirmed) %>
+  <%= bs5_checkbox_field(f,:banned) %>
+  <%= bs5_textarea_field(f,:ban_reason) %>
   <%= bs5_submit %>
 <% end %>

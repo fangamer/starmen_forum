@@ -12,7 +12,7 @@ module UbercmsHelper
 
   def ubercms_form(obj,autocomplete:nil,&block)
     form_with(model:[:ubercms,obj],html:{autocomplete:autocomplete===false ? 'off' : autocomplete}) do |f|
-      content_tag :div, class:"col-4" do
+      content_tag :div, class:"col-6" do
         concat(full_error_message(obj)) unless obj.errors.blank?
         concat(block.call(f))
       end
@@ -23,6 +23,14 @@ module UbercmsHelper
     content_tag :div, class:"mb-3" do
       ret = f.label(method,class:'form-label')
       ret += f.text_field(method,class:'form-control')
+      ret
+    end
+  end
+
+  def bs5_textarea_field(f,method)
+    content_tag :div, class:"mb-3" do
+      ret = f.label(method,class:'form-label')
+      ret += f.text_area(method,class:'form-control')
       ret
     end
   end

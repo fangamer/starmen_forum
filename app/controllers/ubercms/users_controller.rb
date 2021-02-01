@@ -20,6 +20,6 @@ class Ubercms::UsersController < UbercmsController
 
 private
   def user_params
-    params[:user].permit(:name,:email,:email_confirmed)
+    params[:user].permit(:name,:email,:email_confirmed,:banned,:ban_reason)
   end
 end
