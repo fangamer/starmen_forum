@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Search</h1>
+</div>
+
+<h3>Users</h3>
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= link_to user.name, edit_ubercms_user_path(user) %></td>
+    </tr>
+  <% end %>
+</table>

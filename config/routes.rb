@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   namespace :ubercms do
     get '/' => 'index#index'
+    post '/search' => 'index#search'
     resources :users
   end
 
