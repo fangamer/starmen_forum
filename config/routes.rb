@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get '/' => 'index#index'
     post '/search' => 'index#search'
     resources :users
+    resources :groups
   end
 
   root 'forum#index'

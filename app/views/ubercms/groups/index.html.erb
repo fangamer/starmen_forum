@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Groups</h1>
+  <%= link_to "Create Group", new_ubercms_group_path, class:"btn btn-primary" %>
+</div>
+
+<%== pagy_bootstrap_nav(@pagy) %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <th scope="row"><%= group.id %></th>
+        <td><%= link_to group.name, edit_ubercms_group_path(group) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

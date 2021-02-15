@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">
+    <% if @group.new_record? %>
+      New Group
+    <% else %>
+      Editing <%= @group.name %>
+    <% end %>
+  </h1>
+</div>
+
+<%= ubercms_form @group, autocomplete:false do |f| %>
+  <%= bs5_text_field(f,:name) %>
+  <%= bs5_submit %>
+<% end %>
