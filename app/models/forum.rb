@@ -37,4 +37,14 @@ class Forum < ApplicationRecord
   def can_attach?
     false
   end
+
+  def self.select_options
+    out = Hash.new{|h,k| h[k] = []}
+    forums = Forum.preload(:category).all.to_a
+    forums.sort_by!{|f| [f.category.try(:order)||9999999999999,f.order]}
+    forums.each do |forum|
+      out[forum.category.try(:name)||"Unknown Category"] << [forum.name,forum.id]
+    end
+    out
+  end
 end

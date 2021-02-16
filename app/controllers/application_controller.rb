@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :no_superbanned_users
   rescue_from NotImplementedError, with: :not_implemented
   rescue_from StarmenForum::LoginRequired, with: :login_required
+  rescue_from CanCan::AccessDenied, with: :four_oh_four
 
   def set_site
     @site = Site.new
@@ -22,6 +23,14 @@ class ApplicationController < ActionController::Base
   def login_required
     # TODO: better logic
     render action: :login_required
+  end
+
+  def four_oh_four
+    @forum = nil # clear out in case it tries using it to render the 404 error
+    @category = nil
+    @topic = nil
+    @message = nil
+    render action: :four_oh_four
   end
 
   def set_logged_in_user
@@ -51,6 +60,7 @@ private
       @category = Category.find_by_nickname!(params[:cat])
       @forum = @category.forums.find_by_nickname!(params[:forum])
     end
+    authorize! :read, @forum
     raise ActiveRecord::RecordNotFound.new("Cannot find forum with that nickname") if @forum.blank?
     @bookcrumbs << [@forum.name,@forum.URL]
   end
@@ -75,5 +85,9 @@ private
   def reset_expirations
     self.response.headers['Expires'] = 1.day.ago.to_formatted_s(:rfc822)
     self.response.headers['Cache-Control'] = "no-cache, no-store, private, must-revalidate"
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new(@logged_in_user)
   end
 end

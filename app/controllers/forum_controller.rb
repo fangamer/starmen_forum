@@ -4,12 +4,13 @@ class ForumController < ApplicationController
   after_action  :reset_expirations
 
   def index
-    @categories = Category.order(:order=>:asc).preload(:forums=>:sprite).all.to_a
+    all_readable_forums = Forum.accessible_by(current_ability).preload(:sprite,:category)
+    @categories = all_readable_forums.map(&:category).compact.uniq.sort_by(&:order)
     @page = "main"
 
     # backwards compat
     @sorted_forums = {}
-    @categories.each{|cat| @sorted_forums[cat.id] = cat.forums}
+    @categories.each{|cat| @sorted_forums[cat.id] = all_readable_forums.select{|forum| forum.category_id == cat.id}.sort_by(&:order)}
     @categories.reject!{|x| @sorted_forums[x.id].length == 0}
     forums = @sorted_forums.values.map(&:to_a).flatten
     # TODO: Reject forums user does not have access to

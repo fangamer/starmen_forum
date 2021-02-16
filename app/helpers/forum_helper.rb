@@ -86,7 +86,8 @@ module ForumHelper
   def display_moderators(forum)
     return "" unless forum.is_a?(Forum)
     output = "<ul>"
-    users = Permission.where(permission:"Moderator",individual_id:forum.id).preload({:user=>:permissions}).map(&:user).reject{|user| user.has_permission("Administrator") || user.has_permission("Moderator_All")}.uniq
+    moderator_permission = RawPermission::PERMISSIONS_FROM_NAME["Moderator"]
+    users = RawPermissionsUser.where(raw_permission_id:moderator_permission['id'],individual_id:forum.id).preload(:user).map(&:user).reject{|user| user.has_permission("Administrator") || user.has_permission("Moderator_All")}.uniq
     users.each {|user| output << "<li>#{user_link(user)}</li>"} # user_linke is also html_safe
     output << "<li>Supermoderators</li><li>Administrators</li></ul>"
     output.html_safe

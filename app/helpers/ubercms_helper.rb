@@ -10,12 +10,13 @@ module UbercmsHelper
     end
   end
 
-  def ubercms_form(obj,autocomplete:nil,&block)
-    form_with(model:[:ubercms,obj],html:{autocomplete:autocomplete===false ? 'off' : autocomplete}) do |f|
-      content_tag :div, class:"col-6" do
-        concat(full_error_message(obj)) unless obj.errors.blank?
+  def ubercms_form(obj,autocomplete:nil,row:false,&block)
+    actual_obj = [obj].flatten.last
+    form_with(model:[:ubercms,obj].flatten,html:{autocomplete:autocomplete===false ? 'off' : autocomplete},class: [row===false ? nil : 'row']) do |f|
+      # content_tag :div, class:"col-6" do
+        concat(full_error_message(actual_obj)) unless actual_obj.errors.blank?
         concat(block.call(f))
-      end
+      # end
     end
   end
 

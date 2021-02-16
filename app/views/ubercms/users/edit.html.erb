@@ -2,13 +2,95 @@
   <h1 class="h2">Editing <%= @user.name %></h1>
 </div>
 
-<%= ubercms_form @user, autocomplete:false do |f| %>
-  <h5>Login Info</h5>
-  <%= bs5_text_field(f,:name) %>
-  <%= bs5_text_field(f,:email) %>
-  <%# bs5_password_field(f,:password) %>
-  <%= bs5_checkbox_field(f,:email_confirmed) %>
-  <%= bs5_checkbox_field(f,:banned) %>
-  <%= bs5_textarea_field(f,:ban_reason) %>
-  <%= bs5_submit %>
-<% end %>
+<div class="row">
+  <div class="col-lg-6 mb-4">
+    <%= ubercms_form @user, autocomplete:false do |f| %>
+      <h5>Login Info</h5>
+      <%= bs5_text_field(f,:name) %>
+      <%= bs5_text_field(f,:email) %>
+      <%# bs5_password_field(f,:password) %>
+      <%= bs5_checkbox_field(f,:email_confirmed) %>
+      <%= bs5_checkbox_field(f,:banned) %>
+      <%= bs5_textarea_field(f,:ban_reason) %>
+      <%= bs5_submit %>
+    <% end %>
+  </div>
+
+  <div class="col-lg-6 mb-4">
+    <h5>Final Calculated Permissions</h5>
+    <p>NOTE: Users will always have the public permissions unless revoked.</p>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Individual</th>
+          <th scope="col">Enabled</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.permissions.sort_by{|permission| [permission[:name],permission[:individual_name]]}.each do |permission| %>
+          <tr>
+            <td><%= permission[:name] %></td>
+            <td><%= permission[:individual_name] %></td>
+            <td><%= permission[:value] ? "✅" : "❌ REVOKED" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h5 class="mt-5">User Permissions</h5>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Individual</th>
+          <th scope="col">Enable</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.raw_permissions_users.sort_by{|permission| [permission.name,permission.individual_name]}.each do |rp| %>
+          <tr>
+            <td><%= rp.name %></td>
+            <td><%= rp.individual_name %></td>
+            <td><%= rp.value ? "✅" : "❌ REVOKED" %></td>
+            <td><%= form_with model:[:ubercms,@user,rp], method:"delete" do |f| %><button type="submit" style="background:none;border:none;">🗑</button><% end %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= form_with model:[:ubercms,@user,@user.raw_permissions_users.new], class:"row align-items-center justify-content-center" do |f| %>
+      <div class="col-12 mb-3 mb-md-0 col-md">
+        <%= f.select :raw_permission_id, RawPermission::PERMISSIONS_SELECT, {}, class:"form-select" %>
+      </div>
+      <div class="col-12 mb-3 mb-md-0 col-md">
+        <%= f.select :individual_id, grouped_options_for_select(Forum.select_options), {}, class:"form-select" %>
+      </div>
+      <div class="col-auto justify-content-center d-flex">
+        <%= f.check_box :value,class:"form-check-input me-1", checked:true %>
+        <%= f.label :value, "Enabled" %>
+      </div>
+      <div class="col-auto d-grid">
+        <%= f.submit "Add", class:"btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+
+    <h5 class="mt-5">Group Membership</h5>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.groups.each do |group| %>
+          <tr>
+            <td><%= group.name %></td>
+            <td>🗑 (WIP)</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
